@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" role="img" aria-label="Pulse">
+  <!-- Versão monocromática (§5.1). Usa currentColor: herda a cor do contexto.
+       A quarta barra continua legível porque a ALTURA já diferencia — o símbolo
+       não depende de cor. Uso: gravação, fundo colorido, uma cor só. -->
+  <rect x="1.5"  y="4"   width="3" height="16"   rx="1.5" fill="currentColor"/>
+  <rect x="7.5"  y="4"   width="3" height="16"   rx="1.5" fill="currentColor"/>
+  <rect x="13.5" y="4"   width="3" height="16"   rx="1.5" fill="currentColor"/>
+  <rect x="19.5" y="8.8" width="3" height="11.2" rx="1.5" fill="currentColor"/>
+</svg>

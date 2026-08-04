@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" role="img" aria-label="Pulse">
+  <!-- Brand book §5.1 — cadência: grid 24x24, linha de base y=20, topo y=4.
+       Barra: largura 3, intervalo 3, extremidades raio 1,5 (semicircular).
+       Barras 1-3 em 100% (altura 16); barra 4 em 70% (altura 11,2) — o cenário
+       intermediário de adesão do RF-33. A altura da 4ª barra não pode mudar. -->
+  <rect x="1.5"  y="4"   width="3" height="16"   rx="1.5" fill="#12161C"/>
+  <rect x="7.5"  y="4"   width="3" height="16"   rx="1.5" fill="#12161C"/>
+  <rect x="13.5" y="4"   width="3" height="16"   rx="1.5" fill="#12161C"/>
+  <rect x="19.5" y="8.8" width="3" height="11.2" rx="1.5" fill="#2B50F5"/>
+</svg>

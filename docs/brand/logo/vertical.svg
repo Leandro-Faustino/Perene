@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 46" width="64" height="46" role="img" aria-label="Pulse">
+  <!-- Versão vertical (§5.1) — símbolo centralizado sobre o logotipo.
+       Uso: perfis sociais, espaços estreitos.
+       Mesma observação da versão horizontal sobre converter o texto para path
+       antes de uso impresso. -->
+  <g transform="translate(20 0)">
+    <rect x="1.5"  y="4"   width="3" height="16"   rx="1.5" fill="#12161C"/>
+    <rect x="7.5"  y="4"   width="3" height="16"   rx="1.5" fill="#12161C"/>
+    <rect x="13.5" y="4"   width="3" height="16"   rx="1.5" fill="#12161C"/>
+    <rect x="19.5" y="8.8" width="3" height="11.2" rx="1.5" fill="#2B50F5"/>
+  </g>
+  <text x="32" y="42" text-anchor="middle"
+        font-family="Archivo, 'Archivo', system-ui, sans-serif"
+        font-size="16" font-weight="600" letter-spacing="-0.32"
+        fill="#12161C">pulse</text>
+</svg>
