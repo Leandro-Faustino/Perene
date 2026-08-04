@@ -1,0 +1,80 @@
+/* pulse-tokens.css — FONTE ÚNICA DE VERDADE de cor da marca (brand book §7.3).
+ *
+ * Nenhum hexadecimal solto no código, em template de e-mail ou em template de
+ * post. Cor definida fora deste arquivo é dívida técnica de marca.
+ *
+ * Este é o arquivo canônico e vive dentro do app de propósito: manter uma
+ * segunda cópia em docs/ garantiria divergência. A biblioteca de ativos
+ * (§7.3, 02_Cores/) referencia este caminho.
+ *
+ * Valores e justificativas: brand book §5.2 (paleta) e §5.3 (tipografia).
+ */
+
+:root {
+  /* ---- Marca ------------------------------------------------------------ */
+  --pl-cobalto: #2b50f5;
+  --pl-cobalto-escuro: #1e3acc; /* hover de botão */
+  --pl-cobalto-claro: #7b93ff; /* obrigatório sobre fundo escuro: cobalto
+                                  sobre grafite dá 3,0:1 e reprova em AA */
+  --pl-grafite: #12161c;
+
+  /* ---- Neutros ---------------------------------------------------------- */
+  --pl-texto: #475467; /* 7,7:1 sobre branco — corpo e tabela */
+  --pl-texto-medio: #667085; /* 5,3:1 — legenda que precisa continuar acessível */
+  --pl-texto-fraco: #98a2b3; /* 2,6:1 — NÃO textual. Só placeholder, ícone
+                                decorativo e a assinatura no rodapé do pagador.
+                                Proibido em aviso legal, texto de consentimento
+                                e rótulo de coluna (§5.2, §7.2). */
+  --pl-borda: #e4e7ec;
+  --pl-superficie: #f7f8fa;
+  /* `--pl-fundo` é o fundo base e vira grafite no tema escuro.
+   * `--pl-branco` é branco e continua branco em qualquer tema — é o texto do
+   * botão primário sobre cobalto, e inverter isso o tornaria ilegível. Os dois
+   * existem separados de propósito. */
+  --pl-fundo: #ffffff;
+  --pl-branco: #ffffff;
+
+  /* ---- Estados: superfície (badge, ponto indicador) --------------------- */
+  --pl-ativo: #0e9f6e;
+  --pl-pendente: #d9880a;
+  --pl-risco: #d92d20;
+
+  /* ---- Estados: texto (todos passam em AA sobre fundo claro) ------------ */
+  --pl-ativo-texto: #047857;
+  --pl-pendente-texto: #b45309;
+  --pl-risco-texto: #d92d20;
+
+  /* ---- Estados: fundo de badge ------------------------------------------ */
+  --pl-ativo-bg: #ecfdf5;
+  --pl-pendente-bg: #fffbeb;
+  --pl-risco-bg: #fef3f2;
+
+  /* ---- Tipografia (famílias injetadas por next/font em layout.tsx) ------ */
+  --fonte-titulo: var(--fonte-archivo), system-ui, sans-serif;
+  --fonte-texto: var(--fonte-inter), system-ui, sans-serif;
+  --fonte-codigo: var(--fonte-jetbrains), ui-monospace, monospace;
+
+  /* ---- Forma e elevação (§6.3) ------------------------------------------ */
+  --pl-raio: 6px; /* componentes */
+  --pl-raio-card: 8px; /* card */
+  --pl-sombra: 0 1px 2px rgba(18, 22, 28, 0.06); /* a única sombra do sistema;
+                                                    elevação se resolve por
+                                                    borda, não por sombra */
+
+  /* ---- Motion (§5.6) ---------------------------------------------------- */
+  --pl-dur-micro: 150ms;
+  --pl-dur-transicao: 250ms;
+  --pl-dur-medidor: 400ms;
+  --pl-curva: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Superfície escura. A regra que importa: a quarta barra do símbolo, o botão
+ * primário e o link trocam para --pl-cobalto-claro (7,1:1 sobre grafite). */
+.dark {
+  --pl-texto: #cdd3dd;
+  --pl-texto-medio: #98a2b3;
+  --pl-texto-fraco: #667085;
+  --pl-borda: #262c36;
+  --pl-superficie: #1a1f27;
+  --pl-fundo: #12161c;
+}

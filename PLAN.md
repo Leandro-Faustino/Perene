@@ -1,8 +1,36 @@
-# Perene — Plano de implementação
+# Pulse — Plano de implementação
+
+> **Nome:** o produto se chama **Pulse** (decisão de 04/08/2026). "Perene" era
+> nome de trabalho e sobrevive apenas no nome do repositório. Ver
+> [`docs/BRAND_BOOK.md`](./docs/BRAND_BOOK.md) §3.4.
+
+---
+
+## Desvios confirmados durante a implementação
+
+Escritos aqui, e não corrigidos silenciosamente no corpo do plano, porque cada
+um foi verificado contra a versão realmente instalada — e porque o plano ainda
+descreve a rota antiga em alguns pontos.
+
+| Plano dizia | Realidade | Motivo |
+|---|---|---|
+| `src/middleware.ts` com `clerkMiddleware` | **`src/proxy.ts`, exportando `proxy`** | Next.js 16 renomeou a convenção. Mesma responsabilidade, arquivo e nome de função novos. Verificado em `node_modules/next/dist/docs/01-app/01-getting-started/16-proxy.md`. |
+| JWT template no Clerk assinado com o segredo do Supabase | **`accessToken` no cliente Supabase** | `@supabase/supabase-js` 2.112 expõe `accessToken?: () => Promise<string \| null>` para auth de terceiros. Sem segredo compartilhado entre os dois sistemas e sem template para configurar. |
+| RLS lê `auth.jwt()->>'org_id'` | **`pulse.clerk_org_id()`**, que aceita `o.id` (token de sessão) e `org_id` (template legado) | O formato do claim depende de qual integração está ativa. Centralizar numa função deixa a troca em uma linha de migration em vez de uma varredura por todas as policies. |
+| `npx shadcn init` com `new-york` + `neutral` | **`components.json` escrito à mão; primitivos próprios** | O CLI atual não tem mais essas flags e o `init` sobrescreve `globals.css` — o que instalaria uma segunda paleta ao lado dos tokens da marca. `shadcn add` continua funcionando para componentes específicos. |
+| Fonte Geist | **Archivo · Inter · JetBrains Mono** | Brand book §5.3. Inter tem algarismos tabulares nativos, requisito para todo valor monetário. |
+| Rota `/migracao` | **`/ondas`** | O módulo se chama "Ondas" na arquitetura de marca (§3.4) e a URL é superfície. |
+| 13 tabelas | **15** | Entraram `consents` (opt-in com timestamp e origem — §4.2, valor CONFORMIDADE) e `message_templates` (rastreio do status de aprovação Meta). |
+| Cron diário às 05h | **`0 8 * * *`** | Cron da Vercel roda em UTC; 05h em `America/Sao_Paulo` é 08h UTC. |
+
+Continuam **em aberto** e valem como estavam: modelo de cobrança sobre economia,
+timing da aprovação Meta, e a confirmação das jornadas de autorização do Asaas.
+
+---
 
 ## Contexto
 
-Perene é um SaaS multi-tenant que faz **três coisas e apenas três**:
+Pulse é um SaaS multi-tenant que faz **três coisas e apenas três**:
 1. Mostra ao negócio quanto ele perde hoje em taxas de cartão/boleto (diagnóstico).
 2. Migra a base recorrente para **Pix Automático** sem perder cliente no caminho.
 3. Mantém a autorização (mandato) viva — avisa no mesmo dia quando quebra.
@@ -21,7 +49,7 @@ Este plano cobre a **Fase 1 (MVP vendável)** com estrutura pronta para as Fases
 |---|---|
 | Multi-tenancy | **Supabase RLS puro** com JWT do Clerk. Políticas leem `auth.jwt()->>'org_id'`. Sem Prisma. |
 | Fila de jobs | Tabela `jobs` no Postgres + **Vercel Cron** a cada 1 min. Suficiente para o MVP. |
-| Scaffold | **Projeto novo** em `/home/leandro/projetos/Next/Perene`. Copia `middleware.ts`, `layout.tsx`, `components.json`, `user-service.ts` do `replyin` como referência. |
+| Scaffold | **Projeto novo** em `/home/leandro/projetos/Next/Pulse`. Copia `middleware.ts`, `layout.tsx`, `components.json`, `user-service.ts` do `replyin` como referência. |
 | WhatsApp | Interface `MessagingProvider` + **Z-API** como primeira impl. Meta Cloud fica para Fase 3. |
 | Gateway | Interface `GatewayAdapter` + **Asaas** como primeira impl. Segundo adapter valida a interface na Fase 3. |
 | Idioma | UI e mensagens em **português**; identificadores no código em **inglês**. |

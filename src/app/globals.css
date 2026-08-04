@@ -1,0 +1,148 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "../styles/pulse-tokens.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Ponte entre o sistema de design e o Tailwind/shadcn.
+ *
+ * Regra de governança (§7.3): as variáveis abaixo NUNCA recebem hexadecimal.
+ * Elas só apontam para tokens de pulse-tokens.css. Se um componente precisa de
+ * uma cor que não existe lá, a cor entra no arquivo de tokens primeiro. */
+:root {
+  --background: var(--pl-fundo);
+  --foreground: var(--pl-grafite);
+
+  --card: var(--pl-fundo);
+  --card-foreground: var(--pl-grafite);
+  --popover: var(--pl-fundo);
+  --popover-foreground: var(--pl-grafite);
+
+  --primary: var(--pl-cobalto);
+  --primary-foreground: var(--pl-branco);
+  --secondary: var(--pl-superficie);
+  --secondary-foreground: var(--pl-grafite);
+
+  --muted: var(--pl-superficie);
+  --muted-foreground: var(--pl-texto-medio);
+  --accent: var(--pl-superficie);
+  --accent-foreground: var(--pl-grafite);
+
+  --destructive: var(--pl-risco);
+  --destructive-foreground: var(--pl-branco);
+
+  --border: var(--pl-borda);
+  --input: var(--pl-borda);
+  --ring: var(--pl-cobalto);
+
+  --radius: var(--pl-raio);
+}
+
+/* Em superfície escura o cobalto precisa clarear: cobalto sobre grafite dá
+ * 3,0:1 e reprova em AA (§5.2). O texto do botão então vira grafite, porque
+ * branco sobre cobalto-claro perde contraste. */
+.dark {
+  --primary: var(--pl-cobalto-claro);
+  --primary-foreground: var(--pl-grafite);
+  --ring: var(--pl-cobalto-claro);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Tokens de marca expostos como utilitário, para não haver desculpa para
+     escrever hexadecimal em componente. */
+  --color-cobalto: var(--pl-cobalto);
+  --color-cobalto-escuro: var(--pl-cobalto-escuro);
+  --color-cobalto-claro: var(--pl-cobalto-claro);
+  --color-grafite: var(--pl-grafite);
+  --color-texto: var(--pl-texto);
+  --color-texto-medio: var(--pl-texto-medio);
+  --color-texto-fraco: var(--pl-texto-fraco);
+  --color-superficie: var(--pl-superficie);
+  --color-ativo: var(--pl-ativo);
+  --color-ativo-texto: var(--pl-ativo-texto);
+  --color-ativo-bg: var(--pl-ativo-bg);
+  --color-pendente: var(--pl-pendente);
+  --color-pendente-texto: var(--pl-pendente-texto);
+  --color-pendente-bg: var(--pl-pendente-bg);
+  --color-risco: var(--pl-risco);
+  --color-risco-texto: var(--pl-risco-texto);
+  --color-risco-bg: var(--pl-risco-bg);
+
+  --font-sans: var(--fonte-texto);
+  --font-titulo: var(--fonte-titulo);
+  --font-mono: var(--fonte-codigo);
+
+  --radius-sm: calc(var(--pl-raio) - 2px);
+  --radius-md: var(--pl-raio);
+  --radius-lg: var(--pl-raio-card);
+}
+
+@layer base {
+  * {
+    border-color: var(--pl-borda);
+  }
+
+  body {
+    background: var(--background);
+    color: var(--pl-texto);
+    font-family: var(--fonte-texto);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--fonte-titulo);
+    color: var(--foreground);
+  }
+
+  /* §5.3, regra não negociável: todo valor monetário, percentual e contagem
+   * usa algarismos tabulares e alinhamento à direita. Numeral proporcional em
+   * coluna de tabela faz a vírgula dançar entre as linhas — num produto que
+   * existe para dar credibilidade a números, isso sozinho destrói a confiança. */
+  .pl-numero {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+    text-align: right;
+  }
+
+  /* Identificador não é número: token de convite, ID de cobrança, referência
+   * de ciclo (§5.3). */
+  .pl-codigo {
+    font-family: var(--fonte-codigo);
+    font-size: 13px;
+  }
+}
+
+/* §5.6 — a informação nunca depende de movimento. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

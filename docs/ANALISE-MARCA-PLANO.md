@@ -9,18 +9,24 @@ Este documento **não altera decisões** — as marcadas como "decisão pendente
 
 ## 1. Conflitos entre os documentos
 
-### 1.1 Nome do produto — decisão pendente, bloqueia o resto
+### 1.1 Nome do produto — ✅ RESOLVIDO em 04/08/2026
 
-| Onde | Nome |
-|---|---|
-| Repositório, `PLAN.md`, `README.md`, path do projeto | **Perene** |
-| Brand book inteiro, tokens (`--pl-*`), domínio sugerido, handles | **Pulso** |
+O produto se chama **Pulse**, grafia em inglês. "Perene" era nome de trabalho e
+sobrevive apenas no nome do repositório.
 
-O brand book §3.4 registra "Pulso" como decisão de naming, mas **condicionada** à verificação de domínio e INPI (Anexo B, pendência 1), que ainda não foi feita. Ou seja: hoje o projeto tem dois nomes e nenhum dos dois está confirmado.
+Aplicado em: brand book, `PLAN.md`, `README.md`, `package.json`, tokens
+(`--pl-*`), logotipo, metadados do app e assinatura da página do pagador.
 
-Impacto se virar Pulso: `README.md`, `PLAN.md`, nome do repositório, prefixo dos tokens, textos de UI, assinatura da página do pagador, favicon, domínio, handles. Impacto se ficar Perene: reescrever §3.4, §3.5, §5.1 e o mantra do brand book — "Pulso firme na recorrência" e o símbolo de batimento não sobrevivem à troca de nome, porque a metáfora inteira depende dele.
+**O que a grafia inglesa custou:** dos três sentidos que justificavam o nome em
+português, dois deixam de soletrar a marca — *tomar o pulso* e *pulso firme*
+continuam sendo as ideias do produto, mas não são mais a palavra do logotipo.
+Sobrevive o sentido central, o batimento, que é o que o símbolo representa. Por
+isso o mantra permanece **"Pulso firme na recorrência"** com o substantivo em
+português: é idiomatismo, não assinatura — "Pulse firme" leria como erro. A
+marca assina *Pulse*; a frase fala *pulso*. Ver brand book §3.4.
 
-**Recomendação:** resolver a pendência 1 (domínio + INPI classes 36 e 42) antes de qualquer trabalho de identidade visual ou de escrever string de UI. É o item mais barato de resolver agora e o mais caro de resolver depois.
+**Continua pendente:** verificação de domínio e busca no INPI (classes 36 e 42).
+Bloqueia registro, domínio e handles — não bloqueia o desenvolvimento.
 
 ### 1.2 Tipografia
 
@@ -34,11 +40,11 @@ O brand book justifica a escolha por um requisito funcional, não estético: **I
 
 ### 1.3 Tema e paleta do scaffold
 
-`PLAN.md` especifica shadcn `new-york` + base color `neutral`, que instala a paleta padrão do shadcn em variáveis `--primary`, `--muted`, etc. O brand book §7.3 determina `pulso-tokens.css` como **fonte única de verdade**, com prefixo `--pl-`.
+`PLAN.md` especifica shadcn `new-york` + base color `neutral`, que instala a paleta padrão do shadcn em variáveis `--primary`, `--muted`, etc. O brand book §7.3 determina `pulse-tokens.css` como **fonte única de verdade**, com prefixo `--pl-`.
 
 Os dois sistemas coexistem mal: se os componentes shadcn lerem `--primary` e a marca definir `--pl-cobalto`, existem duas fontes de cor e a auditoria de §1.2 do brand book ("zero hex solto") não tem como passar.
 
-**Recomendação:** mapear as variáveis do shadcn para os tokens da marca no `globals.css` (`--primary: var(--pl-cobalto)`), em vez de manter as duas paletas em paralelo. Os tokens já estão em `docs/brand/pulso-tokens.css`.
+**Recomendação:** mapear as variáveis do shadcn para os tokens da marca no `globals.css` (`--primary: var(--pl-cobalto)`), em vez de manter as duas paletas em paralelo. Os tokens já estão em `docs/brand/pulse-tokens.css`.
 
 ### 1.4 WhatsApp — Z-API × Meta Cloud API
 
@@ -123,7 +129,7 @@ O plano não distingue as duas superfícies no UI kit.
 | Botão destrutivo com borda vermelha, nunca vermelho sólido | §6.3 |
 | Erro de campo com borda **e** texto — nunca só cor | §6.3 |
 | `prefers-reduced-motion` respeitado | §5.6 |
-| Assinatura "processada com segurança por Pulso" no rodapé do pagador, máx. 12px, nunca acima do botão | §3.4 |
+| Assinatura "processada com segurança por Pulse" no rodapé do pagador, máx. 12px, nunca acima do botão | §3.4 |
 | Ícones: Lucide, só contorno, sem preenchimento | §5.4 |
 
 ---
@@ -135,7 +141,7 @@ Vale registrar, porque é o que não precisa ser discutido:
 - **Filtro de escopo** — "ajuda a migrar ou a manter a autorização viva?" é idêntico nos dois (`PLAN.md` contexto § / brand book §4.2).
 - **Domínio agnóstico** — Organização e Pagador, rótulo configurável por org, sem schema por vertical.
 - **Fronteira de vocabulário** — o adapter é a fronteira: `mandate.authorized` do lado de dentro, "autorização" do lado de fora. O plano já implementa isso na normalização de eventos.
-- **Não somos gateway** — o dinheiro nunca passa por nós; a Pulso roda sobre o gateway do cliente.
+- **Não somos gateway** — o dinheiro nunca passa por nós; a Pulse roda sobre o gateway do cliente.
 - **Alerta no mesmo dia** — `risk_events` + webhook no plano atendem o Pilar SUSTENTAR.
 - **Realtime na onda** — §3.6 chama de momento "aha" nº 2; o plano prevê painel da wave em tempo real na Semana 4.
 - **Meta de <10 min até o diagnóstico** — igual nos dois.

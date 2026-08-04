@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82 24" width="82" height="24" role="img" aria-label="Pulse">
+  <!-- Versão horizontal — padrão (§5.1). Símbolo + logotipo separados por 1x a
+       largura da barra (3 unidades). Logotipo: Archivo Semibold, caixa baixa,
+       entreletra -2%.
+       ATENÇÃO: o texto aqui é <text>, não contorno. Renderiza correto no app
+       (Archivo é carregada por next/font) e em qualquer lugar com a fonte
+       instalada. Para impressão e para entregar a terceiros, converter para
+       path antes — ver docs/brand/logo/README.md. -->
+  <rect x="1.5"  y="4"   width="3" height="16"   rx="1.5" fill="#12161C"/>
+  <rect x="7.5"  y="4"   width="3" height="16"   rx="1.5" fill="#12161C"/>
+  <rect x="13.5" y="4"   width="3" height="16"   rx="1.5" fill="#12161C"/>
+  <rect x="19.5" y="8.8" width="3" height="11.2" rx="1.5" fill="#2B50F5"/>
+  <text x="25.5" y="18.6"
+        font-family="Archivo, 'Archivo', system-ui, sans-serif"
+        font-size="18" font-weight="600" letter-spacing="-0.36"
+        fill="#12161C">pulse</text>
+</svg>

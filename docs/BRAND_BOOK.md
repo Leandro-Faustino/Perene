@@ -1,4 +1,4 @@
-# PULSO — Brand Book
+# PULSE — Brand Book
 
 **Plataforma de migração e gestão de recorrência em Pix Automático**
 
@@ -56,7 +56,7 @@ Este projeto cria a marca dessa operação.
 
 ### Resultados esperados (SMART)
 
-1. **Reconhecimento de categoria** — que "Pulso" seja identificado como camada de migração e retenção, e nunca confundido com gateway de pagamento, em 90% das primeiras conversas comerciais até dezembro de 2026.
+1. **Reconhecimento de categoria** — que "Pulse" seja identificado como camada de migração e retenção, e nunca confundido com gateway de pagamento, em 90% das primeiras conversas comerciais até dezembro de 2026.
 2. **Diagnóstico como ativo de marca** — que o relatório de diagnóstico (RF-34) seja compartilhado entre operadores sem intervenção comercial, gerando pelo menos 20% dos leads qualificados no primeiro semestre.
 3. **Consistência de vocabulário** — zero jargão de gateway ("mandate", "revoked", "MDR") na superfície do produto e nas comunicações públicas, verificado em auditoria trimestral.
 
@@ -95,7 +95,7 @@ Como não há histórico, esta tabela vira o **contrato de qualidade** a ser aud
 
 ## 1.3 Análise Competitiva
 
-O mercado se organiza em três camadas. Nenhuma delas ocupa a posição da Pulso, e é isso que torna a posição defensável — mas também frágil, porque é fácil de copiar por cima.
+O mercado se organiza em três camadas. Nenhuma delas ocupa a posição da Pulse, e é isso que torna a posição defensável — mas também frágil, porque é fácil de copiar por cima.
 
 ### Camada 1 — Gateways e adquirentes
 **Asaas, Efí, Iugu, Pagar.me, Vindi, PagBrasil, Stone**
@@ -106,7 +106,7 @@ O mercado se organiza em três camadas. Nenhuma delas ocupa a posição da Pulso
 - **Fraquezas:** entregam a API e encerram a responsabilidade ali. Não têm incentivo para reduzir a própria receita de MDR migrando o cliente do cartão. Não conhecem o pagador final. Documentação para desenvolvedor, não para recepcionista.
 - **Identidade visual:** dominada por azul e verde-água, gradiente, ilustração isométrica, linguagem de developer relations
 - **Proposta de valor:** "integre e receba"
-- **Relação com a Pulso:** **parceiro, não concorrente.** A Pulso roda em cima deles. Isso precisa estar explícito na marca — ver questão em aberto nº 3 dos requisitos.
+- **Relação com a Pulse:** **parceiro, não concorrente.** A Pulse roda em cima deles. Isso precisa estar explícito na marca — ver questão em aberto nº 3 dos requisitos.
 
 ### Camada 2 — Plataformas de gestão com cobrança embutida
 **Superlógica, Tecnofit, EvolluxERP, Sponte, Zeev**
@@ -114,10 +114,10 @@ O mercado se organiza em três camadas. Nenhuma delas ocupa a posição da Pulso
 - **Porte:** grandes no vertical; Superlógica é referência em condomínios e educação
 - **Posicionamento:** ERP do segmento. A cobrança é um módulo do sistema de gestão.
 - **Forças:** já estão dentro da operação do cliente, detêm a base de dados, contrato longo, alto custo de troca
-- **Fraquezas:** verticalizados (um produto por nicho, o oposto do agnosticismo da Pulso). Cobrança é módulo, não missão — migração de método não é prioridade de roadmap. Implantação lenta, contrato pesado.
+- **Fraquezas:** verticalizados (um produto por nicho, o oposto do agnosticismo da Pulse). Cobrança é módulo, não missão — migração de método não é prioridade de roadmap. Implantação lenta, contrato pesado.
 - **Identidade visual:** corporativa, azul institucional, densa, pouco memorável
 - **Proposta de valor:** "gerencie tudo em um lugar"
-- **Relação com a Pulso:** **concorrentes indiretos e futuros parceiros de integração.** O risco real é um deles lançar um botão "migrar para Pix Automático" em 2027.
+- **Relação com a Pulse:** **concorrentes indiretos e futuros parceiros de integração.** O risco real é um deles lançar um botão "migrar para Pix Automático" em 2027.
 
 ### Camada 3 — Automação genérica e planilha
 **WhatsApp na mão, Excel, n8n/Make, estagiário**
@@ -127,14 +127,14 @@ O mercado se organiza em três camadas. Nenhuma delas ocupa a posição da Pulso
 - **Forças:** custo zero aparente, controle total, nenhuma negociação de contrato
 - **Fraquezas:** não escala, não tem trilha de auditoria, não tem conformidade LGPD, quebra quando a pessoa que fazia sai da empresa
 - **Proposta de valor:** "a gente resolve aqui mesmo"
-- **Relação com a Pulso:** **é contra este que a venda é ganha ou perdida.** A objeção real nunca será "prefiro o concorrente X", será "eu mesmo mando as mensagens".
+- **Relação com a Pulse:** **é contra este que a venda é ganha ou perdida.** A objeção real nunca será "prefiro o concorrente X", será "eu mesmo mando as mensagens".
 
 ### Mapa de posicionamento
 
 ```
                         RESULTADO PROVADO
                                |
-                     PULSO ●   |
+                     PULSE ●   |
                                |
      Genérico  --------------- + --------------- Especializado
      (serve                    |                  (serve um
@@ -291,7 +291,7 @@ O mercado se organiza em três camadas. Nenhuma delas ocupa a posição da Pulso
 
 ### 2.2.3 Matriz de dores × desejos
 
-| # | Dor | Intensidade | Desejo | Resposta da Pulso |
+| # | Dor | Intensidade | Desejo | Resposta da Pulse |
 |---|---|---|---|---|
 | 1 | Não sei quanto perco por mês | ⭐⭐⭐⭐⭐ | Ver o número real, sem esforço | Diagnóstico gerado em minutos a partir da base importada (RF-30 a RF-33) |
 | 2 | Migrar todo mundo é impossível na prática | ⭐⭐⭐⭐⭐ | Alguém operar a migração por mim | Onda com régua, segmentação e limite diário (RF-40 a RF-48) |
@@ -329,7 +329,7 @@ O mercado se organiza em três camadas. Nenhuma delas ocupa a posição da Pulso
 - Emoções: ansiedade sobre implantação e sobre expor a bagunça da base
 - Canais: site, WhatsApp, demo
 - Objeções e respostas:
-  - *"Vou ter que trocar de gateway?"* → Não. A Pulso roda em cima do que você já usa.
+  - *"Vou ter que trocar de gateway?"* → Não. A Pulse roda em cima do que você já usa.
   - *"E quem não tiver banco com Pix Automático?"* → Continua como está. Ninguém fica sem cobrar.
   - *"Minha base é uma bagunça."* → É por isso que o primeiro passo é o diagnóstico, e ele é gratuito.
   - *"Vou ter que aprender um sistema novo?"* → Você aprende uma tela: quem está em risco.
@@ -340,7 +340,7 @@ O mercado se organiza em três camadas. Nenhuma delas ocupa a posição da Pulso
 - Emoções: euforia na primeira semana, e depois o teste real — o mês em que nada acontece
 - Canais: painel, resumo diário, alertas
 - Conteúdo ideal: relatório mensal de economia acumulada; a fila "Precisa de atenção" com zero itens
-- Oportunidade: **a retenção da Pulso é o mesmo trabalho da retenção do cliente dele.** O relatório mensal é o produto de fidelização, e o RF-82 (métrica de valor comprovado) é o que sustenta o modelo de cobrança sobre economia.
+- Oportunidade: **a retenção da Pulse é o mesmo trabalho da retenção do cliente dele.** O relatório mensal é o produto de fidelização, e o RF-82 (métrica de valor comprovado) é o que sustenta o modelo de cobrança sobre economia.
 
 ---
 
@@ -536,9 +536,9 @@ Não é o comprador do produto, mas é o multiplicador. Ele já tem a confiança
 **Quem é:** o desenvolvedor ou gestor técnico que chega procurando taxa de gateway, integração direta e SDK. Quer comparar MDR, negociar tarifa, integrar por conta própria.
 
 **Por que NÃO é público:**
-- Ele quer infraestrutura; a Pulso vende operação. São produtos diferentes.
+- Ele quer infraestrutura; a Pulse vende operação. São produtos diferentes.
 - Ele tem equipe técnica — ou seja, tem exatamente o recurso que o público real não tem.
-- A negociação dele é sobre preço por transação, num modelo em que a Pulso não compete e não vence.
+- A negociação dele é sobre preço por transação, num modelo em que a Pulse não compete e não vence.
 - Atendê-lo empurra o roadmap para virar gateway, que é o que a seção 1 dos requisitos proíbe explicitamente.
 
 **Como identificar rápido:**
@@ -547,7 +547,7 @@ Não é o comprador do produto, mas é o multiplicador. Ele já tem a confiança
 - Fala "mandate", "webhook", "MDR" com naturalidade
 
 **O que fazer quando aparece:**
-Ser direto e útil. "A gente não é gateway — o dinheiro nunca passa por nós. Se você tem time técnico e quer integrar direto no Asaas, essa é a rota mais barata e a gente te diz isso. A Pulso existe para quem não tem esse time e precisa migrar uma base de 400 pessoas." Recusar bem constrói mais reputação do que atender mal.
+Ser direto e útil. "A gente não é gateway — o dinheiro nunca passa por nós. Se você tem time técnico e quer integrar direto no Asaas, essa é a rota mais barata e a gente te diz isso. A Pulse existe para quem não tem esse time e precisa migrar uma base de 400 pessoas." Recusar bem constrói mais reputação do que atender mal.
 
 ---
 
@@ -644,12 +644,12 @@ Riscos: disparo em massa sem opt-in registrado é o risco existencial da operaç
 **Insight 4 — O churn involuntário é o dano maior e o menos discutido**
 - Descoberta: cartão vencido, saldo insuficiente e boleto esquecido derrubam clientes que não queriam sair.
 - Fonte: padrão conhecido de assinaturas; validar magnitude na base-piloto
-- Implicação: a Pulso não vende economia de taxa. Vende **cliente que não some por acidente.** A economia é a prova; a retenção é o valor.
+- Implicação: a Pulse não vende economia de taxa. Vende **cliente que não some por acidente.** A economia é a prova; a retenção é o valor.
 - Ação: reordenar a hierarquia da mensagem — retenção primeiro, economia como evidência.
 
 **Insight 5 — A relação é com o pagador, e a marca quase não aparece nela**
 - Descoberta: o pagador vê uma mensagem e uma página, uma vez na vida (RF-50 a RF-56).
-- Implicação: a identidade dessa superfície pertence à organização, não à Pulso. A marca precisa de discrição deliberada ali.
+- Implicação: a identidade dessa superfície pertence à organização, não à Pulse. A marca precisa de discrição deliberada ali.
 - Ação: modelo de assinatura discreta na página de autorização; ver 3.4 e 5.1.
 
 **Insight 6 — Conformidade é diferencial competitivo, não custo**
@@ -720,7 +720,7 @@ Riscos: disparo em massa sem opt-in registrado é o risco existencial da operaç
 
 > Para **negócios que vivem de mensalidade e não têm equipe técnica**,
 > que **perdem receita com taxa alta e com cobrança que quebra sem ninguém ver**,
-> a **Pulso** é a **camada de operação sobre o gateway que a empresa já usa**,
+> a **Pulse** é a **camada de operação sobre o gateway que a empresa já usa**,
 > que **mostra quanto se perde hoje, migra a base para Pix Automático sem perder cliente no caminho e avisa no mesmo dia quando uma autorização quebra**,
 > diferentemente de **gateways, que entregam a API e encerram a responsabilidade ali, e de ERPs verticais, para quem cobrança é módulo e não missão**,
 > porque **nossa única função é manter a recorrência viva — e cada funcionalidade passa pelo filtro de ajudar a migrar ou a manter a autorização viva, ou fica fora.**
@@ -749,7 +749,7 @@ Riscos: disparo em massa sem opt-in registrado é o risco existencial da operaç
 ### Estrutura
 
 ```
-PULSO
+PULSE
   ├── Diagnóstico     — o relatório de perda (RF-30 a RF-34)
   ├── Ondas           — as campanhas de migração (RF-40 a RF-48)
   ├── Atenção         — a fila de retenção (RF-70 a RF-73)
@@ -758,14 +758,14 @@ PULSO
 
 | Divisão | Nome oficial | Tagline |
 |---|---|---|
-| Principal | Pulso | Pulso firme na recorrência |
-| Módulo | Diagnóstico Pulso | Veja onde está vazando |
+| Principal | Pulse | Pulso firme na recorrência |
+| Módulo | Diagnóstico Pulse | Veja onde está vazando |
 | Módulo | Ondas | — |
 | Módulo | Atenção | — |
 
-**Regra:** os módulos são substantivos comuns em português e nunca recebem tratamento de marca própria (sem logo, sem cor exclusiva, sem tipografia diferente). São seções, não produtos. A única exceção é o **Diagnóstico Pulso**, que sai da plataforma como PDF e precisa carregar a assinatura.
+**Regra:** os módulos são substantivos comuns em português e nunca recebem tratamento de marca própria (sem logo, sem cor exclusiva, sem tipografia diferente). São seções, não produtos. A única exceção é o **Diagnóstico Pulse**, que sai da plataforma como PDF e precisa carregar a assinatura.
 
-### Avaliação do nome — PULSO
+### Avaliação do nome — PULSE
 
 | Critério | Nota | Comentário |
 |---|---|---|
@@ -773,10 +773,22 @@ PULSO
 | Diferenciado | ⭐⭐⭐⭐ | Fora do padrão do setor — não usa pag/fin/pay/bank. Perde uma estrela pela adjacência com health-tech, que o contexto financeiro dissolve rápido |
 | Memorável | ⭐⭐⭐⭐⭐ | Duas sílabas, palavra corrente, imagem mental imediata |
 | Pronunciável | ⭐⭐⭐⭐⭐ | Soletra no telefone sem repetir |
-| Disponibilidade | ⭐⭐⭐ | **A verificar antes de qualquer registro.** Palavra comum tende a ter .com.br ocupado. Rotas: `pulso.app`, `usepulso.com.br`, `pulso.finance`, `sopulso.com.br`. INPI classe 42 e 36 exigem busca. Handles sociais: `@pulso.app` ou `@usepulso` |
+| Disponibilidade | ⭐⭐⭐ | **A verificar antes de qualquer registro.** Palavra comum tende a ter .com.br ocupado. Rotas: `pulse.app`, `usepulse.com.br`, `pulse.finance`, `sopulse.com.br`. INPI classe 42 e 36 exigem busca. Handles sociais: `@pulse.app` ou `@usepulse` |
 | Escalável | ⭐⭐⭐⭐⭐ | Não amarra ao Pix nem ao Automático. Se a categoria evoluir para outro método, o nome sobrevive intacto |
 
-**Decisão:** ✅ **Adotar Pulso**, condicionado à verificação de disponibilidade de domínio e marca.
+**Decisão:** ✅ **Adotar Pulse** — grafia em inglês, decidida pelo fundador em 04/08/2026. Substitui o nome de trabalho "Perene" usado no repositório e no `PLAN.md`. Continua condicionado à verificação de disponibilidade de domínio e marca (Anexo B, pendência 1).
+
+**O que a grafia em inglês custa, e o que fazer com isso**
+
+A avaliação acima foi escrita para a grafia portuguesa. Com "Pulse", dois dos três sentidos deixam de soletrar a marca: *tomar o pulso* e *pulso firme* continuam sendo as ideias do produto, mas não são mais a palavra do logotipo. O que sobrevive intacto é o sentido central — **o batimento** —, que é o que o símbolo de quatro barras representa e o que a Big Idea usa ("Sua receita tem um pulso"). Em compensação, a grafia em inglês melhora a disponibilidade de domínio e a leitura internacional.
+
+Consequência prática, já aplicada neste documento:
+
+- O **logotipo** é `pulse`, caixa baixa, Archivo Semibold.
+- O **mantra continua "Pulso firme na recorrência"**, com o substantivo em português. É idiomatismo, não assinatura de marca — "Pulse firme" não existe em português e leria como erro. A marca assina *Pulse*; a frase fala *pulso*.
+- A **Big Idea** ("Sua receita tem um pulso") não muda: usa o substantivo comum, e o trocadilho com o nome continua funcionando na leitura.
+
+Se essa convivência entre a grafia inglesa da marca e o substantivo português na copy incomodar, a alternativa é trocar o mantra por uma formulação que não dependa do idiomatismo — *"Ritmo firme na recorrência"* é a candidata mais próxima. Decisão do Guardião da Marca; não bloqueia nada.
 
 ### Registro do arco de naming
 
@@ -784,25 +796,25 @@ Duas alternativas foram desenvolvidas e descartadas. Ficam documentadas porque a
 
 **Cadência** — a metáfora do ritmo. Cobre bem migração (colocar todos no mesmo passo) e sustentação (manter o compasso), e a régua D0/D+2/D+5/D+10 é literalmente uma cadência. **Descartada** porque não cobre o diagnóstico: cadência não é um ato de medição, é um estado. E o diagnóstico é o produto de entrada — o nome precisava tocá-lo.
 
-**Travessia** — a metáfora da migração, com peso literário e brasileiro. **Descartada** por ser um nome de evento, não de estado permanente. Travessia acaba; a operação da Pulso não. Descreveria bem a Fase 1 do produto e envelheceria mal na Fase 3.
+**Travessia** — a metáfora da migração, com peso literário e brasileiro. **Descartada** por ser um nome de evento, não de estado permanente. Travessia acaba; a operação da Pulse não. Descreveria bem a Fase 1 do produto e envelheceria mal na Fase 3.
 
-**Pulso** venceu porque *tomar o pulso* é simultaneamente diagnóstico e monitoramento contínuo — os dois trabalhos que os outros dois nomes só cobriam pela metade.
+**Pulse** venceu porque *tomar o pulso* é simultaneamente diagnóstico e monitoramento contínuo — os dois trabalhos que os outros dois nomes só cobriam pela metade.
 
 ### Questão de arquitetura em aberto
 
-Este brand book assume **Pulso como marca independente**, sem vínculo com a Aprumo.
+Este brand book assume **Pulse como marca independente**, sem vínculo com a Aprumo.
 
-O motivo é estrutural: a Aprumo opera em modelo white-label, onde a marca desaparece atrás do escritório contábil e assina como ingrediente. A Pulso opera como marca direta, vendida ao operador, que precisa vê-la e lembrar dela. Endossar uma na outra criaria uma marca-mãe com dois comportamentos incompatíveis — presente aqui, invisível ali — e enfraqueceria as duas.
+O motivo é estrutural: a Aprumo opera em modelo white-label, onde a marca desaparece atrás do escritório contábil e assina como ingrediente. A Pulse opera como marca direta, vendida ao operador, que precisa vê-la e lembrar dela. Endossar uma na outra criaria uma marca-mãe com dois comportamentos incompatíveis — presente aqui, invisível ali — e enfraqueceria as duas.
 
 **Se a decisão for outra**, o impacto se concentra em 3.3, 3.4 e 5.1, e o nome precisa ser reavaliado à luz do sistema Aprumo.
 
 ### Nota sobre a superfície do pagador
 
-Há um segundo problema de assinatura, análogo mas menor: a página de autorização (RF-50 a RF-56) carrega o logo e a cor da organização (RF-05). A Pulso precisa estar ali para credibilidade — o pagador está prestes a autorizar débito na conta e precisa saber que existe um sistema por trás — mas não pode competir.
+Há um segundo problema de assinatura, análogo mas menor: a página de autorização (RF-50 a RF-56) carrega o logo e a cor da organização (RF-05). A Pulse precisa estar ali para credibilidade — o pagador está prestes a autorizar débito na conta e precisa saber que existe um sistema por trás — mas não pode competir.
 
 **Solução:** assinatura discreta no rodapé, em texto, sem símbolo colorido:
 
-> `Autorização processada com segurança por **Pulso**`
+> `Autorização processada com segurança por **Pulse**`
 
 Tamanho máximo: 12px. Cor: `--pl-texto-fraco`. Nunca acima do botão. Nunca com o símbolo em cor primária.
 
@@ -820,7 +832,7 @@ Tamanho máximo: 12px. Cor: `--pl-texto-fraco`. Nunca acima do botão. Nunca com
 ### Pilares de mensagem
 
 **PILAR 1 — REVELAR**
-- Mensagem: você não decide sobre o que não vê. A primeira coisa que a Pulso faz é somar a perda que está distribuída e mostrar num número só.
+- Mensagem: você não decide sobre o que não vê. A primeira coisa que a Pulse faz é somar a perda que está distribuída e mostrar num número só.
 - Proof points: diagnóstico gerado a partir da base importada em menos de 10 minutos (RF-30, fluxo 9.1); custo atual por método com tarifa parametrizável (RF-31); falha de cobrança dos últimos 12 meses em quantidade e valor (RF-32); projeção por cenário de adesão de 50%, 70% e 90% (RF-33)
 - Tom: factual, quase frio. O número já é dramático o suficiente; qualquer adjetivo o enfraquece.
 
@@ -842,11 +854,11 @@ Estrutura obrigatória para landing, e-mail, vídeo e deck:
 
 1. **SITUAÇÃO** — Você tem uma base de clientes que paga todo mês. Na teoria, receita previsível.
 2. **PROBLEMA** — Na prática, uma parte não entra. Taxa que come, cobrança que falha, cliente que some sem avisar. E o pior: você não sabe o tamanho, porque a perda vem distribuída em pedaços pequenos demais para doer.
-3. **SOLUÇÃO** — A Pulso soma a perda, migra sua base para Pix Automático com uma operação de convite que funciona, e vigia a autorização depois.
+3. **SOLUÇÃO** — A Pulse soma a perda, migra sua base para Pix Automático com uma operação de convite que funciona, e vigia a autorização depois.
 4. **TRANSFORMAÇÃO** — Você para de descobrir problema no fechamento do mês e passa a saber no mesmo dia. A taxa cai de porcentagem para centavos. E o cliente que ia sumir por acidente, não some.
 5. **CONVITE** — Comece pelo número. Rode o diagnóstico da sua base.
 
-**Regra de ouro da narrativa:** o herói é o operador. A Pulso é mentor, nunca protagonista. Toda peça em que a Pulso é a heroína está errada.
+**Regra de ouro da narrativa:** o herói é o operador. A Pulse é mentor, nunca protagonista. Toda peça em que a Pulse é a heroína está errada.
 
 ---
 
@@ -866,7 +878,7 @@ Como queremos que as pessoas se sintam:
 |---|---|---|
 | Frequência | Diária, por anos | Uma vez |
 | Densidade | Alta — tabelas, números, filtros | Mínima — uma tela, um botão |
-| Marca visível | Pulso, integralmente | Da organização; Pulso discreta no rodapé |
+| Marca visível | Pulse, integralmente | Da organização; Pulse discreta no rodapé |
 | Objetivo | Dar controle | Remover atrito |
 | Erro fatal | Esconder informação | Pedir uma decisão a mais |
 
@@ -917,17 +929,17 @@ Tratar as duas com o mesmo sistema é o erro mais provável do projeto. Elas com
 
 **Momento 3 — A primeira cobrança falha**
 - O que acontece: um débito não passa, por saldo insuficiente.
-- Por que é crítico: é o teste da promessa. Se a Pulso só reporta a falha, é relatório. Se resolve, é operação.
+- Por que é crítico: é o teste da promessa. Se a Pulse só reporta a falha, é relatório. Se resolve, é operação.
 - Como garantir: mensagem ao pagador com Pix avulso disparada no mesmo minuto, antes de o operador saber. O operador descobre o problema e a solução juntos.
 
 **Momento 4 — Uma autorização é cancelada**
 - O que acontece: o pagador cancela no app do banco.
-- Por que é crítico: é o único evento que a Pulso não pode prevenir — só pode detectar rápido. É onde o Pilar 3 se prova ou desmorona.
+- Por que é crítico: é o único evento que a Pulse não pode prevenir — só pode detectar rápido. É onde o Pilar 3 se prova ou desmorona.
 - Como garantir: alerta no mesmo dia, com o nome, o valor e o botão de reenviar autorização. Nunca um alerta genérico.
 
 **Momento 5 — O mês em que nada acontece**
 - O que acontece: a base está migrada, tudo entra, a fila de atenção está vazia.
-- Por que é crítico: é o momento de maior risco de churn da Pulso. Valor invisível parece valor inexistente. "Não está acontecendo nada, para que eu pago isso?"
+- Por que é crítico: é o momento de maior risco de churn da Pulse. Valor invisível parece valor inexistente. "Não está acontecendo nada, para que eu pago isso?"
 - Como garantir: **o relatório mensal existe para este momento.** Ele precisa mostrar a economia acumulada e as falhas evitadas — o que não aconteceu é o produto. É também a base do RF-82 e do modelo de cobrança sobre economia comprovada.
 
 ---
@@ -995,7 +1007,7 @@ Nenhum negócio de recorrência morre de uma vez. Ele vaza.
 
 O cliente que sumiu geralmente não decidiu sair. O cartão dele venceu. O boleto ficou para depois e depois virou nunca. A cobrança falhou num mês em que ele estava sem saldo, e ninguém falou com ele a tempo. Isso não é inadimplência — é acidente. E é a maior perda silenciosa do mercado brasileiro de mensalidade.
 
-O trabalho da Pulso não é cobrar melhor. É **manter vivo o sim que o cliente já deu.**
+O trabalho da Pulse não é cobrar melhor. É **manter vivo o sim que o cliente já deu.**
 
 ### O que essa história significa hoje
 
@@ -1003,7 +1015,7 @@ Que o produto tem um filtro e não vai perdê-lo. Toda vez que alguém pedir uma
 
 ### Versão curta
 
-> Em junho de 2025 o Pix Automático entrou no ar prometendo substituir o cartão recorrente por centavos de tarifa. Um ano depois, quase ninguém tinha migrado — não por tecnologia, mas porque ninguém queria fazer o trabalho de convidar 400 clientes, um por um. A Pulso nasceu para fazer esse trabalho: mostrar quanto o negócio perde hoje, migrar a base sem perder cliente no caminho, e avisar no mesmo dia quando uma autorização quebra. Porque negócio de recorrência não morre de uma vez. Ele vaza.
+> Em junho de 2025 o Pix Automático entrou no ar prometendo substituir o cartão recorrente por centavos de tarifa. Um ano depois, quase ninguém tinha migrado — não por tecnologia, mas porque ninguém queria fazer o trabalho de convidar 400 clientes, um por um. A Pulse nasceu para fazer esse trabalho: mostrar quanto o negócio perde hoje, migrar a base sem perder cliente no caminho, e avisar no mesmo dia quando uma autorização quebra. Porque negócio de recorrência não morre de uma vez. Ele vaza.
 
 ---
 
@@ -1039,7 +1051,7 @@ Que o produto tem um filtro e não vai perdê-lo. Toda vez que alguém pedir uma
 
 **5. DISCRIÇÃO**
 - Definição: na frente do pagador, quem aparece é o cliente. Não competimos por atenção que não é nossa.
-- Como vivemos: página de autorização com a marca da organização; a Pulso assina no rodapé, em texto, sem cor. Nunca acima do botão.
+- Como vivemos: página de autorização com a marca da organização; a Pulse assina no rodapé, em texto, sem cor. Nunca acima do botão.
 
 **6. CONFORMIDADE**
 - Definição: opt-in registrado, base legal declarada, template aprovado. Não é burocracia — é o que separa operação de risco.
@@ -1111,7 +1123,7 @@ O contador que você confia — não o que faz a declaração, o que te liga em 
 
 | Elemento | Definição |
 |---|---|
-| **História de criação** | O Pix Automático entrou no ar em junho de 2025 prometendo trocar 3% de taxa por centavos. Um ano depois, quase ninguém tinha migrado — não por tecnologia, mas porque ninguém queria fazer o trabalho de convidar 400 pessoas, uma por uma. A Pulso nasceu para fazer esse trabalho. |
+| **História de criação** | O Pix Automático entrou no ar em junho de 2025 prometendo trocar 3% de taxa por centavos. Um ano depois, quase ninguém tinha migrado — não por tecnologia, mas porque ninguém queria fazer o trabalho de convidar 400 pessoas, uma por uma. A Pulse nasceu para fazer esse trabalho. |
 | **Credo** | "Acreditamos que nenhum negócio deveria perder um cliente por causa de um pagamento que quebrou. Acreditamos que a maior perda do mercado brasileiro de recorrência não é a inadimplência — é o acidente. Acreditamos que o que você não vê, você não corrige. E acreditamos que a força de uma ferramenta está no que ela se recusa a fazer." |
 | **Ícones** | **Visual:** o símbolo de quatro barras — três cheias e uma subindo — que é ao mesmo tempo batimento, ritmo e medidor de migração. **Sonoro:** um único pulso curto e grave, sem melodia, para a confirmação de autorização. Nunca um jingle. **Sensorial:** o PDF do diagnóstico. É o objeto físico da marca, o que passa de mão em mão. |
 | **Rituais** | **O primeiro número** — o momento em que o diagnóstico termina e o valor aparece. **A onda** — o dia em que o operador aperta o botão e assiste o medidor subir em tempo real. **O dia 1º** — o relatório mensal com a economia acumulada, que chega sem ser pedido. **A fila vazia** — quando "Precisa de atenção" não tem nenhum item, e o painel diz isso com todas as letras em vez de deixar em branco. |
@@ -1159,7 +1171,7 @@ O Repórter entra como camada secundária e é onde mora a maior oportunidade de
 
 **Versão curta (para bio, abertura de vídeo, apresentação):**
 
-> Construo produto financeiro e passei anos vendo a mesma coisa: negócio de mensalidade perde receita todo mês e não sabe quanto. Quando o Pix Automático entrou no ar e quase ninguém migrou, ficou claro que o gargalo não era técnico — era que ninguém queria fazer o trabalho de convite. Hoje construo a Pulso, que faz esse trabalho.
+> Construo produto financeiro e passei anos vendo a mesma coisa: negócio de mensalidade perde receita todo mês e não sabe quanto. Quando o Pix Automático entrou no ar e quase ninguém migrou, ficou claro que o gargalo não era técnico — era que ninguém queria fazer o trabalho de convite. Hoje construo a Pulse, que faz esse trabalho.
 
 **Versão longa:** ver 4.1, adaptada para primeira pessoa.
 
@@ -1184,7 +1196,7 @@ O Repórter entra como camada secundária e é onde mora a maior oportunidade de
 - Onde usar: post de posicionamento, palestra, página "Sobre".
 
 **Parábola 4 — A funcionalidade que eu recusei**
-- O que aconteceu: um cliente pediu controle de frequência dentro da Pulso. Fazia sentido para ele, era fácil de fazer, e eu disse não.
+- O que aconteceu: um cliente pediu controle de frequência dentro da Pulse. Fazia sentido para ele, era fácil de fazer, e eu disse não.
 - A lição: o filtro protege o cliente de um produto que faz tudo mal.
 - Conexão com a marca: valor RECUSA, e o antagonista "ferramenta que faz tudo".
 - Onde usar: conteúdo de polarização, LinkedIn, bastidor de produto.
@@ -1264,7 +1276,7 @@ O Repórter entra como camada secundária e é onde mora a maior oportunidade de
 - Abertura padrão: **"Deixa eu te mostrar uma conta."**
 - Encerramento padrão: **"Se sua base é parecida com essa, o número é seu. É só rodar."**
 - Bordão: **"O que você não vê, você não corrige."**
-- Hashtags: `#PerdaSilenciosa` `#PulsoFirme`
+- Hashtags: `#PerdaSilenciosa` `#PulseFirme`
 
 ---
 
@@ -1407,7 +1419,7 @@ Grid 24 × 24 · linha de base em y = 20 · topo em y = 4
 
 ### Logotipo
 
-**pulso** — Archivo Semibold, caixa baixa, entreletra −2%.
+**pulse** — Archivo Semibold, caixa baixa, entreletra −2%.
 
 Caixa baixa por decisão de tom: a marca fala como pessoa, não como instituição. Caixa alta seria a estética do gateway, que é justamente o que 3.2 manda evitar.
 
@@ -1486,7 +1498,7 @@ Por isso o cobalto é azul: os estados ocupam verde, âmbar e vermelho, e o azul
 
 > ⚠️ **`--pl-texto-fraco` (#98A2B3) reprova em WCAG AA para texto.** Contraste de 2,6:1 sobre branco, contra o mínimo de 4,5:1.
 >
-> **Está permitido apenas para:** placeholder de campo, ícone decorativo, e a assinatura "processada por Pulso" no rodapé da página de autorização — este último por ser assinatura de marca, não conteúdo.
+> **Está permitido apenas para:** placeholder de campo, ícone decorativo, e a assinatura "processada por Pulse" no rodapé da página de autorização — este último por ser assinatura de marca, não conteúdo.
 >
 > **Está proibido para:** qualquer legenda que carregue informação, rótulo de coluna, texto de ajuda, e — especialmente — **qualquer aviso legal ou texto de conformidade.** Aviso prévio de cobrança, base legal de opt-in e informação de valor-teto são conteúdo, não letra miúda. Use `--pl-texto` (#475467) para todos eles.
 >
@@ -1682,7 +1694,7 @@ Repetição do motivo de barras, em `--pl-borda` a 40%, para fundo de estado vaz
 
 ### Princípio
 
-A Pulso é uma ferramenta de operação financeira. **A imagem mais importante da marca é uma tela com números, não uma foto de pessoa sorrindo.** Fotografia entra como contexto humano; nunca como argumento.
+A Pulse é uma ferramenta de operação financeira. **A imagem mais importante da marca é uma tela com números, não uma foto de pessoa sorrindo.** Fotografia entra como contexto humano; nunca como argumento.
 
 ### Estilo
 
@@ -1743,7 +1755,7 @@ Movimento serve a duas funções e nenhuma outra: **mostrar mudança de estado**
 | Nova autorização confirmada | Linha entra com fade + 8 px de deslocamento | 250 ms |
 | Badge muda de estado | Transição de cor, sem movimento | 150 ms |
 | Item entra em "Precisa de atenção" | Fade + realce de fundo que desvanece em 2 s | 250 ms + 2 s |
-| Espera na página do pagador | Pulso lento do símbolo — opacidade 1 → 0,6 → 1 | 1,6 s, contínuo |
+| Espera na página do pagador | Pulse lento do símbolo — opacidade 1 → 0,6 → 1 | 1,6 s, contínuo |
 | Autorização confirmada (pagador) | Barras preenchem em sequência, esquerda → direita | 600 ms, uma vez |
 
 **A animação de espera do pagador é a peça mais importante do sistema de motion.** É o único momento em que a marca fica visível por vários segundos seguidos, enquanto a pessoa aguarda o polling de status (RF-53). O símbolo pulsando literalmente encena o nome. Um único uso, no momento exato.
@@ -1825,7 +1837,7 @@ Uso: evento de nicho e reunião presencial com parceiro de canal.
 
 **A calculadora pública é a peça central do site.** Não é acessório de conteúdo — é a versão de topo de funil do diagnóstico. O visitante informa número de contratos, ticket médio e método dominante, e vê a estimativa de perda mensal sem entregar e-mail. Só depois vem o convite para o diagnóstico real com a base dele.
 
-Pedir cadastro antes de mostrar o número inverte a lógica da marca inteira: a Pulso existe para revelar primeiro.
+Pedir cadastro antes de mostrar o número inverte a lógica da marca inteira: a Pulse existe para revelar primeiro.
 
 ### Especificações
 
@@ -1978,13 +1990,13 @@ Verde, âmbar e vermelho significam ativo, pendente e risco. Usá-los para color
 ## 7.3 Biblioteca de Ativos
 
 ```
-📁 Pulso-Marca/
+📁 Pulse-Marca/
 ├── 📁 01_Logo/
 │   ├── SVG/          horizontal · vertical · simbolo · mono
 │   ├── PNG/          @1x @2x @3x, fundo transparente
 │   └── Favicon/      16 · 32 · 180 · 512
 ├── 📁 02_Cores/
-│   ├── pulso-tokens.css
+│   ├── pulse-tokens.css
 │   ├── paleta.ase
 │   └── contraste.html          verificação WCAG viva
 ├── 📁 03_Tipografia/
@@ -2002,7 +2014,7 @@ Verde, âmbar e vermelho significam ativo, pendente e risco. Usá-los para color
 
 **Formatos:** SVG (vetorial, padrão) · PNG (transparente) · PDF (impressão) · CSS (tokens)
 
-**Fonte única de verdade:** o arquivo `pulso-tokens.css` é a origem de toda cor. Nenhum hexadecimal solto no código, em template de e-mail ou em template de post. Cor definida fora do arquivo de tokens é dívida técnica de marca.
+**Fonte única de verdade:** o arquivo `pulse-tokens.css` é a origem de toda cor. Nenhum hexadecimal solto no código, em template de e-mail ou em template de post. Cor definida fora do arquivo de tokens é dívida técnica de marca.
 
 ---
 
@@ -2124,14 +2136,15 @@ Solicitação → Briefing → Criação → Revisão → Aprovação → Public
 
 | Versão | Data | Alterações | Responsável |
 |---|---|---|---|
-| 1.0 | 04/08/2026 | Versão inicial. 7 fases completas. Naming definido (Pulso). Fases 1 e 2 marcadas como hipótese pendente de validação | Leandro F. |
+| 1.0 | 04/08/2026 | Versão inicial. 7 fases completas. Naming definido (Pulse). Fases 1 e 2 marcadas como hipótese pendente de validação | Leandro F. |
+| 1.1 | 04/08/2026 | Grafia do nome fixada em **Pulse** (inglês), substituindo o nome de trabalho "Perene". Registrado em §3.4 o que a grafia inglesa custa ao trocadilho português e por que o mantra mantém o substantivo *pulso*. Domínios e handles atualizados. Fase A executada em parte: logo nas 4 versões (SVG + componente), tokens implementados como fonte única, três famílias tipográficas carregadas | Leandro F. |
 
 ### Pendências abertas
 
 | # | Pendência | Bloqueia | Prazo |
 |---|---|---|---|
-| 1 | Verificar domínio e INPI para "Pulso" | Toda a Fase A | Imediato |
-| 2 | Confirmar arquitetura — Pulso independente ou vinculada à Aprumo | 3.3, 3.4, 5.1 | Antes do registro |
+| 1 | Verificar domínio e INPI para "Pulse" | Toda a Fase A | Imediato |
+| 2 | Confirmar arquitetura — Pulse independente ou vinculada à Aprumo | 3.3, 3.4, 5.1 | Antes do registro |
 | 3 | Rodar survey e entrevistas | Fase 2 inteira | 30 dias |
 | 4 | Obter 3 bases-piloto e rodar o diagnóstico | Insights 2, 3 e 4; primeiro case | 45 dias |
 | 5 | Iniciar aprovação de template Meta (Utility) | Régua de mensagem | Iniciar já — prazo externo |
@@ -2142,5 +2155,5 @@ Solicitação → Briefing → Criação → Revisão → Aprovação → Public
 
 **FIM DO BRAND BOOK**
 
-© 2026 Pulso. Todos os direitos reservados.
+© 2026 Pulse. Todos os direitos reservados.
 Documento confidencial e de uso exclusivo da organização.
