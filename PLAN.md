@@ -23,8 +23,44 @@ descreve a rota antiga em alguns pontos.
 | 13 tabelas | **15** | Entraram `consents` (opt-in com timestamp e origem — §4.2, valor CONFORMIDADE) e `message_templates` (rastreio do status de aprovação Meta). |
 | Cron diário às 05h | **`0 8 * * *`** | Cron da Vercel roda em UTC; 05h em `America/Sao_Paulo` é 08h UTC. |
 
-Continuam **em aberto** e valem como estavam: modelo de cobrança sobre economia,
-timing da aprovação Meta, e a confirmação das jornadas de autorização do Asaas.
+Continuam **em aberto** e valem como estavam: modelo de cobrança sobre economia
+e timing da aprovação Meta.
+
+### Questão nº 4 — jornada de autorização do Asaas
+
+**Parcialmente resolvida, e o resultado contraria um pressuposto do produto.**
+
+O fluxo do Pix Automático no Asaas **não é "clicar em autorizar e pronto"**:
+
+1. `POST /pixAutomaticRecurringAuthorizations` cria a autorização e devolve um
+   **QR Code imediato**;
+2. o pagador **paga a primeira cobrança** por esse QR — é esse pagamento que
+   registra o consentimento;
+3. a autorização só fica **ativa depois que esse primeiro pagamento liquida**;
+4. daí em diante, a aplicação continua responsável por criar cada nova
+   instrução de cobrança — não é débito que acontece sozinho.
+
+Sequência de webhook observada na documentação:
+`PIX_AUTOMATIC_RECURRING_AUTHORIZATION_CREATED` → `PAYMENT_CREATED` →
+`PAYMENT_RECEIVED` → `PIX_AUTOMATIC_RECURRING_AUTHORIZATION_ACTIVATED`.
+
+**O que isso muda:**
+
+- A página do pagador não pode dizer só "Autorize no seu banco". Há um
+  **pagamento agora**, e o valor precisa estar visível antes do QR — o brand
+  book proíbe esconder movimento de dinheiro de quem vai autorizá-lo.
+- `mandates.status = 'pending'` passa a significar "criada, aguardando o
+  primeiro pagamento liquidar", e não "convite enviado". O mapeamento está em
+  `mappers.ts` e coberto por teste.
+- O Momento da Verdade nº 2 ("o primeiro pagador autoriza") acontece na
+  liquidação, não no clique. É prova melhor, porém mais lenta — a régua da onda
+  precisa contar com isso.
+
+**Confiança:** derivado da documentação pública do Asaas via busca; o acesso
+direto a `docs.asaas.com` retorna 403 para ferramenta automatizada. Os nomes de
+campo do corpo da requisição (`maximumValue`, `frequency`) são a parte menos
+confirmada. **Confirmar contra conta sandbox antes de a página do pagador ir ao
+ar** — é a primeira coisa a fazer na Semana 4.
 
 ---
 
