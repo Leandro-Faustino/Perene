@@ -16,6 +16,16 @@ Next.js 16 (App Router) · React 19 · TypeScript · Clerk · Supabase (Postgres
 
 Em desenvolvimento — Fase 1 (MVP). Ver [PLAN.md](./PLAN.md) para o plano completo de implementação, arquitetura e fases.
 
+## Marca
+
+O brand book está em [docs/BRAND_BOOK.md](./docs/BRAND_BOOK.md) e os tokens de cor em
+[docs/brand/pulso-tokens.css](./docs/brand/pulso-tokens.css).
+
+> **Naming em aberto:** este repositório usa "Perene"; o brand book adota "Pulso",
+> condicionado à verificação de domínio e INPI. O confronto entre os dois documentos
+> — conflitos, lacunas e ordem de decisão — está em
+> [docs/ANALISE-MARCA-PLANO.md](./docs/ANALISE-MARCA-PLANO.md).
+
 ## Desenvolvimento
 
 ```bash

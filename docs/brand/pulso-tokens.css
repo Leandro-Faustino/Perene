@@ -1,0 +1,61 @@
+/* pulso-tokens.css — fonte única de verdade de cor da marca.
+ *
+ * Extraído de docs/BRAND_BOOK.md §5.2 (paleta) e §5.3 (tipografia).
+ * Regra de governança (§7.3): nenhum hexadecimal solto no código, em
+ * template de e-mail ou em template de post. Cor definida fora deste
+ * arquivo é dívida técnica de marca.
+ *
+ * ATENÇÃO — pendência aberta: o repositório e o PLAN.md nomeiam o produto
+ * como "Perene"; o brand book nomeia a marca como "Pulso". O prefixo `--pl-`
+ * segue o brand book. Ver docs/BRAND_BOOK.md §3.4 e Anexo B, pendências 1 e 2.
+ */
+
+:root {
+  /* Marca */
+  --pl-cobalto:        #2B50F5;
+  --pl-cobalto-escuro: #1E3ACC;  /* hover de botão */
+  --pl-cobalto-claro:  #7B93FF;  /* uso sobre fundo escuro — cobalto sobre grafite reprova em AA */
+  --pl-grafite:        #12161C;
+
+  /* Neutros */
+  --pl-texto:          #475467;
+  --pl-texto-medio:    #667085;  /* legenda acessível — 5,3:1 sobre branco */
+  --pl-texto-fraco:    #98A2B3;  /* NÃO textual — só placeholder, ícone decorativo e assinatura de rodapé */
+  --pl-borda:          #E4E7EC;
+  --pl-superficie:     #F7F8FA;
+  --pl-branco:         #FFFFFF;
+
+  /* Estados — superfície */
+  --pl-ativo:          #0E9F6E;
+  --pl-pendente:       #D9880A;
+  --pl-risco:          #D92D20;
+
+  /* Estados — texto acessível */
+  --pl-ativo-texto:    #047857;
+  --pl-pendente-texto: #B45309;
+  --pl-risco-texto:    #D92D20;
+
+  /* Estados — fundo de badge */
+  --pl-ativo-bg:       #ECFDF5;
+  --pl-pendente-bg:    #FFFBEB;
+  --pl-risco-bg:       #FEF3F2;
+}
+
+/* §5.3 — regra não negociável: todo valor monetário, percentual e contagem
+ * usa algarismos tabulares e alinhamento à direita. */
+.pl-numero {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  text-align: right;
+}
+
+/* §5.6 — a informação nunca depende de movimento. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
