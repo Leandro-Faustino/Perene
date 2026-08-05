@@ -59,6 +59,38 @@ describe("calcularDiagnostico", () => {
     expect(d.economiaMensalMaximaCentavos).toBe(286_000);
   });
 
+  it("bate com a agregação equivalente rodada no Postgres — base mista do box", () => {
+    // Cenário conferido contra o banco real: 320 contratos de R$ 250, sendo
+    // 200 no cartão, 80 no boleto e 40 no Pix manual, com as tarifas padrão
+    // semeadas pela migration 0003. Se este teste divergir do SQL, um dos dois
+    // está errado — e o operador veria dois números diferentes para a mesma
+    // pergunta.
+    const d = calcularDiagnostico({
+      contratos: [
+        ...contratos(200, "card", 25_000),
+        ...contratos(80, "boleto", 25_000),
+        ...contratos(40, "pix_manual", 25_000),
+      ],
+      tarifas: [
+        TARIFA_CARTAO,
+        TARIFA_BOLETO,
+        { metodo: "pix_manual", percentBps: 0, fixedCents: 99, origem: "padrão" },
+      ],
+      falhas12m: [],
+      tarifaPixAutomatico: TARIFA_PIX,
+    });
+
+    const porMetodo = Object.fromEntries(
+      d.custoPorMetodo.map((m) => [m.metodo, m.custoMensalCentavos]),
+    );
+
+    expect(porMetodo.card).toBe(145_000);
+    expect(porMetodo.boleto).toBe(27_920);
+    expect(porMetodo.pix_manual).toBe(3_960);
+    expect(d.custoMensalAtualCentavos).toBe(176_880);
+    expect(d.receitaMensalCentavos).toBe(8_000_000);
+  });
+
   it("mensaliza periodicidades diferentes em vez de somar valor cru", () => {
     // Um contrato anual de R$ 1.200 não é R$ 1.200 de receita mensal.
     const d = calcularDiagnostico({

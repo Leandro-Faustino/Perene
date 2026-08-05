@@ -1489,7 +1489,7 @@ Por isso o cobalto é azul: os estados ocupam verde, âmbar e vermelho, e o azul
 
 | Nome | HEX | Uso | Contraste sobre branco |
 |---|---|---|---|
-| Grafite | `#12161C` | Títulos, texto forte | 17,4:1 ✅ AAA |
+| Grafite | `#12161C` | Títulos, texto forte | 18,1:1 ✅ AAA |
 | Texto | `#475467` | Corpo, texto de tabela | 7,7:1 ✅ AAA |
 | Texto fraco | `#98A2B3` | Legenda, placeholder, assinatura no rodapé | 2,6:1 ⚠️ ver nota |
 | Borda | `#E4E7EC` | Divisórias, borda de campo, linha de tabela | — não textual |
@@ -1502,7 +1502,7 @@ Por isso o cobalto é azul: os estados ocupam verde, âmbar e vermelho, e o azul
 >
 > **Está proibido para:** qualquer legenda que carregue informação, rótulo de coluna, texto de ajuda, e — especialmente — **qualquer aviso legal ou texto de conformidade.** Aviso prévio de cobrança, base legal de opt-in e informação de valor-teto são conteúdo, não letra miúda. Use `--pl-texto` (#475467) para todos eles.
 >
-> Para legenda que precisa parecer secundária mas continuar acessível, use **`#667085`** (contraste 5,3:1 ✅ AA).
+> Para legenda que precisa parecer secundária mas continuar acessível, use **`#667085`** (contraste 5,0:1 ✅ AA).
 
 ### Cores semânticas
 
@@ -1519,14 +1519,14 @@ Cada estado tem **dois valores**: um de superfície (fundo de badge, ponto indic
 
 | Combinação | Uso | Contraste |
 |---|---|---|
-| Grafite sobre Branco | Texto padrão | 17,4:1 ✅ |
+| Grafite sobre Branco | Texto padrão | 18,1:1 ✅ |
 | Texto sobre Branco | Corpo e tabela | 7,7:1 ✅ |
 | Branco sobre Cobalto | Botão primário | 5,9:1 ✅ |
 | Cobalto sobre Branco | Link, valor em destaque | 5,9:1 ✅ |
-| Branco sobre Grafite | Superfície escura, deck | 17,4:1 ✅ |
+| Branco sobre Grafite | Superfície escura, deck | 18,1:1 ✅ |
 | Cobalto sobre Grafite | ❌ **Proibido** | 3,0:1 ❌ |
 
-> ⚠️ **Cobalto sobre Grafite reprova.** Em superfície escura (deck, cabeçalho escuro, dark mode), o cobalto precisa ser clareado para **`#7B93FF`**, que alcança 7,1:1 sobre grafite. Token: `--pl-cobalto-claro`. Isso vale também para a quarta barra do símbolo em fundo escuro.
+> ⚠️ **Cobalto sobre Grafite reprova.** Em superfície escura (deck, cabeçalho escuro, dark mode), o cobalto precisa ser clareado para **`#7B93FF`**, que alcança 6,5:1 sobre grafite. Token: `--pl-cobalto-claro`. Isso vale também para a quarta barra do símbolo em fundo escuro.
 
 ### Tokens
 
@@ -2137,6 +2137,7 @@ Solicitação → Briefing → Criação → Revisão → Aprovação → Public
 | Versão | Data | Alterações | Responsável |
 |---|---|---|---|
 | 1.0 | 04/08/2026 | Versão inicial. 7 fases completas. Naming definido (Pulse). Fases 1 e 2 marcadas como hipótese pendente de validação | Leandro F. |
+| 1.2 | 05/08/2026 | Corrigidas três razões de contraste que estavam superestimadas em §5.2 — grafite sobre branco (17,4 → 18,1), `--pl-texto-medio` (5,3 → 5,0) e cobalto claro sobre grafite (7,1 → 6,5). Nenhuma muda decisão: todas continuam passando no limiar. Valores agora calculados por `src/lib/contraste.ts` e travados por teste | Leandro F. |
 | 1.1 | 04/08/2026 | Grafia do nome fixada em **Pulse** (inglês), substituindo o nome de trabalho "Perene". Registrado em §3.4 o que a grafia inglesa custa ao trocadilho português e por que o mantra mantém o substantivo *pulso*. Domínios e handles atualizados. Fase A executada em parte: logo nas 4 versões (SVG + componente), tokens implementados como fonte única, três famílias tipográficas carregadas | Leandro F. |
 
 ### Pendências abertas

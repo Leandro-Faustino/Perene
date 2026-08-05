@@ -18,16 +18,49 @@ import "server-only";
  * segredo compartilhado entre os dois sistemas.
  */
 export function supabaseServidor() {
-  return createClient(
-    processoEnv("NEXT_PUBLIC_SUPABASE_URL"),
-    processoEnv("NEXT_PUBLIC_SUPABASE_ANON_KEY"),
-    {
-      accessToken: async () => {
-        const { getToken } = await auth();
-        return getToken();
-      },
+  return createClient(processoEnv("NEXT_PUBLIC_SUPABASE_URL"), chavePublica(), {
+    accessToken: async () => {
+      const { getToken } = await auth();
+      return getToken();
     },
-  );
+  });
+}
+
+/**
+ * Cliente sem sessão, para a página do pagador.
+ *
+ * Ele chega por um link e não faz login — nem deve: é uma tela e um botão
+ * (§3.6). Sem token, este cliente age como `anon`, que não enxerga nenhuma
+ * tabela. O acesso ao convite passa por `pulse.convite_por_token`, uma função
+ * SECURITY DEFINER que devolve um convite exato e nada mais.
+ *
+ * Deliberadamente NÃO é o cliente service-role: aquela chave ignora RLS em
+ * todas as tabelas, e carregá-la numa rota pública transformaria qualquer bug
+ * ali em vazamento da base inteira.
+ */
+export function supabasePublico() {
+  return createClient(processoEnv("NEXT_PUBLIC_SUPABASE_URL"), chavePublica(), {
+    auth: { persistSession: false, autoRefreshToken: false },
+  });
+}
+
+/**
+ * O Supabase renomeou as chaves de cliente: a `anon` (um JWT) virou
+ * `publishable` (prefixo `sb_publishable_`). Projetos novos só recebem a nova;
+ * os antigos ainda usam a legada. Aceitamos as duas, com preferência pela nova,
+ * para que o mesmo código rode nos dois casos.
+ */
+export function chavePublica(): string {
+  const chave =
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ??
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  if (!chave) {
+    throw new Error(
+      "Defina NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY (ou a legada NEXT_PUBLIC_SUPABASE_ANON_KEY).",
+    );
+  }
+  return chave;
 }
 
 function processoEnv(nome: string): string {

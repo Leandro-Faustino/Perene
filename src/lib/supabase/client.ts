@@ -22,7 +22,9 @@ export function useSupabase() {
     () =>
       createClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+        // Chave nova (`sb_publishable_`) com queda para a `anon` legada.
+        (process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ??
+          process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)!,
         {
           accessToken: async () => session?.getToken() ?? null,
         },
