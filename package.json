@@ -9,7 +9,8 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "test:integracao": "RODAR_INTEGRACAO=1 vitest run src/testes/integracao.test.ts"
   },
   "dependencies": {
     "@clerk/localizations": "^4.13.10",
