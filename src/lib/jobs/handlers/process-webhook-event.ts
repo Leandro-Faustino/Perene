@@ -110,10 +110,19 @@ async function tratarMandato(
     // mais curto para a denúncia que derruba o número.
     if (convite) await encerrarRegua(convite.id);
 
+    // Guarda de onde veio ANTES de sobrescrever: é o que torna a economia do
+    // medidor uma diferença real, e não uma estimativa contra a média.
+    const { data: antes } = await supa
+      .from("contracts")
+      .select("current_method")
+      .eq("id", mandato.contract_id)
+      .maybeSingle();
+
     await supa
       .from("contracts")
       .update({
         migrated_at: evento.ocorridoEm,
+        previous_method: antes?.current_method ?? null,
         current_method: "pix_automatico",
       })
       .eq("id", mandato.contract_id);

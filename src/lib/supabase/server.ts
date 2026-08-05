@@ -19,10 +19,28 @@ import "server-only";
  */
 export function supabaseServidor() {
   return createClient(processoEnv("NEXT_PUBLIC_SUPABASE_URL"), chavePublica(), {
-    accessToken: async () => {
-      const { getToken } = await auth();
-      return getToken();
+    // O token vai no header em vez de pelo callback `accessToken`.
+    //
+    // Motivo prático: `accessToken` faz o supabase-js tentar autenticar o
+    // canal de Realtime na construção do cliente, e este cliente é criado uma
+    // vez por requisição de servidor, onde Realtime não é usado. O efeito era
+    // um "Failed to set initial Realtime auth token" por render.
+    //
+    // Renovação de token não se perde: o cliente vive o tempo de uma
+    // requisição, e o Clerk entrega um token válido a cada uma. Realtime, que
+    // precisa de renovação, é assunto do cliente de browser.
+    global: {
+      fetch: async (entrada, init) => {
+        const { getToken } = await auth();
+        const token = await getToken();
+
+        const cabecalhos = new Headers(init?.headers);
+        if (token) cabecalhos.set("Authorization", `Bearer ${token}`);
+
+        return fetch(entrada, { ...init, headers: cabecalhos });
+      },
     },
+    auth: { persistSession: false, autoRefreshToken: false },
   });
 }
 

@@ -2,6 +2,7 @@ import { UserButton } from "@clerk/nextjs";
 
 import { BarraLateral } from "@/components/barra-lateral";
 import { MedidorDeMigracao } from "@/components/marca/medidor-de-migracao";
+import { carregarMedidor } from "@/lib/domain/medidor";
 
 /**
  * Layout do painel do operador.
@@ -17,25 +18,23 @@ import { MedidorDeMigracao } from "@/components/marca/medidor-de-migracao";
  * nem hierarquia (§3.6). Tratá-las com o mesmo sistema é o erro mais provável
  * do projeto.
  *
- * TODO(Semana 2): os números do medidor vêm de view materializada por org,
- * carregada aqui no layout. Enquanto o diagnóstico não existe, ficam zerados —
- * e zerado já é a leitura correta para quem acabou de entrar.
+ * Os números vêm do banco a cada render. Zerados só quando a base realmente
+ * está zerada — um medidor que mostra zero permanentemente contradiz a
+ * promessa que a marca faz.
  */
-export default function LayoutDoPainel({
+export default async function LayoutDoPainel({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const medidor = await carregarMedidor();
+
   return (
     <div className="flex min-h-full flex-1">
       <BarraLateral />
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <MedidorDeMigracao
-          contratosMigrados={0}
-          contratosTotais={0}
-          economiaMensalCentavos={0}
-        />
+        <MedidorDeMigracao {...medidor} />
 
         <header className="flex h-14 items-center justify-end border-b px-6">
           <UserButton />
