@@ -56,7 +56,22 @@ npm run dev
 npm run build       # produção
 npm run typecheck   # tsc --noEmit
 npm run lint        # eslint
+npm test            # vitest
 ```
+
+### Rede
+
+O Clerk exige acesso de saída a dois hosts, e **sem eles nenhuma página abre no
+navegador** — nem as públicas. Uma instância de desenvolvimento faz um
+*handshake* no primeiro acesso (`__clerk_hs_reason=dev-browser-missing`) que
+redireciona o browser para o Frontend API antes de qualquer render.
+
+- `<sua-instância>.clerk.accounts.dev` — Frontend API e o JS do cliente
+- `api.clerk.com` — Backend API
+
+Em ambiente com allowlist de egresso (sandbox, CI restrito, container de
+agente), libere os dois. O sintoma quando faltam é enganoso: `curl` responde
+200, e o navegador mostra "Host not in allowlist".
 
 ### Banco
 
