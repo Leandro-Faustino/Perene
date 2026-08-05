@@ -184,6 +184,14 @@ export default async function PaginaDeDiagnostico() {
         <Botao asChild tamanho="site">
           <Link href="/ondas/nova">Começar a migrar</Link>
         </Botao>
+        {/* O PDF é o material que circula sozinho (§3.6) e sai com a marca da
+            ORGANIZAÇÃO, não com a nossa — é o que permite ao parceiro de canal
+            apresentá-lo como material dele. */}
+        <Botao asChild variante="secundario" tamanho="site">
+          <a href="/api/diagnostico/pdf" target="_blank" rel="noreferrer">
+            Baixar o relatório
+          </a>
+        </Botao>
         <span className="text-[14px] text-texto-medio">
           Você escolhe quem entra na primeira onda.
         </span>
