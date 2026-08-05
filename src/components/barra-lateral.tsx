@@ -42,7 +42,7 @@ const SECOES = [
   {
     titulo: "Ajustes",
     itens: [
-      { href: "/configuracoes/conexoes", rotulo: "Conexões", Icone: Plug },
+      { href: "/conectar-gateway", rotulo: "Conexões", Icone: Plug },
       { href: "/configuracoes", rotulo: "Configurações", Icone: Settings },
     ],
   },
