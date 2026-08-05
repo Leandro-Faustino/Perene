@@ -18,16 +18,31 @@ import "server-only";
  * segredo compartilhado entre os dois sistemas.
  */
 export function supabaseServidor() {
-  return createClient(
-    processoEnv("NEXT_PUBLIC_SUPABASE_URL"),
-    processoEnv("NEXT_PUBLIC_SUPABASE_ANON_KEY"),
-    {
-      accessToken: async () => {
-        const { getToken } = await auth();
-        return getToken();
-      },
+  return createClient(processoEnv("NEXT_PUBLIC_SUPABASE_URL"), chavePublica(), {
+    accessToken: async () => {
+      const { getToken } = await auth();
+      return getToken();
     },
-  );
+  });
+}
+
+/**
+ * O Supabase renomeou as chaves de cliente: a `anon` (um JWT) virou
+ * `publishable` (prefixo `sb_publishable_`). Projetos novos só recebem a nova;
+ * os antigos ainda usam a legada. Aceitamos as duas, com preferência pela nova,
+ * para que o mesmo código rode nos dois casos.
+ */
+export function chavePublica(): string {
+  const chave =
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ??
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  if (!chave) {
+    throw new Error(
+      "Defina NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY (ou a legada NEXT_PUBLIC_SUPABASE_ANON_KEY).",
+    );
+  }
+  return chave;
 }
 
 function processoEnv(nome: string): string {

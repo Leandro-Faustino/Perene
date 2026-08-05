@@ -32,14 +32,9 @@ as $$
   );
 $$;
 
-create or replace function pulse.org_atual()
-returns uuid
-language sql
-stable
-as $$
-  select id from public.organizations
-  where clerk_org_id = pulse.clerk_org_id();
-$$;
+-- `pulse.org_atual()` é declarada logo DEPOIS de `organizations`, e não aqui:
+-- o Postgres valida o corpo de função SQL na criação, então declará-la antes da
+-- tabela existir falha com "relation public.organizations does not exist".
 
 -- =============================================================================
 -- 1. organizations — o cliente pagante do SaaS. Unidade de isolamento.
@@ -60,6 +55,16 @@ create table public.organizations (
   created_at        timestamptz not null default now(),
   updated_at        timestamptz not null default now()
 );
+
+-- Resolve a organização da sessão. Precisa vir depois da tabela acima.
+create or replace function pulse.org_atual()
+returns uuid
+language sql
+stable
+as $$
+  select id from public.organizations
+  where clerk_org_id = pulse.clerk_org_id();
+$$;
 
 -- =============================================================================
 -- 2. gateway_connections — credenciais do gateway, cifradas
