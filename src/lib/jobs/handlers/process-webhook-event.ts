@@ -112,11 +112,24 @@ async function tratarMandato(
     // mais curto para a denúncia que derruba o número.
     if (convite) await encerrarRegua(convite.id);
 
+    // Guarda o método atual antes de sobrescrever — é a única fonte de verdade
+    // para calcular economia real no Medidor (custo_antes − custo_pix_automatico).
+    // Sem isto, o medidor declara R$ 0 de economia para todos os contratos
+    // migrados antes desta feature.
+    const { data: contratoAtual } = await supa
+      .from("contracts")
+      .select("current_method, original_method")
+      .eq("id", mandato.contract_id)
+      .maybeSingle();
+
     await supa
       .from("contracts")
       .update({
         migrated_at: evento.ocorridoEm,
         current_method: "pix_automatico",
+        // Preserva se já estava definido (re-autorização após cancelamento).
+        original_method:
+          contratoAtual?.original_method ?? contratoAtual?.current_method ?? null,
       })
       .eq("id", mandato.contract_id);
 
@@ -147,11 +160,21 @@ async function tratarMandato(
       montarAlertaDeRisco(kind, detail),
     );
 
-    // Volta ao método anterior para não parecer migrado no medidor: um número
-    // que conta quem já não está mais migrado é um número que mente.
+    // Restaura o método original para o contrato não aparecer como migrado
+    // enquanto o pagador não reautorizar. Sem restaurar current_method, o
+    // Medidor contaria um contrato que já não contribui com economia real.
+    const { data: contratoMigrado } = await supa
+      .from("contracts")
+      .select("original_method")
+      .eq("id", mandato.contract_id)
+      .maybeSingle();
+
     await supa
       .from("contracts")
-      .update({ migrated_at: null })
+      .update({
+        migrated_at: null,
+        current_method: contratoMigrado?.original_method ?? "pix_automatico",
+      })
       .eq("id", mandato.contract_id);
   }
 }
