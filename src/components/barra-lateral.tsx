@@ -54,7 +54,7 @@ export function BarraLateral() {
   return (
     <nav
       aria-label="Navegação principal"
-      className="flex w-60 shrink-0 flex-col border-r bg-[var(--pl-superficie)]"
+      className="flex w-60 shrink-0 flex-col border-r bg-[var(--pl-sidebar)]"
     >
       <div className="flex h-14 items-center px-5">
         <Link href="/dashboard" aria-label="Pulse — ir para o diagnóstico">

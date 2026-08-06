@@ -44,7 +44,7 @@ export default async function PaginaDeDiagnostico() {
       <Cabecalho />
 
       {/* O número. Display 48px em Archivo Bold, tabular (§5.3). */}
-      <section className="rounded-lg border bg-background p-6 shadow-[var(--pl-sombra)]">
+      <section className="rounded-lg bg-background p-6 shadow-[var(--pl-sombra-card)]">
         <p className="text-[12px] font-medium uppercase tracking-[0.02em] text-texto-medio">
           Custo de cobrança hoje
         </p>

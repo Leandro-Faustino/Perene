@@ -4,12 +4,17 @@ import type {
   AssinaturaExterna,
   AutorizacaoCriada,
   ClienteExterno,
+  CobrancaCriada,
   CobrancaHistorica,
   CriarAutorizacao,
+  CriarCobranca,
+  CriarPixAvulso,
   EstadoDaAutorizacao,
+  EstadoDaCobranca,
   EventoNormalizado,
   GatewayAdapter,
   Pagina,
+  PixAvulsoCriado,
   Provider,
   ResultadoConexao,
 } from "../types";
@@ -19,6 +24,8 @@ import {
   mapearAutorizacao,
   mapearCliente,
   mapearCobranca,
+  mapearCobrancaCriada,
+  mapearEstadoDaCobranca,
   mapearEventoDeWebhook,
 } from "./mappers";
 
@@ -119,7 +126,7 @@ export class AdapterAsaas implements GatewayAdapter {
    * ao pagador, não só pedir "autorize".
    */
   async createMandate(entrada: CriarAutorizacao): Promise<AutorizacaoCriada> {
-    const customerId = await this.garantirCliente(entrada);
+    const customerId = await this.garantirCliente(entrada.pagador);
 
     const resposta = await this.http.requisitar<{
       id: string;
@@ -151,6 +158,78 @@ export class AdapterAsaas implements GatewayAdapter {
       Parameters<typeof mapearAutorizacao>[0]
     >(`/pixAutomaticRecurringAuthorizations/${externalMandateId}`);
     return mapearAutorizacao(resposta);
+  }
+
+  async cancelMandate(externalMandateId: string): Promise<void> {
+    await this.http.requisitar<void>(
+      `/pixAutomaticRecurringAuthorizations/${externalMandateId}`,
+      { method: "DELETE" },
+    );
+  }
+
+  /**
+   * Cria uma instrução de cobrança para um mandato Pix Automático ativo.
+   *
+   * O gateway não debita sozinho — a aplicação é responsável por criar cada
+   * cobrança. A chamada inclui `externalReference` para idempotência: reenviar
+   * o mesmo payload retorna a cobrança existente sem duplicar.
+   */
+  async scheduleCharge(entrada: CriarCobranca): Promise<CobrancaCriada> {
+    const resposta = await this.http.requisitar<
+      Parameters<typeof mapearCobrancaCriada>[0]
+    >("/pixAutomaticRecurringCharges", {
+      method: "POST",
+      body: JSON.stringify({
+        authorization: entrada.externalMandateId,
+        value: entrada.valorCentavos / 100,
+        dueDate: entrada.vencimento,
+        description: entrada.descricao,
+        externalReference: entrada.referenciaExterna,
+      }),
+    });
+    return mapearCobrancaCriada(resposta);
+  }
+
+  async getCharge(externalChargeId: string): Promise<EstadoDaCobranca> {
+    const resposta = await this.http.requisitar<
+      Parameters<typeof mapearEstadoDaCobranca>[0]
+    >(`/pixAutomaticRecurringCharges/${externalChargeId}`);
+    return mapearEstadoDaCobranca(resposta);
+  }
+
+  /**
+   * Gera um Pix avulso (cobrança única) para pagamento imediato.
+   *
+   * Usado como fallback quando uma cobrança recorrente falha: em vez de
+   * cancelar o mandato, enviamos um Pix manual para o pagador cobrir o ciclo
+   * sem quebrar a autorização automática.
+   */
+  async createOneOffPix(entrada: CriarPixAvulso): Promise<PixAvulsoCriado> {
+    const customerId = await this.garantirCliente(entrada.pagador);
+
+    const resposta = await this.http.requisitar<{
+      id: string;
+      pix?: { payload?: string; encodedImage?: string; expirationDate?: string } | null;
+      invoiceUrl?: string | null;
+    }>("/payments", {
+      method: "POST",
+      body: JSON.stringify({
+        customer: customerId,
+        billingType: "PIX",
+        value: entrada.valorCentavos / 100,
+        dueDate: entrada.vencimento,
+        description: entrada.descricao,
+        externalReference: entrada.referenciaExterna,
+      }),
+    });
+
+    return {
+      externalChargeId: resposta.id,
+      qrCodePayload: resposta.pix?.payload ?? null,
+      qrCodeImagem: resposta.pix?.encodedImage ?? null,
+      linkPagamento: resposta.invoiceUrl ?? null,
+      expiraEm: resposta.pix?.expirationDate ?? null,
+    };
   }
 
   /**
@@ -195,22 +274,22 @@ export class AdapterAsaas implements GatewayAdapter {
    * gateway — o operador olha o painel do Asaas e não encontra a bagunça que a
    * gente criou.
    */
-  private async garantirCliente(entrada: CriarAutorizacao): Promise<string> {
-    if (entrada.pagador.externalId) return entrada.pagador.externalId;
+  private async garantirCliente(pagador: CriarAutorizacao["pagador"]): Promise<string> {
+    if (pagador.externalId) return pagador.externalId;
 
     const busca = await this.http.requisitar<ListaAsaas<{ id: string }>>(
       "/customers",
-      { query: { cpfCnpj: entrada.pagador.cpfCnpj, limit: 1 } },
+      { query: { cpfCnpj: pagador.cpfCnpj, limit: 1 } },
     );
     if (busca.data.length > 0) return busca.data[0].id;
 
     const criado = await this.http.requisitar<{ id: string }>("/customers", {
       method: "POST",
       body: JSON.stringify({
-        name: entrada.pagador.nome,
-        cpfCnpj: entrada.pagador.cpfCnpj,
-        email: entrada.pagador.email ?? undefined,
-        mobilePhone: entrada.pagador.telefoneE164?.replace("+55", "") ?? undefined,
+        name: pagador.nome,
+        cpfCnpj: pagador.cpfCnpj,
+        email: pagador.email ?? undefined,
+        mobilePhone: pagador.telefoneE164?.replace("+55", "") ?? undefined,
       }),
     });
     return criado.id;

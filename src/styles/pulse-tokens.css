@@ -1,53 +1,58 @@
 /* pulse-tokens.css — FONTE ÚNICA DE VERDADE de cor da marca (brand book §7.3).
  *
+ * Paleta inspirada no sistema de design Asaas / Base ERP (extraído 2026-08-05).
+ * Primário: Blue Ribbon #0038E5 · Ink: Cloud Burst #1E2740.
+ *
  * Nenhum hexadecimal solto no código, em template de e-mail ou em template de
  * post. Cor definida fora deste arquivo é dívida técnica de marca.
- *
- * Este é o arquivo canônico e vive dentro do app de propósito: manter uma
- * segunda cópia em docs/ garantiria divergência. A biblioteca de ativos
- * (§7.3, 02_Cores/) referencia este caminho.
  *
  * Valores e justificativas: brand book §5.2 (paleta) e §5.3 (tipografia).
  */
 
 :root {
   /* ---- Marca ------------------------------------------------------------ */
-  --pl-cobalto: #2b50f5;
-  --pl-cobalto-escuro: #1e3acc; /* hover de botão */
-  --pl-cobalto-claro: #7b93ff; /* obrigatório sobre fundo escuro: cobalto
-                                  sobre grafite dá 3,0:1 e reprova em AA */
-  --pl-grafite: #12161c;
+  --pl-cobalto: #0038e5;              /* Blue Ribbon — botões, links, destaque  */
+  --pl-cobalto-escuro: #002fbd;       /* hover de botão (primary.700)           */
+  --pl-cobalto-claro: #85a3ff;        /* obrigatório sobre fundo escuro:
+                                         primary.300, 4,8:1 sobre neutral.950   */
+  --pl-grafite: #1e2740;              /* Cloud Burst — títulos e texto forte     */
 
   /* ---- Neutros ---------------------------------------------------------- */
-  --pl-texto: #475467; /* 7,7:1 sobre branco — corpo e tabela */
-  --pl-texto-medio: #667085; /* 5,3:1 — legenda que precisa continuar acessível */
-  --pl-texto-fraco: #98a2b3; /* 2,6:1 — NÃO textual. Só placeholder, ícone
-                                decorativo e a assinatura no rodapé do pagador.
-                                Proibido em aviso legal, texto de consentimento
-                                e rótulo de coluna (§5.2, §7.2). */
-  --pl-borda: #e4e7ec;
-  --pl-superficie: #f7f8fa;
-  /* `--pl-fundo` é o fundo base e vira grafite no tema escuro.
-   * `--pl-branco` é branco e continua branco em qualquer tema — é o texto do
-   * botão primário sobre cobalto, e inverter isso o tornaria ilegível. Os dois
-   * existem separados de propósito. */
-  --pl-fundo: #ffffff;
+  /* neutral.900 #1E2740 — ink autoridade, passa AAA sobre branco (13:1). */
+  --pl-texto: #1e2740;
+  --pl-texto-medio: #4e5874;          /* neutral.600 — 5,9:1 sobre branco (AA) */
+  --pl-texto-fraco: #6b7694;          /* neutral.500 — 4,6:1. Placeholder,
+                                         ícone decorativo. Proibido em rótulo
+                                         de coluna (§5.2).                       */
+
+  /* neutral.200 fixo em vez de rgba: borda legível sobre sidebar tintada,
+   * card branco ou tabela sem cálculo de opacity. */
+  --pl-borda: #e2e5ee;
+
+  /* neutral.100 — diferença de elevação perceptível sem saltar aos olhos. */
+  --pl-superficie: #f2f3f8;
+
+  /* neutral.50 — sidebar limpa; distinção sutil entre nav e conteúdo. */
+  --pl-sidebar: #f8f9fb;
+
+  --pl-fundo: #ffffff;                /* neutral.0 */
   --pl-branco: #ffffff;
 
-  /* ---- Estados: superfície (badge, ponto indicador) --------------------- */
+  /* ---- Estados: superfície (ponto do badge) ----------------------------- */
+  /* Emerald success.default — lê como "pagamento confirmado". */
   --pl-ativo: #0e9f6e;
-  --pl-pendente: #d9880a;
-  --pl-risco: #d92d20;
+  --pl-pendente: #e9a100;             /* âmbar de vencimento (warning.default) */
+  --pl-risco: #e02424;                /* vermelho de falha (danger.default)     */
 
   /* ---- Estados: texto (todos passam em AA sobre fundo claro) ------------ */
-  --pl-ativo-texto: #047857;
-  --pl-pendente-texto: #b45309;
-  --pl-risco-texto: #d92d20;
+  --pl-ativo-texto: #04724d;          /* success.text  */
+  --pl-pendente-texto: #8a5d00;       /* warning.text  */
+  --pl-risco-texto: #9b1c1c;          /* danger.text   */
 
   /* ---- Estados: fundo de badge ------------------------------------------ */
-  --pl-ativo-bg: #ecfdf5;
-  --pl-pendente-bg: #fffbeb;
-  --pl-risco-bg: #fef3f2;
+  --pl-ativo-bg: #e7f7f0;             /* success.surface */
+  --pl-pendente-bg: #fff6e0;          /* warning.surface */
+  --pl-risco-bg: #fdecec;             /* danger.surface  */
 
   /* ---- Tipografia (famílias injetadas por next/font em layout.tsx) ------ */
   --fonte-titulo: var(--fonte-archivo), system-ui, sans-serif;
@@ -55,11 +60,17 @@
   --fonte-codigo: var(--fonte-jetbrains), ui-monospace, monospace;
 
   /* ---- Forma e elevação (§6.3) ------------------------------------------ */
-  --pl-raio: 6px; /* componentes */
-  --pl-raio-card: 8px; /* card */
-  --pl-sombra: 0 1px 2px rgba(18, 22, 28, 0.06); /* a única sombra do sistema;
-                                                    elevação se resolve por
-                                                    borda, não por sombra */
+  --pl-raio: 8px;                     /* input, componentes (radius.md)  */
+  --pl-raio-card: 16px;               /* card (radius.xl — padrão Asaas) */
+  --pl-raio-botao: 999px;             /* botão pill                      */
+
+  /* Sombras: hierarquia de três níveis.
+   * sm  → separação sutil (header, item de lista)
+   * card → número principal, card elevado
+   * marca → glow azul no hover do botão primário                         */
+  --pl-sombra: 0 1px 2px rgba(30, 39, 64, 0.06);
+  --pl-sombra-card: 0 4px 12px rgba(30, 39, 64, 0.08);
+  --pl-sombra-marca: 0 8px 24px rgba(0, 56, 229, 0.24);
 
   /* ---- Motion (§5.6) ---------------------------------------------------- */
   --pl-dur-micro: 150ms;
@@ -68,13 +79,3 @@
   --pl-curva: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Superfície escura. A regra que importa: a quarta barra do símbolo, o botão
- * primário e o link trocam para --pl-cobalto-claro (7,1:1 sobre grafite). */
-.dark {
-  --pl-texto: #cdd3dd;
-  --pl-texto-medio: #98a2b3;
-  --pl-texto-fraco: #667085;
-  --pl-borda: #262c36;
-  --pl-superficie: #1a1f27;
-  --pl-fundo: #12161c;
-}

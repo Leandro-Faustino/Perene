@@ -1,9 +1,12 @@
 import { describe, expect, it } from "vitest";
 
 import {
+  mapearCobrancaCriada,
+  mapearEstadoDaCobranca,
   mapearEventoDeWebhook,
   mapearStatusDeAutorizacao,
   mapearStatusDeCobranca,
+  mapearStatusDeCobrancaAtiva,
   normalizarTelefone,
   paraCentavos,
 } from "./mappers";
@@ -117,6 +120,101 @@ describe("mapearEventoDeWebhook", () => {
         event: "PIX_AUTOMATIC_RECURRING_AUTHORIZATION_ACTIVATED",
       }),
     ).toBeNull();
+  });
+});
+
+describe("mapearStatusDeCobrancaAtiva", () => {
+  it("PENDING vira scheduled — gerada mas ainda não vencida", () => {
+    expect(mapearStatusDeCobrancaAtiva("PENDING")).toBe("scheduled");
+    expect(mapearStatusDeCobrancaAtiva("AWAITING_RISK_ANALYSIS")).toBe("scheduled");
+  });
+
+  it("RECEIVED e variantes viram succeeded", () => {
+    expect(mapearStatusDeCobrancaAtiva("RECEIVED")).toBe("succeeded");
+    expect(mapearStatusDeCobrancaAtiva("CONFIRMED")).toBe("succeeded");
+    expect(mapearStatusDeCobrancaAtiva("RECEIVED_IN_CASH")).toBe("succeeded");
+  });
+
+  it("OVERDUE e chargeback viram failed", () => {
+    expect(mapearStatusDeCobrancaAtiva("OVERDUE")).toBe("failed");
+    expect(mapearStatusDeCobrancaAtiva("CHARGEBACK_REQUESTED")).toBe("failed");
+  });
+
+  it("REFUND_IN_PROGRESS vira retrying", () => {
+    expect(mapearStatusDeCobrancaAtiva("REFUND_IN_PROGRESS")).toBe("retrying");
+    expect(mapearStatusDeCobrancaAtiva("CHARGEBACK_IN_PROGRESS")).toBe("retrying");
+  });
+
+  it("cai em scheduled diante de status desconhecido, nunca em succeeded", () => {
+    // Errar para o lado de "ainda não pago" é seguro; o contrário contaria
+    // o ciclo como encerrado sem o dinheiro ter entrado.
+    expect(mapearStatusDeCobrancaAtiva("ALGO_NOVO")).toBe("scheduled");
+  });
+});
+
+describe("mapearCobrancaCriada", () => {
+  it("mapeia cobrança recorrente criada com QR", () => {
+    const resultado = mapearCobrancaCriada({
+      id: "chg_1",
+      status: "PENDING",
+      dueDate: "2026-09-15",
+      value: 150,
+      pix: { payload: "00020126...", encodedImage: "base64img" },
+    });
+
+    expect(resultado).toEqual({
+      externalChargeId: "chg_1",
+      vencimento: "2026-09-15",
+      status: "scheduled",
+      qrCodePayload: "00020126...",
+      qrCodeImagem: "base64img",
+    });
+  });
+
+  it("aceita cobrança sem pix (mandato já ativo não retorna QR)", () => {
+    const resultado = mapearCobrancaCriada({
+      id: "chg_2",
+      status: "PENDING",
+      dueDate: "2026-09-15",
+      value: 150,
+    });
+
+    expect(resultado.qrCodePayload).toBeNull();
+    expect(resultado.qrCodeImagem).toBeNull();
+  });
+});
+
+describe("mapearEstadoDaCobranca", () => {
+  it("mapeia cobrança recebida com data de pagamento", () => {
+    const resultado = mapearEstadoDaCobranca({
+      id: "chg_3",
+      status: "RECEIVED",
+      value: 200,
+      dueDate: "2026-09-15",
+      paymentDate: "2026-09-14",
+    });
+
+    expect(resultado).toEqual({
+      externalChargeId: "chg_3",
+      status: "succeeded",
+      valorCentavos: 20_000,
+      vencimento: "2026-09-15",
+      pagoEm: "2026-09-14",
+      motivo: null,
+    });
+  });
+
+  it("preserva motivo de falha para log interno", () => {
+    const resultado = mapearEstadoDaCobranca({
+      id: "chg_4",
+      status: "OVERDUE",
+      value: 200,
+      dueDate: "2026-09-15",
+      failReason: "Saldo insuficiente",
+    });
+
+    expect(resultado.status).toBe("failed");
+    expect(resultado.motivo).toBe("Saldo insuficiente");
   });
 });
 

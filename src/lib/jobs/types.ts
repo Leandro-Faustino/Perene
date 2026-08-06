@@ -10,7 +10,11 @@ export type PayloadDeJob =
   | { kind: "send_cadence_step"; invitationId: string; passo: 1 | 2 | 3 | 4 }
   | { kind: "expire_invitation"; invitationId: string }
   | { kind: "process_webhook_event"; webhookEventId: string }
-  | { kind: "send_message"; messageId: string };
+  | { kind: "send_message"; messageId: string }
+  /** Cria a instrução de débito no gateway para um mandato ativo. */
+  | { kind: "schedule_charge"; contractId: string; cycleRef: string }
+  /** Sonda o resultado de uma cobrança agendada. Repete até resolver. */
+  | { kind: "charge_status_poll"; chargeId: string };
 
 export type TipoDeJob = PayloadDeJob["kind"];
 
@@ -52,6 +56,11 @@ export const chaveDeIdempotencia = {
   expirarConvite: (invitationId: string) => `expire:${invitationId}`,
   webhook: (webhookEventId: string) => `whev:${webhookEventId}`,
   mensagem: (messageId: string) => `msg:${messageId}`,
+  /** Um contrato, um ciclo: mesmo que o cron rode duas vezes, uma cobrança. */
+  agendarCobranca: (contractId: string, cycleRef: string) =>
+    `charge:${contractId}:${cycleRef}`,
+  /** Sondagem: pode repetir, mas não simultaneamente. */
+  sondaCobranca: (chargeId: string) => `poll:${chargeId}`,
 };
 
 /**

@@ -1,5 +1,7 @@
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import { encerrarRegua } from "@/lib/jobs/enqueue";
+import { reagirAFalhaDeCobranca } from "@/lib/domain/cobranca";
+import { alertarOperador, montarAlertaDeRisco } from "@/lib/domain/alertas";
 import type { EventoNormalizado } from "@/lib/gateways/types";
 
 import type { PayloadDeJob, ResultadoDoJob } from "../types";
@@ -125,17 +127,25 @@ async function tratarMandato(
   // único evento que a Pulse não pode prevenir — só pode detectar rápido, e é
   // onde o Pilar SUSTENTAR se prova ou desmorona.
   if (status === "cancelled" || status === "expired") {
+    const kind = status === "cancelled" ? "mandate_cancelled" : "mandate_expired";
+    const detail =
+      status === "cancelled"
+        ? "Autorização cancelada pelo pagador no app do banco."
+        : "Autorização expirou.";
+
     await supa.from("risk_events").insert({
       org_id: mandato.org_id ?? orgId,
       contract_id: mandato.contract_id,
       mandate_id: mandato.id,
-      kind: status === "cancelled" ? "mandate_cancelled" : "mandate_expired",
+      kind,
       severity: "attention",
-      detail:
-        status === "cancelled"
-          ? "Autorização cancelada pelo pagador no app do banco."
-          : "Autorização expirou.",
+      detail,
     });
+
+    await alertarOperador(
+      (mandato.org_id ?? orgId) as string,
+      montarAlertaDeRisco(kind, detail),
+    );
 
     // Volta ao método anterior para não parecer migrado no medidor: um número
     // que conta quem já não está mais migrado é um número que mente.
@@ -173,13 +183,26 @@ async function tratarCobranca(
   if (!cobranca) return;
 
   if (status === "failed") {
+    const detail = evento.motivo ?? "Cobrança não passou.";
+
+    // risk_event para a fila /atencao.
     await supa.from("risk_events").insert({
       org_id: cobranca.org_id ?? orgId,
       contract_id: cobranca.contract_id,
       charge_id: cobranca.id,
       kind: "charge_failed_repeated",
       severity: "attention",
-      detail: evento.motivo ?? "Cobrança não passou.",
+      detail,
     });
+
+    await alertarOperador(
+      (cobranca.org_id ?? orgId) as string,
+      montarAlertaDeRisco("charge_failed_repeated", detail),
+    );
+
+    // Pix avulso imediato + incremento de failure_count_12m.
+    // A função é idempotente: se o poll também chamar, o segundo disparo é
+    // silenciado pela verificação de mensagem existente.
+    await reagirAFalhaDeCobranca(cobranca.id);
   }
 }

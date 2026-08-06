@@ -15,12 +15,12 @@ import { cn } from "@/lib/utils";
  * brand book. A página do pagador usa 52px, e tem componente próprio.
  */
 const variantes = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-[14px] font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--pl-cobalto)] focus-visible:ring-offset-2 [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-[14px] font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--pl-cobalto)] focus-visible:ring-offset-2 [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variante: {
         primario:
-          "bg-primary text-primary-foreground hover:bg-[var(--pl-cobalto-escuro)]",
+          "bg-primary text-primary-foreground hover:bg-[var(--pl-cobalto-escuro)] hover:shadow-[var(--pl-sombra-marca)]",
         secundario:
           "border bg-background text-foreground hover:bg-[var(--pl-superficie)]",
         fantasma: "text-foreground hover:bg-[var(--pl-superficie)]",

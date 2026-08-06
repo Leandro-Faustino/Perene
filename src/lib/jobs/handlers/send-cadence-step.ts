@@ -1,6 +1,12 @@
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import { criarProvedorDeMensagem } from "@/lib/messaging/zapi";
-import { montarMensagem } from "@/lib/messaging/templates";
+import { templateDoPasso, TEMPLATES, montarMensagem } from "@/lib/messaging/templates";
+import {
+  buscarTemplateCustom,
+  aplicarVariaveis,
+  primeiroNome,
+} from "@/lib/messaging/custom-templates";
+import { formatarReais } from "@/lib/utils";
 import { deveContinuar, dentroDoHorarioCivil } from "@/lib/domain/cadence";
 
 import type { PayloadDeJob, ResultadoDoJob } from "../types";
@@ -79,13 +85,24 @@ export async function enviarPassoDaRegua(
   }
 
   const base = process.env.NEXT_PUBLIC_APP_URL ?? "";
-  const { chave, corpo } = montarMensagem(payload.passo, {
-    pagador: contrato.payers.name,
-    organizacao: organizacao.name,
-    valorCentavos: contrato.amount_cents,
-    link: `${base}/autorizar/${convite.token}`,
-    rotuloDoPagador: organizacao.payer_label,
-  });
+  const link = `${base}/autorizar/${convite.token}`;
+  const chave = templateDoPasso(payload.passo);
+
+  const customBody = await buscarTemplateCustom(convite.org_id, chave, "whatsapp");
+  const corpo = customBody
+    ? aplicarVariaveis(customBody, {
+        pagador: primeiroNome(contrato.payers.name),
+        organizacao: organizacao.name,
+        valor: formatarReais(contrato.amount_cents),
+        link,
+      })
+    : montarMensagem(payload.passo, {
+        pagador: contrato.payers.name,
+        organizacao: organizacao.name,
+        valorCentavos: contrato.amount_cents,
+        link,
+        rotuloDoPagador: organizacao.payer_label,
+      }).corpo;
 
   // Grava a mensagem ANTES de enviar. Se o envio explodir no meio, existe
   // registro do que foi tentado — sem isso, a linha do tempo do contrato mente.

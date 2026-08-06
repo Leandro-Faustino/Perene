@@ -2,8 +2,6 @@
 @import "tw-animate-css";
 @import "../styles/pulse-tokens.css";
 
-@custom-variant dark (&:is(.dark *));
-
 /* Ponte entre o sistema de design e o Tailwind/shadcn.
  *
  * Regra de governança (§7.3): as variáveis abaixo NUNCA recebem hexadecimal.
@@ -38,15 +36,6 @@
   --radius: var(--pl-raio);
 }
 
-/* Em superfície escura o cobalto precisa clarear: cobalto sobre grafite dá
- * 3,0:1 e reprova em AA (§5.2). O texto do botão então vira grafite, porque
- * branco sobre cobalto-claro perde contraste. */
-.dark {
-  --primary: var(--pl-cobalto-claro);
-  --primary-foreground: var(--pl-grafite);
-  --ring: var(--pl-cobalto-claro);
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -78,6 +67,7 @@
   --color-texto-medio: var(--pl-texto-medio);
   --color-texto-fraco: var(--pl-texto-fraco);
   --color-superficie: var(--pl-superficie);
+  --color-sidebar: var(--pl-sidebar);
   --color-ativo: var(--pl-ativo);
   --color-ativo-texto: var(--pl-ativo-texto);
   --color-ativo-bg: var(--pl-ativo-bg);
@@ -92,9 +82,14 @@
   --font-titulo: var(--fonte-titulo);
   --font-mono: var(--fonte-codigo);
 
-  --radius-sm: calc(var(--pl-raio) - 2px);
+  --radius-sm: calc(var(--pl-raio) - 4px);
   --radius-md: var(--pl-raio);
   --radius-lg: var(--pl-raio-card);
+  --radius-full: var(--pl-raio-botao);
+
+  --shadow-sm: var(--pl-sombra);
+  --shadow-card: var(--pl-sombra-card);
+  --shadow-brand: var(--pl-sombra-marca);
 }
 
 @layer base {
@@ -132,6 +127,13 @@
   .pl-codigo {
     font-family: var(--fonte-codigo);
     font-size: 13px;
+  }
+}
+
+/* Animação de riscado no hero da landing */
+@keyframes strike {
+  to {
+    transform: scaleX(1);
   }
 }
 

@@ -6,6 +6,9 @@ import { esperaAntesDeRetentar, type Job, type PayloadDeJob, type ResultadoDoJob
 import { enviarPassoDaRegua } from "./handlers/send-cadence-step";
 import { expirarConvite } from "./handlers/expire-invitation";
 import { processarEventoDeWebhook } from "./handlers/process-webhook-event";
+import { enviarMensagem } from "./handlers/send-message";
+import { agendarCobranca } from "./handlers/schedule-charge";
+import { sondarCobranca } from "./handlers/charge-status-poll";
 
 import "server-only";
 
@@ -145,7 +148,11 @@ async function executar(job: Job): Promise<ResultadoDoJob> {
     case "process_webhook_event":
       return processarEventoDeWebhook(payload);
     case "send_message":
-      return { estado: "feito", detalhe: "envio avulso ainda não implementado" };
+      return enviarMensagem(payload);
+    case "schedule_charge":
+      return agendarCobranca(payload);
+    case "charge_status_poll":
+      return sondarCobranca(payload);
     default: {
       const nunca: never = payload;
       return {

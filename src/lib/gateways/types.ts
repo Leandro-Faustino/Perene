@@ -134,6 +134,64 @@ export interface EstadoDaAutorizacao {
 }
 
 // -----------------------------------------------------------------------------
+// Cobrança recorrente (Fase 2)
+// -----------------------------------------------------------------------------
+
+export type StatusCobrancaAtiva =
+  | "scheduled"   // PENDING no gateway — gerada, aguardando vencimento
+  | "succeeded"
+  | "failed"
+  | "retrying"    // gateway vai tentar de novo automaticamente
+  | "cancelled";
+
+export interface CriarCobranca {
+  externalMandateId: string;
+  valorCentavos: Centavos;
+  /** ISO date YYYY-MM-DD */
+  vencimento: string;
+  descricao: string;
+  /** Chave idempotente para evitar cobrança dupla. */
+  referenciaExterna?: string;
+}
+
+export interface CobrancaCriada {
+  externalChargeId: string;
+  vencimento: string;
+  status: StatusCobrancaAtiva;
+  /** QR Code Pix para o primeiro ciclo (pode ser null após o mandato ativo). */
+  qrCodePayload: string | null;
+  qrCodeImagem: string | null;
+}
+
+export interface EstadoDaCobranca {
+  externalChargeId: string;
+  status: StatusCobrancaAtiva;
+  valorCentavos: Centavos;
+  vencimento: string;
+  pagoEm: string | null;
+  /** Motivo de falha em linguagem do gateway (log interno, nunca exibido). */
+  motivo: string | null;
+}
+
+export interface CriarPixAvulso {
+  pagador: DadosDoPagador;
+  valorCentavos: Centavos;
+  descricao: string;
+  /** ISO date YYYY-MM-DD */
+  vencimento: string;
+  /** Chave idempotente. */
+  referenciaExterna?: string;
+}
+
+export interface PixAvulsoCriado {
+  externalChargeId: string;
+  qrCodePayload: string | null;
+  qrCodeImagem: string | null;
+  linkPagamento: string | null;
+  expiraEm: string | null;
+}
+
+// -----------------------------------------------------------------------------
 // Eventos normalizados
 // -----------------------------------------------------------------------------
 
@@ -182,6 +240,12 @@ export interface GatewayAdapter {
 
   createMandate(entrada: CriarAutorizacao): Promise<AutorizacaoCriada>;
   getMandate(externalMandateId: string): Promise<EstadoDaAutorizacao>;
+  cancelMandate(externalMandateId: string): Promise<void>;
+
+  scheduleCharge(entrada: CriarCobranca): Promise<CobrancaCriada>;
+  getCharge(externalChargeId: string): Promise<EstadoDaCobranca>;
+
+  createOneOffPix(entrada: CriarPixAvulso): Promise<PixAvulsoCriado>;
 
   verifyWebhook(raw: string, headers: Headers): boolean;
   parseWebhook(raw: string): EventoNormalizado[];

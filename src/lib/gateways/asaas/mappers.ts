@@ -2,11 +2,14 @@ import type {
   AssinaturaExterna,
   ClienteExterno,
   CobrancaHistorica,
+  CobrancaCriada,
   EstadoDaAutorizacao,
+  EstadoDaCobranca,
   EventoNormalizado,
   MetodoPagamento,
   Periodicidade,
   StatusAutorizacao,
+  StatusCobrancaAtiva,
 } from "../types";
 
 /**
@@ -224,6 +227,88 @@ export function mapearAutorizacao(
     autorizadoEm: bruta.activatedDate ?? null,
     canceladoEm: bruta.canceledDate ?? null,
     expiraEm: bruta.expirationDate ?? null,
+  };
+}
+
+// -----------------------------------------------------------------------------
+// Cobrança recorrente (Fase 2)
+// -----------------------------------------------------------------------------
+
+/**
+ * Status de cobrança recorrente do Asaas para o domínio.
+ *
+ * Diferente de `mapearStatusDeCobranca` (usado no histórico de diagnóstico),
+ * aqui interessa o estado operacional em tempo real para o ciclo mensal.
+ */
+export function mapearStatusDeCobrancaAtiva(
+  status: string | null | undefined,
+): StatusCobrancaAtiva {
+  switch (status) {
+    case "PENDING":
+    case "AWAITING_RISK_ANALYSIS":
+      return "scheduled";
+    case "RECEIVED":
+    case "CONFIRMED":
+    case "RECEIVED_IN_CASH":
+      return "succeeded";
+    case "OVERDUE":
+    case "REFUNDED":
+    case "CHARGEBACK_REQUESTED":
+    case "CHARGEBACK_DISPUTE":
+    case "AWAITING_CHARGEBACK_REVERSAL":
+      return "failed";
+    case "REFUND_IN_PROGRESS":
+    case "CHARGEBACK_IN_PROGRESS":
+      return "retrying";
+    case "CANCELLED":
+    case "CANCELED":
+      return "cancelled";
+    default:
+      return "scheduled";
+  }
+}
+
+interface CobrancaAsaasRecorrenteBruta {
+  id: string;
+  status: string;
+  dueDate: string;
+  value: number;
+  pix?: { payload?: string; encodedImage?: string } | null;
+}
+
+export function mapearCobrancaCriada(
+  bruta: CobrancaAsaasRecorrenteBruta,
+): CobrancaCriada {
+  return {
+    externalChargeId: bruta.id,
+    vencimento: bruta.dueDate,
+    status: mapearStatusDeCobrancaAtiva(bruta.status),
+    qrCodePayload: bruta.pix?.payload ?? null,
+    qrCodeImagem: bruta.pix?.encodedImage ?? null,
+  };
+}
+
+interface EstadoCobrancaAsaasBruto {
+  id: string;
+  status: string;
+  value: number;
+  dueDate: string;
+  paymentDate?: string | null;
+  confirmedDate?: string | null;
+  failReason?: string | null;
+  chargebackReason?: string | null;
+}
+
+export function mapearEstadoDaCobranca(
+  bruto: EstadoCobrancaAsaasBruto,
+): EstadoDaCobranca {
+  return {
+    externalChargeId: bruto.id,
+    status: mapearStatusDeCobrancaAtiva(bruto.status),
+    valorCentavos: paraCentavos(bruto.value),
+    vencimento: bruto.dueDate,
+    pagoEm: bruto.paymentDate ?? bruto.confirmedDate ?? null,
+    motivo: bruto.failReason ?? bruto.chargebackReason ?? null,
   };
 }
 
