@@ -133,7 +133,7 @@ export class AdapterAsaas implements GatewayAdapter {
       expirationDate?: string | null;
       pix?: { payload?: string; encodedImage?: string; expirationDate?: string };
       invoiceUrl?: string | null;
-    }>("/pixAutomaticRecurringAuthorizations", {
+    }>("/pix/automatic/authorizations", {
       method: "POST",
       body: JSON.stringify({
         customer: customerId,
@@ -156,13 +156,13 @@ export class AdapterAsaas implements GatewayAdapter {
   async getMandate(externalMandateId: string): Promise<EstadoDaAutorizacao> {
     const resposta = await this.http.requisitar<
       Parameters<typeof mapearAutorizacao>[0]
-    >(`/pixAutomaticRecurringAuthorizations/${externalMandateId}`);
+    >(`/pix/automatic/authorizations/${externalMandateId}`);
     return mapearAutorizacao(resposta);
   }
 
   async cancelMandate(externalMandateId: string): Promise<void> {
     await this.http.requisitar<void>(
-      `/pixAutomaticRecurringAuthorizations/${externalMandateId}`,
+      `/pix/automatic/authorizations/${externalMandateId}`,
       { method: "DELETE" },
     );
   }
@@ -177,7 +177,7 @@ export class AdapterAsaas implements GatewayAdapter {
   async scheduleCharge(entrada: CriarCobranca): Promise<CobrancaCriada> {
     const resposta = await this.http.requisitar<
       Parameters<typeof mapearCobrancaCriada>[0]
-    >("/pixAutomaticRecurringCharges", {
+    >("/pix/automatic/paymentInstructions", {
       method: "POST",
       body: JSON.stringify({
         authorization: entrada.externalMandateId,
@@ -193,7 +193,7 @@ export class AdapterAsaas implements GatewayAdapter {
   async getCharge(externalChargeId: string): Promise<EstadoDaCobranca> {
     const resposta = await this.http.requisitar<
       Parameters<typeof mapearEstadoDaCobranca>[0]
-    >(`/pixAutomaticRecurringCharges/${externalChargeId}`);
+    >(`/pix/automatic/paymentInstructions/${externalChargeId}`);
     return mapearEstadoDaCobranca(resposta);
   }
 

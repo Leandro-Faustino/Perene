@@ -78,8 +78,9 @@ export class ClienteAsaas {
 function mensagemDeErro(status: number): string {
   switch (status) {
     case 401:
-    case 403:
       return "A chave de API não foi aceita pelo Asaas. Confira se copiou a chave inteira e se ela é do ambiente certo (sandbox ou produção).";
+    case 403:
+      return "O Asaas bloqueou essa operação. O Pix Automático pode não estar habilitado na sua conta — entre em contato com o suporte do Asaas para ativar.";
     case 404:
       return "O Asaas não encontrou esse registro. Ele pode ter sido removido de lá.";
     case 429:
