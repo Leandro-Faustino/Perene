@@ -3,6 +3,7 @@ import { supabaseAdmin } from "@/lib/supabase/admin";
 
 import type { GatewayAdapter, Provider } from "./types";
 import { AdapterAsaas } from "./asaas";
+import { AdapterEfi } from "./efi";
 
 import "server-only";
 
@@ -20,6 +21,12 @@ import "server-only";
 const REGISTRO: Record<Provider, (config: ConfigDoBanco) => GatewayAdapter> = {
   asaas: (config) =>
     new AdapterAsaas({
+      apiKey: config.apiKey,
+      environment: config.environment,
+      webhookSecret: config.webhookSecret,
+    }),
+  efi: (config) =>
+    new AdapterEfi({
       apiKey: config.apiKey,
       environment: config.environment,
       webhookSecret: config.webhookSecret,

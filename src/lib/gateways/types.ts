@@ -8,7 +8,7 @@
  * camada de interface, nunca no adapter.
  */
 
-export type Provider = "asaas";
+export type Provider = "asaas" | "efi";
 
 export type MetodoPagamento =
   | "card"
