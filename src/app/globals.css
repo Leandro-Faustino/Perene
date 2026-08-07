@@ -77,6 +77,22 @@
   --color-risco: var(--pl-risco);
   --color-risco-texto: var(--pl-risco-texto);
   --color-risco-bg: var(--pl-risco-bg);
+  --color-noite: var(--pl-noite);
+  --color-noite-media: var(--pl-noite-media);
+  --color-noite-clara: var(--pl-noite-clara);
+  --color-noite-grade: var(--pl-noite-grade);
+  --color-noite-borda: var(--pl-noite-borda);
+  --color-noite-divide: var(--pl-noite-divide);
+  --color-noite-borda-media: var(--pl-noite-borda-media);
+  --color-texto-noite: var(--pl-texto-noite);
+  --color-texto-noite-medio: var(--pl-texto-noite-medio);
+  --color-texto-noite-fraco: var(--pl-texto-noite-fraco);
+  --color-texto-noite-card: var(--pl-texto-noite-card);
+  --color-cobalto-bg: var(--pl-cobalto-bg);
+  --color-ativo-borda: var(--pl-ativo-borda);
+  --color-pendente-borda: var(--pl-pendente-borda);
+  --color-risco-borda: var(--pl-risco-borda);
+  --shadow-flutuante: var(--pl-sombra-flutuante);
 
   --font-sans: var(--fonte-texto);
   --font-titulo: var(--fonte-titulo);
@@ -90,6 +106,7 @@
   --shadow-sm: var(--pl-sombra);
   --shadow-card: var(--pl-sombra-card);
   --shadow-brand: var(--pl-sombra-marca);
+  --shadow-flutuante: var(--pl-sombra-flutuante);
 }
 
 @layer base {

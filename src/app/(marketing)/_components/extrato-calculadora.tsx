@@ -174,7 +174,7 @@ export function ExtratoCalculadora() {
   return (
     <div
       ref={containerRef}
-      className="relative overflow-hidden rounded-2xl border border-white/20 bg-white shadow-[0_32px_80px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.08)]"
+      className="relative overflow-hidden rounded-2xl border border-white/20 bg-white shadow-flutuante"
     >
       {/* Cursor animado */}
       <div
@@ -192,16 +192,16 @@ export function ExtratoCalculadora() {
         <CursorSVG className="h-6 w-6 drop-shadow-[0_2px_6px_rgba(0,0,0,0.35)]" />
         {/* pulse no click */}
         {cursor.clicking && (
-          <span className="absolute -inset-3 animate-ping rounded-full bg-[var(--pl-cobalto)] opacity-30" />
+          <span className="absolute -inset-3 animate-ping rounded-full bg-cobalto opacity-30" />
         )}
       </div>
 
       {/* Cabeçalho */}
-      <div className="flex items-baseline justify-between gap-3 border-b border-[var(--pl-grafite)] bg-[var(--pl-grafite)] px-5 py-3">
+      <div className="flex items-baseline justify-between gap-3 border-b border-grafite bg-grafite px-5 py-3">
         <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-white">
           Extrato de vazamento
         </span>
-        <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-[#6E8598]">
+        <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-texto-noite-medio">
           Estimativa · 12 meses
         </span>
       </div>
@@ -219,7 +219,7 @@ export function ExtratoCalculadora() {
               onChange={(e) => setContratos(e.target.value)}
               onFocus={cancelAnim}
               placeholder="400"
-              className={`${estiloInput} ${activeField === "contratos" ? "border-[var(--pl-cobalto)] ring-1 ring-[var(--pl-cobalto)]" : ""}`}
+              className={`${estiloInput} ${activeField === "contratos" ? "border-cobalto ring-1 ring-cobalto" : ""}`}
               inputMode="numeric"
             />
           </CampoExtrato>
@@ -233,7 +233,7 @@ export function ExtratoCalculadora() {
               onChange={(e) => setTicket(e.target.value)}
               onFocus={cancelAnim}
               placeholder="250"
-              className={`${estiloInput} ${activeField === "ticket" ? "border-[var(--pl-cobalto)] ring-1 ring-[var(--pl-cobalto)]" : ""}`}
+              className={`${estiloInput} ${activeField === "ticket" ? "border-cobalto ring-1 ring-cobalto" : ""}`}
               inputMode="decimal"
             />
           </CampoExtrato>
@@ -264,7 +264,7 @@ export function ExtratoCalculadora() {
         </div>
 
         {/* Ledger */}
-        <div className="mt-5 border-t border-[var(--pl-grafite)] pt-1">
+        <div className="mt-5 border-t border-grafite pt-1">
           <LinhaLedger
             rotulo="Receita recorrente"
             sub="por mês"
@@ -274,38 +274,38 @@ export function ExtratoCalculadora() {
             rotulo="Custo de cobrança hoje"
             sub="por mês"
             valor={formatarReais(Math.round(resultado.hoje * 100))}
-            classeValor="text-[var(--pl-risco)]"
+            classeValor="text-risco"
           />
           <LinhaLedger
             rotulo="Custo no Pix Automático"
             sub="R$ 0,10 por transação"
             valor={formatarReais(Math.round(resultado.pix * 100))}
-            classeValor="text-[var(--pl-ativo)]"
+            classeValor="text-ativo"
           />
         </div>
 
         {/* Total */}
         <div
-          className="mt-4 flex items-baseline justify-between gap-4 border border-[var(--pl-risco)] bg-[var(--pl-risco-bg)] px-4 py-4 transition-all duration-700"
+          className="mt-4 flex items-baseline justify-between gap-4 border border-risco bg-risco-bg px-4 py-4 transition-all duration-700"
           style={{
             opacity: resultado.anoVazamento > 0 ? 1 : 0.35,
             transform: resultado.anoVazamento > 0 ? "scale(1)" : "scale(0.98)",
           }}
         >
-          <span className="font-titulo font-bold text-[var(--pl-risco-texto)]">
+          <span className="font-titulo font-bold text-risco-texto">
             Vazamento em 12 meses
           </span>
-          <span className="pl-numero font-mono text-[clamp(1.3rem,3vw,1.9rem)] font-semibold text-[var(--pl-risco)] transition-all duration-500">
+          <span className="pl-numero font-mono text-[clamp(1.3rem,3vw,1.9rem)] font-semibold text-risco transition-all duration-500">
             {formatarReais(Math.round(resultado.anoVazamento * 100))}
           </span>
         </div>
 
         {/* Ticker */}
-        <div className="mt-3 flex items-center justify-between gap-3 border border-dashed border-[var(--pl-risco)] px-4 py-3">
-          <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--pl-risco-texto)]">
+        <div className="mt-3 flex items-center justify-between gap-3 border border-dashed border-risco px-4 py-3">
+          <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-risco-texto">
             Vazando desde que você abriu esta página
           </span>
-          <span className="pl-numero font-mono font-semibold text-[var(--pl-risco)]">
+          <span className="pl-numero font-mono font-semibold text-risco">
             {resultado.anoVazamento > 0
               ? formatarReais(Math.round(tick * 100))
               : "—"}
@@ -351,4 +351,4 @@ function CampoExtrato({ rotulo, children }: { rotulo: string; children: React.Re
 }
 
 const estiloInput =
-  "w-full border border-[var(--pl-borda)] bg-[var(--pl-sidebar)] px-3 py-2 font-mono text-[14px] tabular-nums text-foreground outline-none transition-colors focus:border-[var(--pl-cobalto)] focus:ring-1 focus:ring-[var(--pl-cobalto)]";
+  "w-full border border-border bg-sidebar px-3 py-2 font-mono text-[14px] tabular-nums text-foreground outline-none transition-colors focus:border-cobalto focus:ring-1 focus:ring-cobalto";

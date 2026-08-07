@@ -34,7 +34,7 @@ export function FormularioDeOnda({ previaInicial }: { previaInicial: PreviaDaOnd
           name="nome"
           required
           defaultValue="Primeira onda"
-          className="mt-1.5 w-full rounded-md border bg-background px-3 py-2.5 text-foreground outline-none focus:ring-2 focus:ring-[var(--pl-cobalto)]"
+          className="mt-1.5 w-full rounded-md border bg-background px-3 py-2.5 text-foreground outline-none focus:ring-2 focus:ring-cobalto"
         />
         <p className="mt-1.5 text-[13px] text-texto-medio">
           Só para você se localizar depois.
@@ -55,7 +55,7 @@ export function FormularioDeOnda({ previaInicial }: { previaInicial: PreviaDaOnd
                 type="checkbox"
                 name="metodos"
                 value={m}
-                className="accent-[var(--pl-cobalto)]"
+                className="accent-cobalto"
               />
               {rotulo(m)}
             </label>
@@ -75,7 +75,7 @@ export function FormularioDeOnda({ previaInicial }: { previaInicial: PreviaDaOnd
             min={0}
             step="0.01"
             placeholder="sem mínimo"
-            className="pl-numero mt-1.5 w-full rounded-md border bg-background px-3 py-2.5 text-foreground outline-none focus:ring-2 focus:ring-[var(--pl-cobalto)]"
+            className="pl-numero mt-1.5 w-full rounded-md border bg-background px-3 py-2.5 text-foreground outline-none focus:ring-2 focus:ring-cobalto"
           />
         </div>
         <div>
@@ -88,7 +88,7 @@ export function FormularioDeOnda({ previaInicial }: { previaInicial: PreviaDaOnd
             type="number"
             min={0}
             placeholder="sem mínimo"
-            className="pl-numero mt-1.5 w-full rounded-md border bg-background px-3 py-2.5 text-foreground outline-none focus:ring-2 focus:ring-[var(--pl-cobalto)]"
+            className="pl-numero mt-1.5 w-full rounded-md border bg-background px-3 py-2.5 text-foreground outline-none focus:ring-2 focus:ring-cobalto"
           />
         </div>
       </div>
@@ -104,7 +104,7 @@ export function FormularioDeOnda({ previaInicial }: { previaInicial: PreviaDaOnd
           min={1}
           max={1000}
           defaultValue={100}
-          className="pl-numero mt-1.5 w-full rounded-md border bg-background px-3 py-2.5 text-foreground outline-none focus:ring-2 focus:ring-[var(--pl-cobalto)]"
+          className="pl-numero mt-1.5 w-full rounded-md border bg-background px-3 py-2.5 text-foreground outline-none focus:ring-2 focus:ring-cobalto"
         />
         {/* O limite não é sobre educação: disparar centenas de mensagens de
             uma vez é o caminho mais curto para o bloqueio do número. */}
@@ -114,7 +114,7 @@ export function FormularioDeOnda({ previaInicial }: { previaInicial: PreviaDaOnd
         </p>
       </div>
 
-      <div className="rounded-lg border bg-[var(--pl-superficie)] p-4">
+      <div className="rounded-lg border bg-superficie p-4">
         <p className="text-[14px] text-texto">
           Com sua base de hoje, e sem filtro nenhum:{" "}
           <strong className="pl-numero text-foreground">
@@ -140,7 +140,7 @@ export function FormularioDeOnda({ previaInicial }: { previaInicial: PreviaDaOnd
       {estado && !estado.ok && (
         <p
           role="alert"
-          className="rounded-md bg-[var(--pl-risco-bg)] px-3 py-2.5 text-[14px] text-[var(--pl-risco-texto)]"
+          className="rounded-md bg-risco-bg px-3 py-2.5 text-[14px] text-risco-texto"
         >
           {estado.mensagem}
         </p>

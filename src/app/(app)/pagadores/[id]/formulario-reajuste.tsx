@@ -34,7 +34,7 @@ export function FormularioDeReajuste({
         >
           Novo valor (R$)
         </label>
-        <div className="flex items-center rounded-md border bg-[var(--pl-superficie)] px-3 focus-within:ring-2 focus-within:ring-[var(--pl-cobalto)] focus-within:ring-offset-1">
+        <div className="flex items-center rounded-md border bg-superficie px-3 focus-within:ring-2 focus-within:ring-cobalto focus-within:ring-offset-1">
           <span className="pr-1 text-[13px] text-texto-medio">R$</span>
           <input
             id={`valor-${contractId}`}
@@ -70,8 +70,8 @@ export function FormularioDeReajuste({
           id={`feedback-${contractId}`}
           className={
             estado.ok
-              ? "text-[12px] text-[var(--pl-ativo-texto)]"
-              : "text-[12px] text-[var(--pl-risco-texto)]"
+              ? "text-[12px] text-ativo-texto"
+              : "text-[12px] text-risco-texto"
           }
         >
           {estado.mensagem}

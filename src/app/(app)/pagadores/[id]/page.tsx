@@ -138,7 +138,7 @@ export default async function PaginaDoPagador({
                       {ROTULO_METODO[contrato.current_method]}
                       {contrato.due_day && ` · vence todo dia ${contrato.due_day}`}
                       {contrato.failure_count_12m > 0 && (
-                        <span className="ml-2 text-[var(--pl-risco-texto)]">
+                        <span className="ml-2 text-risco-texto">
                           {contrato.failure_count_12m} falha
                           {contrato.failure_count_12m > 1 ? "s" : ""} nos últimos 12 meses
                         </span>

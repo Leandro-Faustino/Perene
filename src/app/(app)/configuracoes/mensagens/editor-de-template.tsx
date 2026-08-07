@@ -45,7 +45,7 @@ export function EditorDeTemplate({
             rows={6}
             defaultValue={corpoAtual}
             placeholder={exemploPadrao}
-            className="w-full resize-y rounded-md border bg-[var(--pl-superficie)] px-3 py-2 font-mono text-[13px] text-foreground placeholder:text-texto-medio/50 focus:outline-none focus:ring-2 focus:ring-[var(--pl-cobalto)] focus:ring-offset-1"
+            className="w-full resize-y rounded-md border bg-superficie px-3 py-2 font-mono text-[13px] text-foreground placeholder:text-texto-medio/50 focus:outline-none focus:ring-2 focus:ring-cobalto focus:ring-offset-1"
             aria-label={`Corpo do template ${rotulo}`}
           />
           <p className="mt-1 text-[11px] text-texto-medio">
@@ -79,8 +79,8 @@ export function EditorDeTemplate({
             <span
               className={
                 estado.ok
-                  ? "text-[12px] text-[var(--pl-ativo-texto)]"
-                  : "text-[12px] text-[var(--pl-risco-texto)]"
+                  ? "text-[12px] text-ativo-texto"
+                  : "text-[12px] text-risco-texto"
               }
             >
               {estado.mensagem}
@@ -94,7 +94,7 @@ export function EditorDeTemplate({
           <summary className="cursor-pointer text-[12px] text-texto-medio hover:text-foreground">
             Ver texto padrão
           </summary>
-          <pre className="mt-2 whitespace-pre-wrap rounded-md bg-[var(--pl-superficie)] px-3 py-2 text-[12px] text-texto-medio">
+          <pre className="mt-2 whitespace-pre-wrap rounded-md bg-superficie px-3 py-2 text-[12px] text-texto-medio">
             {exemploPadrao}
           </pre>
         </details>
@@ -128,7 +128,7 @@ export function FormularioDeNotificacao({
           type="tel"
           defaultValue={telefoneAtual ?? ""}
           placeholder="+5511999999999"
-          className="w-full max-w-xs rounded-md border bg-[var(--pl-superficie)] px-3 py-2 text-[14px] text-foreground placeholder:text-texto-medio/50 focus:outline-none focus:ring-2 focus:ring-[var(--pl-cobalto)] focus:ring-offset-1"
+          className="w-full max-w-xs rounded-md border bg-superficie px-3 py-2 text-[14px] text-foreground placeholder:text-texto-medio/50 focus:outline-none focus:ring-2 focus:ring-cobalto focus:ring-offset-1"
         />
         <p className="mt-1 text-[12px] text-texto-medio">
           Recebe alertas críticos e o resumo diário. Deixe em branco para
@@ -144,8 +144,8 @@ export function FormularioDeNotificacao({
           <span
             className={
               estado.ok
-                ? "text-[12px] text-[var(--pl-ativo-texto)]"
-                : "text-[12px] text-[var(--pl-risco-texto)]"
+                ? "text-[12px] text-ativo-texto"
+                : "text-[12px] text-risco-texto"
             }
           >
             {estado.mensagem}

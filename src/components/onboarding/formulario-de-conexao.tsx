@@ -33,7 +33,7 @@ export function FormularioDeConexao() {
           autoComplete="off"
           aria-describedby={estado && !estado.ok ? "erro-conexao" : "ajuda-chave"}
           aria-invalid={estado && !estado.ok ? true : undefined}
-          className="pl-codigo mt-1.5 w-full rounded-md border bg-background px-3 py-2.5 text-foreground outline-none focus:ring-2 focus:ring-[var(--pl-cobalto)]"
+          className="pl-codigo mt-1.5 w-full rounded-md border bg-background px-3 py-2.5 text-foreground outline-none focus:ring-2 focus:ring-cobalto"
           placeholder="$aact_..."
         />
         {/* Legenda em --pl-texto-medio, nunca em texto fraco: carrega
@@ -61,7 +61,7 @@ export function FormularioDeConexao() {
                 name="environment"
                 value={valor}
                 defaultChecked={valor === "sandbox"}
-                className="accent-[var(--pl-cobalto)]"
+                className="accent-cobalto"
               />
               {rotulo}
             </label>
@@ -75,7 +75,7 @@ export function FormularioDeConexao() {
         <p
           id="erro-conexao"
           role="alert"
-          className="rounded-md bg-[var(--pl-risco-bg)] px-3 py-2.5 text-[14px] text-[var(--pl-risco-texto)]"
+          className="rounded-md bg-risco-bg px-3 py-2.5 text-[14px] text-risco-texto"
         >
           {estado.mensagem}
         </p>

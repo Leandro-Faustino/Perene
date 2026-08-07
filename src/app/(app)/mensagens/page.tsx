@@ -61,7 +61,7 @@ export default async function PaginaDeMensagens() {
       ) : (
         <div className="overflow-x-auto rounded-lg border">
           <table className="w-full text-[14px]">
-            <thead className="bg-[var(--pl-superficie)]">
+            <thead className="bg-superficie">
               <tr>
                 <th className="px-4 py-2.5 text-left text-[12px] font-medium uppercase tracking-[0.02em] text-texto-medio">
                   Template
@@ -85,7 +85,7 @@ export default async function PaginaDeMensagens() {
                 const visual =
                   ESTADO_DA_MENSAGEM[msg.status] ?? ESTADO_DA_MENSAGEM.queued;
                 return (
-                  <tr key={msg.id} className="border-t hover:bg-[var(--pl-superficie)]/50">
+                  <tr key={msg.id} className="border-t hover:bg-superficie/50">
                     <td className="px-4 py-3">
                       <span className="text-foreground">
                         {ROTULO_DO_TEMPLATE[msg.template_key ?? ""] ??
@@ -107,7 +107,7 @@ export default async function PaginaDeMensagens() {
                       </SeloDeEstado>
                       {msg.status === "failed" && msg.error && (
                         <span
-                          className="mt-0.5 block max-w-[200px] truncate text-[11px] text-[var(--pl-risco-texto)]"
+                          className="mt-0.5 block max-w-[200px] truncate text-[11px] text-risco-texto"
                           title={msg.error}
                         >
                           {msg.error}

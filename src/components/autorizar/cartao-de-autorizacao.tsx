@@ -114,7 +114,7 @@ export function CartaoDeAutorizacao({
             {/* Informação de consentimento. Nunca em texto fraco (§5.3): é o
                 que limita o que a pessoa está permitindo. */}
             {convite.tetoCentavos && (
-              <p className="mt-4 rounded-md bg-[var(--pl-superficie)] px-3 py-2.5 text-[16px] text-texto">
+              <p className="mt-4 rounded-md bg-superficie px-3 py-2.5 text-[16px] text-texto">
                 Você autoriza débitos de até{" "}
                 <strong className="pl-numero text-foreground">
                   {formatarReais(convite.tetoCentavos)}
@@ -194,7 +194,7 @@ export function CartaoDeAutorizacao({
         )}
 
         {etapa === "erro" && (
-          <div role="alert" className="mt-4 rounded-md bg-[var(--pl-risco-bg)] px-3 py-3 text-[16px] text-[var(--pl-risco-texto)]">
+          <div role="alert" className="mt-4 rounded-md bg-risco-bg px-3 py-3 text-[16px] text-risco-texto">
             {erro}
           </div>
         )}

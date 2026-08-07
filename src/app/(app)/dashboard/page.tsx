@@ -44,7 +44,7 @@ export default async function PaginaDeDiagnostico() {
       <Cabecalho />
 
       {/* O número. Display 48px em Archivo Bold, tabular (§5.3). */}
-      <section className="rounded-lg bg-background p-6 shadow-[var(--pl-sombra-card)]">
+      <section className="rounded-lg bg-background p-6 shadow-card">
         <p className="text-[12px] font-medium uppercase tracking-[0.02em] text-texto-medio">
           Custo de cobrança hoje
         </p>
@@ -66,7 +66,7 @@ export default async function PaginaDeDiagnostico() {
         </h2>
         <div className="mt-4 overflow-x-auto rounded-lg border">
           <table className="w-full text-[14px]">
-            <thead className="bg-[var(--pl-superficie)]">
+            <thead className="bg-superficie">
               <tr>
                 <th className="px-4 py-2.5 text-left text-[12px] font-medium uppercase tracking-[0.02em] text-texto-medio">
                   Método
@@ -159,7 +159,7 @@ export default async function PaginaDeDiagnostico() {
 
       {/* A memória de cálculo, inteira e à vista. Se o operador não consegue
           refazer a conta, o número não vale (§4.2). */}
-      <section className="rounded-lg border bg-[var(--pl-superficie)] p-5">
+      <section className="rounded-lg border bg-superficie p-5">
         <h2 className="text-[14px] font-medium text-foreground">
           Como chegamos nesses números
         </h2>

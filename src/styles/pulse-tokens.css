@@ -54,6 +54,11 @@
   --pl-pendente-bg: #fff6e0;          /* warning.surface */
   --pl-risco-bg: #fdecec;             /* danger.surface  */
 
+  /* ---- Estados: bordas de destaque (mockups e cards de detalhe) ---------- */
+  --pl-ativo-borda: #bbf7d0;          /* success.border  */
+  --pl-pendente-borda: #ffd9a8;       /* warning.border  */
+  --pl-risco-borda: #fecdd3;          /* danger.border   */
+
   /* ---- Tipografia (famílias injetadas por next/font em layout.tsx) ------ */
   --fonte-titulo: var(--fonte-archivo), system-ui, sans-serif;
   --fonte-texto: var(--fonte-inter), system-ui, sans-serif;
@@ -77,5 +82,39 @@
   --pl-dur-transicao: 250ms;
   --pl-dur-medidor: 400ms;
   --pl-curva: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ---- Seções escuras (hero, CTA final, posicionamento, footer) ---------- */
+  /* A landing tem duas superfícies: clara (bg branco/surface) e escura
+   * (bg grafite navy). Este bloco define os tons da superfície escura para
+   * que nenhum hex apareça fora deste arquivo.                              */
+  --pl-noite: #07111D;            /* fundo mais escuro — hero, CTA, footer    */
+  --pl-noite-media: #101E2B;      /* card de detalhe / tabela de preço        */
+  --pl-noite-clara: #172436;      /* card interno na grade de posicionamento   */
+  --pl-noite-grade: #1E3248;      /* gap/separador da grade (bg-gap trick)    */
+  --pl-noite-borda: #1A2E42;      /* border do footer                         */
+  --pl-noite-divide: #24384A;     /* divide-y dentro do painel de preço       */
+  --pl-noite-borda-media: #2A4055;/* border do painel de preço                */
+
+  /* Texto sobre fundo escuro (todos AA sobre --pl-noite) */
+  --pl-texto-noite: #9FB3C0;      /* corpo principal sobre escuro             */
+  --pl-texto-noite-medio: #6E8598;/* secundário / eyebrow / créditos          */
+  --pl-texto-noite-fraco: #7A95AE;/* texto terciário, cards internos          */
+  --pl-texto-noite-card: #CBD9E2; /* citação / bloco de blockquote            */
+
+  /* Superfície cobalto — mesma lógica de --pl-ativo-bg/--pl-risco-bg
+   * mas para o azul primário. Não existe equivalente no token atual.       */
+  --pl-cobalto-bg: #eef2ff;
+
+  /* Borda de destaque verde (linha divisória dos bônus) */
+  --pl-ativo-borda: #bbf7d0;
+
+  /* Sombra de card flutuante sobre hero escuro */
+  --pl-sombra-flutuante: 0 32px 80px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.08);
+
+  /* Canais RGB para uso em radial-gradient com opacidade variável.
+   * Gradientes CSS exigem valor bruto de cor — não é possível usar var()
+   * com alpha diretamente. Esta é a única exceção ao modelo de tokens. */
+  --pl-cobalto-rgb: 0, 56, 229;   /* mesmo que --pl-cobalto (#0038e5)        */
+  --pl-ativo-rgb: 14, 159, 110;   /* mesmo que --pl-ativo (#0e9f6e)          */
 }
 

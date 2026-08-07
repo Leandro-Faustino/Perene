@@ -84,7 +84,7 @@ export function FormularioDeOrganizacao() {
           autoFocus
           aria-describedby={erro ? "erro-org" : undefined}
           aria-invalid={erro ? true : undefined}
-          className="mt-1.5 w-full rounded-md border bg-background px-3 py-2.5 text-foreground outline-none focus:ring-2 focus:ring-[var(--pl-cobalto)]"
+          className="mt-1.5 w-full rounded-md border bg-background px-3 py-2.5 text-foreground outline-none focus:ring-2 focus:ring-cobalto"
           placeholder="Box Ferro & Fogo"
         />
       </div>
@@ -100,14 +100,14 @@ export function FormularioDeOrganizacao() {
           {ROTULOS.map(([valor, exemplo]) => (
             <label
               key={valor}
-              className="flex cursor-pointer items-center gap-3 rounded-md border px-3 py-2.5 text-[14px] hover:bg-[var(--pl-superficie)]"
+              className="flex cursor-pointer items-center gap-3 rounded-md border px-3 py-2.5 text-[14px] hover:bg-superficie"
             >
               <input
                 type="radio"
                 name="rotuloDoPagador"
                 value={valor}
                 defaultChecked={valor === "aluno"}
-                className="accent-[var(--pl-cobalto)]"
+                className="accent-cobalto"
               />
               <span className="font-medium text-foreground">{valor}</span>
               <span className="text-texto-medio">{exemplo}</span>
@@ -120,7 +120,7 @@ export function FormularioDeOrganizacao() {
         <p
           id="erro-org"
           role="alert"
-          className="rounded-md bg-[var(--pl-risco-bg)] px-3 py-2.5 text-[14px] text-[var(--pl-risco-texto)]"
+          className="rounded-md bg-risco-bg px-3 py-2.5 text-[14px] text-risco-texto"
         >
           {erro}
         </p>

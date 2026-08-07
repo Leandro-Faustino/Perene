@@ -47,7 +47,7 @@ export default async function PaginaDaPagadores() {
       ) : (
         <div className="overflow-x-auto rounded-lg border">
           <table className="w-full text-[14px]">
-            <thead className="bg-[var(--pl-superficie)]">
+            <thead className="bg-superficie">
               <tr>
                 <th className="px-4 py-2.5 text-left text-[12px] font-medium uppercase tracking-[0.02em] text-texto-medio">
                   Pagador
@@ -83,7 +83,7 @@ export default async function PaginaDaPagadores() {
                 return (
                   <tr
                     key={pagador.id}
-                    className="border-t hover:bg-[var(--pl-superficie)]/50"
+                    className="border-t hover:bg-superficie/50"
                   >
                     <td className="px-4 py-3">
                       <Link

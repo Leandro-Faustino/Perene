@@ -18,7 +18,7 @@ export default function Landing() {
   return (
     <div className="flex min-h-full flex-1 flex-col">
       {/* ─── NAV — fundo escuro para se fundir com o hero ────────────────────── */}
-      <header className="sticky top-0 z-50 flex h-16 items-center justify-between gap-6 border-b border-white/10 bg-[#07111D]/95 px-6 backdrop-blur-md">
+      <header className="sticky top-0 z-50 flex h-16 items-center justify-between gap-6 border-b border-white/10 bg-noite/95 px-6 backdrop-blur-md">
         <Logo tom="escuro" />
         <nav className="hidden items-center gap-6 text-[14px] text-white/60 md:flex">
           {[
@@ -52,7 +52,7 @@ export default function Landing() {
           id="calculadora"
           style={{
             background:
-              "linear-gradient(135deg, #07111D 0%, #0B1D30 45%, #0A1826 100%)",
+              "linear-gradient(135deg, var(--pl-noite) 0%, var(--pl-noite-media) 45%, var(--pl-noite) 100%)",
           }}
         >
           {/* grade de fundo — muito sutil */}
@@ -60,7 +60,7 @@ export default function Landing() {
 
           {/* linha de pulso — posicionada no terço inferior */}
           <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[55%]">
-            <HeroPulso className="h-full w-full text-[var(--pl-cobalto)] opacity-30" />
+            <HeroPulso className="h-full w-full text-cobalto opacity-30" />
           </div>
 
           {/* brilho ambiente — esquerda cobalto */}
@@ -69,7 +69,7 @@ export default function Landing() {
             className="pointer-events-none absolute -left-40 top-0 h-[560px] w-[560px] rounded-full"
             style={{
               background:
-                "radial-gradient(circle, rgba(0,56,229,0.18) 0%, transparent 70%)",
+                "radial-gradient(circle, rgba(var(--pl-cobalto-rgb),0.18) 0%, transparent 70%)",
             }}
           />
           {/* brilho ambiente — direita verde */}
@@ -78,7 +78,7 @@ export default function Landing() {
             className="pointer-events-none absolute -right-20 bottom-0 h-[400px] w-[400px] rounded-full"
             style={{
               background:
-                "radial-gradient(circle, rgba(14,159,110,0.12) 0%, transparent 70%)",
+                "radial-gradient(circle, rgba(var(--pl-ativo-rgb),0.12) 0%, transparent 70%)",
             }}
           />
 
@@ -87,7 +87,7 @@ export default function Landing() {
             <div>
               {/* pill eyebrow */}
               <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-sm">
-                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--pl-ativo)]" />
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-ativo" />
                 <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-white/60">
                   Para negócios de mensalidade recorrente
                 </span>
@@ -101,7 +101,7 @@ export default function Landing() {
                   <span className="relative z-10">cartão</span>
                   <span
                     aria-hidden
-                    className="absolute left-[-2%] right-[-2%] top-[55%] z-20 block h-[0.1em] origin-left bg-[var(--pl-risco)] [animation:strike_0.8s_cubic-bezier(0.2,0.8,0.3,1)_0.6s_forwards] [transform:scaleX(0)]"
+                    className="absolute left-[-2%] right-[-2%] top-[55%] z-20 block h-[0.1em] origin-left bg-risco [animation:strike_0.8s_cubic-bezier(0.2,0.8,0.3,1)_0.6s_forwards] [transform:scaleX(0)]"
                   />
                 </span>
                 .
@@ -141,7 +141,7 @@ export default function Landing() {
                 className="pointer-events-none absolute -inset-4 rounded-3xl opacity-40 blur-2xl"
                 style={{
                   background:
-                    "radial-gradient(ellipse at 60% 40%, rgba(0,56,229,0.35) 0%, transparent 70%)",
+                    "radial-gradient(ellipse at 60% 40%, rgba(var(--pl-cobalto-rgb),0.35) 0%, transparent 70%)",
                 }}
               />
               <div className="relative">
@@ -155,24 +155,24 @@ export default function Landing() {
             aria-hidden
             className="pointer-events-none absolute bottom-0 left-0 right-0 h-24"
             style={{
-              background: "linear-gradient(to bottom, transparent, #f5f7fb)",
+              background: "linear-gradient(to bottom, transparent, var(--pl-superficie))",
             }}
           />
         </section>
 
         {/* ─── PROBLEMA / torneiras ────────────────────────────────────────────── */}
         <div
-          className="border-y bg-[var(--pl-grafite)] px-6 py-5 text-center"
+          className="border-y bg-grafite px-6 py-5 text-center"
           id="problema"
         >
-          <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-[#6E8598]">
+          <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-texto-noite-medio">
             Negócio de recorrência não morre de uma vez —{" "}
             <span className="text-white">ele vaza por três torneiras ao mesmo tempo</span>
           </p>
         </div>
 
         {/* ─── TORNEIRA 1 — Taxa ───────────────────────────────────────────────── */}
-        <section className="bg-[#f5f7fb] px-6 py-24 md:py-32">
+        <section className="bg-superficie px-6 py-24 md:py-32">
           <div className="mx-auto grid max-w-[1180px] items-center gap-12 lg:grid-cols-2 lg:gap-20">
             <MockupComparacao />
 
@@ -185,9 +185,9 @@ export default function Landing() {
                 Cada mensalidade passa por um pedágio percentual. Quanto mais contratos você tem,
                 mais a taxa leva — sem que nada de melhor aconteça em troca.
               </p>
-              <div className="mt-6 flex items-start gap-3 rounded-xl bg-[var(--pl-ativo-bg)] px-5 py-4">
-                <span className="mt-0.5 font-mono text-[var(--pl-ativo)]">→</span>
-                <p className="text-[14px] text-[var(--pl-ativo-texto)]">
+              <div className="mt-6 flex items-start gap-3 rounded-xl bg-ativo-bg px-5 py-4">
+                <span className="mt-0.5 font-mono text-ativo">→</span>
+                <p className="text-[14px] text-ativo-texto">
                   <strong>Com Pix Automático:</strong> R$&nbsp;0,10 por transação, independente do
                   valor da mensalidade. A conta para de crescer com você.
                 </p>
@@ -208,9 +208,9 @@ export default function Landing() {
                 Cartão vencido, limite estourado, boleto não pago. O cliente continua usando o
                 serviço e o mês fecha com um buraco que vira "inadimplência" sem nome nem rosto.
               </p>
-              <div className="mt-6 flex items-start gap-3 rounded-xl bg-[var(--pl-ativo-bg)] px-5 py-4">
-                <span className="mt-0.5 font-mono text-[var(--pl-ativo)]">→</span>
-                <p className="text-[14px] text-[var(--pl-ativo-texto)]">
+              <div className="mt-6 flex items-start gap-3 rounded-xl bg-ativo-bg px-5 py-4">
+                <span className="mt-0.5 font-mono text-ativo">→</span>
+                <p className="text-[14px] text-ativo-texto">
                   <strong>Com Pulse:</strong> falhou às 9h, o pagador recebe um Pix avulso às
                   9h01. Receita recuperada no mesmo dia.
                 </p>
@@ -224,7 +224,7 @@ export default function Landing() {
         </section>
 
         {/* ─── TORNEIRA 3 — Saída involuntária ────────────────────────────────── */}
-        <section className="bg-[#f5f7fb] px-6 py-24 md:py-32">
+        <section className="bg-superficie px-6 py-24 md:py-32">
           <div className="mx-auto grid max-w-[1180px] items-center gap-12 lg:grid-cols-2 lg:gap-20">
             <MockupAutorizacoes />
 
@@ -237,9 +237,9 @@ export default function Landing() {
                 A autorização cai, a cobrança para, e quando alguém repara já são três meses.
                 Metade dessas pessoas não queria cancelar — simplesmente nunca foi avisada.
               </p>
-              <div className="mt-6 flex items-start gap-3 rounded-xl bg-[var(--pl-ativo-bg)] px-5 py-4">
-                <span className="mt-0.5 font-mono text-[var(--pl-ativo)]">→</span>
-                <p className="text-[14px] text-[var(--pl-ativo-texto)]">
+              <div className="mt-6 flex items-start gap-3 rounded-xl bg-ativo-bg px-5 py-4">
+                <span className="mt-0.5 font-mono text-ativo">→</span>
+                <p className="text-[14px] text-ativo-texto">
                   <strong>Com Pulse:</strong> autorização cancelada vira alerta no mesmo dia, com
                   a ação de recuperação já pronta do lado.
                 </p>
@@ -249,22 +249,22 @@ export default function Landing() {
         </section>
 
         {/* ─── POSICIONAMENTO ──────────────────────────────────────────────────── */}
-        <section className="bg-[var(--pl-grafite)] px-6 py-20 md:py-28">
+        <section className="bg-grafite px-6 py-20 md:py-28">
           <div className="mx-auto max-w-[1180px]">
             <div className="grid gap-14 lg:grid-cols-[1fr_1fr] lg:items-center">
               <div>
-                <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.14em] text-[#6E8598]">
+                <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.14em] text-texto-noite-medio">
                   Comparado a quê
                 </p>
                 <h2 className="font-titulo text-[clamp(1.8rem,3.5vw,2.6rem)] font-bold leading-tight text-white">
                   A Pulse não substitui o que você já usa.
                 </h2>
-                <p className="mt-5 max-w-[46ch] text-[1.05rem] leading-relaxed text-[#9FB3C0]">
+                <p className="mt-5 max-w-[46ch] text-[1.05rem] leading-relaxed text-texto-noite">
                   Seu gateway já tem o botão de Pix Automático. O problema nunca foi o botão — é
                   que ninguém aperta.
                 </p>
-                <div className="mt-6 border-l-4 border-[var(--pl-cobalto)] bg-[#101E2B] px-5 py-4">
-                  <p className="text-[14px] leading-relaxed text-[#CBD9E2]">
+                <div className="mt-6 border-l-4 border-cobalto bg-noite-media px-5 py-4">
+                  <p className="text-[14px] leading-relaxed text-texto-noite-card">
                     <strong className="text-white">
                       Isso ajuda a migrar, ou ajuda a manter a autorização viva?
                     </strong>{" "}
@@ -273,16 +273,16 @@ export default function Landing() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-px rounded-2xl overflow-hidden bg-[#1E3248]">
+              <div className="grid grid-cols-2 gap-px rounded-2xl overflow-hidden bg-noite-grade">
                 {[
                   ["Não é gateway", "O dinheiro nunca passa por nós. Sua conta, seu contrato, sua taxa negociada."],
                   ["Não é ERP", "Sem agenda, catraca ou prontuário. O sistema que você usa todo dia continua o mesmo."],
                   ["Não é fiscal", "Nota fiscal fica com quem já faz. Não trocamos problema resolvido por problema novo."],
                   ["Não é CRM", "Guardamos só o necessário para cobrar e reter. Sem campos que ninguém preenche."],
                 ].map(([t, d]) => (
-                  <div key={t} className="bg-[#172436] p-6">
+                  <div key={t} className="bg-noite-clara p-6">
                     <p className="mb-2 font-titulo font-bold text-white">{t}</p>
-                    <p className="text-[13px] leading-relaxed text-[#7A95AE]">{d}</p>
+                    <p className="text-[13px] leading-relaxed text-texto-noite-fraco">{d}</p>
                   </div>
                 ))}
               </div>
@@ -310,8 +310,8 @@ export default function Landing() {
                   t: "Diagnóstico",
                   q: "Dia 1 · menos de 10 min",
                   d: "12 meses do seu gateway lidos e entregues como PDF com a sua marca. Seu, migrando ou não.",
-                  fundo: "bg-[#eef2ff]",
-                  cor: "text-[var(--pl-cobalto)]",
+                  fundo: "bg-cobalto-bg",
+                  cor: "text-cobalto",
                   icone: (
                     <svg viewBox="0 0 28 28" fill="none" className="h-6 w-6">
                       <rect x="3" y="2" width="18" height="24" rx="2" stroke="currentColor" strokeWidth="1.6" />
@@ -327,8 +327,8 @@ export default function Landing() {
                   t: "Onda de migração",
                   q: "Semana 1 · você aprova",
                   d: "Primeiro lote segmentado por histórico de falha. Régua automática: convite D0, lembrete D+2, encerra D+10.",
-                  fundo: "bg-[#e8f8f2]",
-                  cor: "text-[var(--pl-ativo)]",
+                  fundo: "bg-ativo-bg",
+                  cor: "text-ativo",
                   icone: (
                     <svg viewBox="0 0 28 28" fill="none" className="h-6 w-6">
                       <rect x="2" y="18" width="5" height="8" rx="1" fill="currentColor" />
@@ -344,8 +344,8 @@ export default function Landing() {
                   t: "Autorização",
                   q: "Pagador · 3 toques",
                   d: "Link com o seu logo, valor e dia. Confirma no app do banco que ele já usa. Sem conta nova, sem senha.",
-                  fundo: "bg-[#fff8ec]",
-                  cor: "text-[var(--pl-pendente-texto)]",
+                  fundo: "bg-pendente-bg",
+                  cor: "text-pendente-texto",
                   icone: (
                     <svg viewBox="0 0 28 28" fill="none" className="h-6 w-6">
                       <rect x="8" y="2" width="12" height="24" rx="3" stroke="currentColor" strokeWidth="1.6" />
@@ -361,8 +361,8 @@ export default function Landing() {
                   t: "Radar",
                   q: "Todo dia, para sempre",
                   d: "Cancelamento, expiração e falhas viram alerta no mesmo dia com ação clara do lado.",
-                  fundo: "bg-[#fdf0f0]",
-                  cor: "text-[var(--pl-risco-texto)]",
+                  fundo: "bg-risco-bg",
+                  cor: "text-risco-texto",
                   icone: (
                     <svg viewBox="0 0 28 28" fill="none" className="h-6 w-6">
                       <path d="M14 3c-5.523 0-10 4.477-10 10v7l-2 3h24l-2-3V13C24 7.477 19.523 3 14 3z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
@@ -376,7 +376,7 @@ export default function Landing() {
               ].map((p) => (
                 <div
                   key={p.n}
-                  className="flex flex-col rounded-2xl border border-[var(--pl-borda)] bg-white p-6 shadow-[0_4px_20px_rgba(30,39,64,0.06)]"
+                  className="flex flex-col rounded-2xl border border-border bg-white p-6 shadow-card"
                 >
                   <div className={`mb-5 w-fit rounded-xl ${p.fundo} p-3`}>
                     <span className={p.cor}>{p.icone}</span>
@@ -393,7 +393,7 @@ export default function Landing() {
         </section>
 
         {/* ─── FEATURE: Autorização ────────────────────────────────────────────── */}
-        <section className="bg-[#eef2ff] px-6 py-24 md:py-32">
+        <section className="bg-cobalto-bg px-6 py-24 md:py-32">
           <div className="mx-auto grid max-w-[1180px] items-center gap-14 lg:grid-cols-2 lg:gap-20">
             <div>
               <Eyebrow>Do lado do pagador</Eyebrow>
@@ -412,7 +412,7 @@ export default function Landing() {
                   "Toca uma vez e confirma no app do banco",
                 ].map((s, i) => (
                   <li key={i} className="flex items-start gap-4">
-                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--pl-cobalto)] font-mono text-[11px] font-bold text-white">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-cobalto font-mono text-[11px] font-bold text-white">
                       {i + 1}
                     </span>
                     <span className="pt-1 text-[15px] text-texto">{s}</span>
@@ -450,7 +450,7 @@ export default function Landing() {
                   "Reajuste acima do teto → reautorização dirigida",
                 ].map((f) => (
                   <li key={f} className="flex items-center gap-3 text-[14px] text-texto">
-                    <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--pl-cobalto)]" />
+                    <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-cobalto" />
                     {f}
                   </li>
                 ))}
@@ -460,7 +460,7 @@ export default function Landing() {
         </section>
 
         {/* ─── A OFERTA ────────────────────────────────────────────────────────── */}
-        <section className="bg-[#f5f7fb] px-6 py-24 md:py-32" id="oferta">
+        <section className="bg-superficie px-6 py-24 md:py-32" id="oferta">
           <div className="mx-auto max-w-[1180px]">
             <div className="mb-14 max-w-[56ch]">
               <span className="mb-4 inline-block bg-primary px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-white">
@@ -482,7 +482,7 @@ export default function Landing() {
                 <p className="font-mono text-[10px] uppercase tracking-widest text-texto-medio">
                   Incluído em todos os planos
                 </p>
-                <div className="overflow-hidden rounded-2xl border border-[var(--pl-grafite)] bg-white">
+                <div className="overflow-hidden rounded-2xl border border-grafite bg-white">
                   {[
                     { t: "Diagnóstico de vazamento completo", d: "Sua base real, 12 meses, custo por método, falhas. PDF com a sua marca.", w: "Antes de pagar" },
                     { t: "Importação e higienização", d: "Sync com gateway ou CSV. Duplicados para revisão. Celular normalizado." },
@@ -495,7 +495,7 @@ export default function Landing() {
                       key={r.t}
                       className={`flex items-start gap-4 px-6 py-4 ${i < arr.length - 1 ? "border-b" : ""}`}
                     >
-                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--pl-cobalto)]">
+                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-cobalto">
                         <svg viewBox="0 0 12 12" fill="none" className="h-3 w-3">
                           <polyline points="2,6 5,9 10,3" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
@@ -512,10 +512,10 @@ export default function Landing() {
                 </div>
 
                 {/* bônus */}
-                <p className="mt-2 font-mono text-[10px] uppercase tracking-widest text-[var(--pl-ativo-texto)]">
+                <p className="mt-2 font-mono text-[10px] uppercase tracking-widest text-ativo-texto">
                   Bônus — incluídos por padrão
                 </p>
-                <div className="overflow-hidden rounded-2xl border border-[var(--pl-ativo)] bg-[#f0fdf4]">
+                <div className="overflow-hidden rounded-2xl border border-ativo bg-ativo-bg">
                   {[
                     { t: "Pix avulso automático na falha", d: "Falhou → pagador recebe Pix para quitar no mesmo dia." },
                     { t: "Reajuste sem quebrar autorização", d: "Reajuste acima do teto → reautorização dirigida antes da cobrança falhar." },
@@ -523,9 +523,9 @@ export default function Landing() {
                   ].map((r, i, arr) => (
                     <div
                       key={r.t}
-                      className={`flex items-start gap-4 px-6 py-4 ${i < arr.length - 1 ? "border-b border-[#bbf7d0]" : ""}`}
+                      className={`flex items-start gap-4 px-6 py-4 ${i < arr.length - 1 ? "border-b border-ativo-borda" : ""}`}
                     >
-                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--pl-ativo)]">
+                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-ativo">
                         <svg viewBox="0 0 12 12" fill="none" className="h-3 w-3">
                           <polyline points="2,6 5,9 10,3" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
@@ -541,17 +541,17 @@ export default function Landing() {
 
               {/* painel de preço sticky */}
               <div className="lg:sticky lg:top-24">
-                <div className="overflow-hidden rounded-2xl border border-[var(--pl-grafite)] bg-[var(--pl-grafite)]">
+                <div className="overflow-hidden rounded-2xl border border-grafite bg-grafite">
                   <div className="p-6">
                     <h3 className="font-titulo text-[1.3rem] font-bold leading-tight text-white">
                       O preço sai de dentro da economia que você já tem
                     </h3>
-                    <p className="mt-3 text-[13px] leading-relaxed text-[#9FB3C0]">
+                    <p className="mt-3 text-[13px] leading-relaxed text-texto-noite">
                       Valor fixo mensal — não por contrato. Se a economia não pagar a nossa
                       mensalidade, ela é suspensa.
                     </p>
                   </div>
-                  <div className="mx-4 mb-4 divide-y divide-[#24384A] rounded-xl border border-[#2A4055] bg-[#101E2B] px-5 py-2">
+                  <div className="mx-4 mb-4 divide-y divide-noite-divide rounded-xl border border-noite-borda-media bg-noite-media px-5 py-2">
                     <LinhaPreco rotulo="Vazamento anual" valor="→ calculadora no topo" />
                     <LinhaPreco rotulo="Implantação" valor="a definir" />
                     <LinhaPreco rotulo="Mensalidade" valor="a definir" />
@@ -561,7 +561,7 @@ export default function Landing() {
                     <Botao asChild tamanho="site" className="w-full">
                       <Link href="/cadastrar">Começar o diagnóstico</Link>
                     </Botao>
-                    <p className="mt-3 text-center font-mono text-[10px] text-[#6E8598]">
+                    <p className="mt-3 text-center font-mono text-[10px] text-texto-noite-medio">
                       Grátis · Sem cartão · PDF com sua marca
                     </p>
                   </div>
@@ -601,7 +601,7 @@ export default function Landing() {
         </section>
 
         {/* ─── FAQ ─────────────────────────────────────────────────────────────── */}
-        <section className="bg-[#f5f7fb] px-6 py-24 md:py-32">
+        <section className="bg-superficie px-6 py-24 md:py-32">
           <div className="mx-auto max-w-[1180px]">
             <div className="grid gap-14 lg:grid-cols-[320px_1fr] lg:items-start">
               <div className="lg:sticky lg:top-24">
@@ -620,7 +620,7 @@ export default function Landing() {
                 </div>
               </div>
 
-              <div className="divide-y border-t border-[var(--pl-grafite)] bg-white rounded-2xl overflow-hidden border">
+              <div className="divide-y border-t border-grafite bg-white rounded-2xl overflow-hidden border">
                 {[
                   {
                     p: "Meu gateway já oferece Pix Automático. Por que eu precisaria de vocês?",
@@ -653,13 +653,13 @@ export default function Landing() {
         </section>
 
         {/* ─── CTA FINAL ───────────────────────────────────────────────────────── */}
-        <section className="relative overflow-hidden bg-[var(--pl-grafite)] px-6 py-28 md:py-36">
-          <div className="pointer-events-none absolute -left-32 -top-32 h-96 w-96 rounded-full bg-[var(--pl-cobalto)] opacity-10 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-16 -right-16 h-64 w-64 rounded-full bg-[var(--pl-ativo)] opacity-10 blur-3xl" />
+        <section className="relative overflow-hidden bg-grafite px-6 py-28 md:py-36">
+          <div className="pointer-events-none absolute -left-32 -top-32 h-96 w-96 rounded-full bg-cobalto opacity-10 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-16 -right-16 h-64 w-64 rounded-full bg-ativo opacity-10 blur-3xl" />
           <PadraoGrid className="absolute right-0 top-0 h-full w-1/2 text-white opacity-[0.025]" />
 
           <div className="relative mx-auto max-w-[860px] text-center">
-            <p className="mb-5 font-mono text-[11px] uppercase tracking-[0.16em] text-[#6E8598]">
+            <p className="mb-5 font-mono text-[11px] uppercase tracking-[0.16em] text-texto-noite-medio">
               Começa aqui
             </p>
             <h2 className="font-titulo text-[clamp(2rem,5vw,3.6rem)] font-bold leading-tight text-white">
@@ -667,7 +667,7 @@ export default function Landing() {
               <br />
               Depois a conversa.
             </h2>
-            <p className="mx-auto mt-6 max-w-[50ch] text-[1.05rem] leading-relaxed text-[#9FB3C0]">
+            <p className="mx-auto mt-6 max-w-[50ch] text-[1.05rem] leading-relaxed text-texto-noite">
               O diagnóstico lê a sua base de verdade e devolve um PDF com quanto a taxa levou nos
               últimos 12 meses e quanto sobraria com 50%, 70% e 90% da base migrada.
               <br />
@@ -679,7 +679,7 @@ export default function Landing() {
               <Botao asChild tamanho="site">
                 <Link href="/cadastrar">Gerar meu diagnóstico</Link>
               </Botao>
-              <span className="font-mono text-[12px] text-[#6E8598]">
+              <span className="font-mono text-[12px] text-texto-noite-medio">
                 Menos de 10 minutos · Sem cartão · O PDF é seu
               </span>
             </div>
@@ -687,10 +687,10 @@ export default function Landing() {
         </section>
       </main>
 
-      <footer className="border-t border-[#1A2E42] bg-[var(--pl-grafite)] px-6 py-8">
+      <footer className="border-t border-noite-borda bg-grafite px-6 py-8">
         <div className="mx-auto flex max-w-[1180px] flex-wrap items-center justify-between gap-4">
           <Logo tom="escuro" />
-          <p className="text-[13px] text-[#6E8598]">
+          <p className="text-[13px] text-texto-noite-medio">
             Migração e retenção de recorrência. Não somos gateway, ERP, CRM nem emissor fiscal.
           </p>
         </div>
@@ -707,16 +707,16 @@ function Eyebrow({ children, className = "" }: { children: ReactNode; className?
       className={`mb-4 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.14em] text-texto-medio ${className}`}
     >
       {children}
-      <span className="h-px flex-1 bg-[var(--pl-borda)]" />
+      <span className="h-px flex-1 bg-border" />
     </p>
   );
 }
 
 function Tag({ children, cor }: { children: ReactNode; cor: "risco" | "ativo" | "cobalto" }) {
   const estilos = {
-    risco: "bg-[var(--pl-risco-bg)] text-[var(--pl-risco-texto)]",
-    ativo: "bg-[var(--pl-ativo-bg)] text-[var(--pl-ativo-texto)]",
-    cobalto: "bg-[#eef2ff] text-[var(--pl-cobalto)]",
+    risco: "bg-risco-bg text-risco-texto",
+    ativo: "bg-ativo-bg text-ativo-texto",
+    cobalto: "bg-cobalto-bg text-cobalto",
   }[cor];
   return (
     <span
@@ -737,8 +737,8 @@ function MetricaBadge({
   cor: "cobalto" | "ativo" | "neutro";
 }) {
   const valorCor = {
-    cobalto: "text-[var(--pl-cobalto-claro)]",
-    ativo: "text-[var(--pl-ativo)]",
+    cobalto: "text-cobalto-claro",
+    ativo: "text-ativo",
     neutro: "text-white",
   }[cor];
 
@@ -763,11 +763,11 @@ function GarantiaCard({
   medo: string;
   cor: "ativo" | "cobalto";
 }) {
-  const borda = cor === "ativo" ? "border-l-[var(--pl-ativo)]" : "border-l-[var(--pl-cobalto)]";
-  const tagCor = cor === "ativo" ? "text-[var(--pl-ativo-texto)]" : "text-[var(--pl-cobalto)]";
-  const iconBg = cor === "ativo" ? "bg-[var(--pl-ativo-bg)] text-[var(--pl-ativo)]" : "bg-[#eef2ff] text-[var(--pl-cobalto)]";
+  const borda = cor === "ativo" ? "border-l-ativo" : "border-l-cobalto";
+  const tagCor = cor === "ativo" ? "text-ativo-texto" : "text-cobalto";
+  const iconBg = cor === "ativo" ? "bg-ativo-bg text-ativo" : "bg-cobalto-bg text-cobalto";
   return (
-    <div className={`rounded-2xl border border-[var(--pl-grafite)] bg-white overflow-hidden`}>
+    <div className={`rounded-2xl border border-grafite bg-white overflow-hidden`}>
       <div className={`border-l-4 ${borda} p-8`}>
         <div className="mb-4 flex items-start gap-4">
           <div className={`shrink-0 rounded-xl p-3 ${iconBg}`}>
@@ -816,11 +816,11 @@ function LinhaPreco({
   return (
     <div
       className={`flex justify-between gap-3 py-2.5 font-mono text-[13px] tabular-nums ${
-        destaque ? "pt-4 font-semibold text-white" : "text-[#9FB3C0]"
+        destaque ? "pt-4 font-semibold text-white" : "text-texto-noite"
       }`}
     >
       <span>{rotulo}</span>
-      <span className={destaque ? "text-[var(--pl-cobalto-claro)]" : ""}>{valor}</span>
+      <span className={destaque ? "text-cobalto-claro" : ""}>{valor}</span>
     </div>
   );
 }

@@ -19,24 +19,24 @@ export type Estado = "ativo" | "pendente" | "risco" | "neutro";
 
 const ESTILOS: Record<Estado, { ponto: string; texto: string; fundo: string }> = {
   ativo: {
-    ponto: "bg-[var(--pl-ativo)]",
-    texto: "text-[var(--pl-ativo-texto)]",
-    fundo: "bg-[var(--pl-ativo-bg)]",
+    ponto: "bg-ativo",
+    texto: "text-ativo-texto",
+    fundo: "bg-ativo-bg",
   },
   pendente: {
-    ponto: "bg-[var(--pl-pendente)]",
-    texto: "text-[var(--pl-pendente-texto)]",
-    fundo: "bg-[var(--pl-pendente-bg)]",
+    ponto: "bg-pendente",
+    texto: "text-pendente-texto",
+    fundo: "bg-pendente-bg",
   },
   risco: {
-    ponto: "bg-[var(--pl-risco)]",
-    texto: "text-[var(--pl-risco-texto)]",
-    fundo: "bg-[var(--pl-risco-bg)]",
+    ponto: "bg-risco",
+    texto: "text-risco-texto",
+    fundo: "bg-risco-bg",
   },
   neutro: {
-    ponto: "bg-[var(--pl-texto-fraco)]",
-    texto: "text-[var(--pl-texto)]",
-    fundo: "bg-[var(--pl-superficie)]",
+    ponto: "bg-texto-fraco",
+    texto: "text-texto",
+    fundo: "bg-superficie",
   },
 };
 

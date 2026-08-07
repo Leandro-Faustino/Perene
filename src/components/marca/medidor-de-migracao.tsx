@@ -48,7 +48,7 @@ export function MedidorDeMigracao({
         </div>
 
         <div
-          className="mt-1.5 h-2 w-full overflow-hidden rounded-full bg-[var(--pl-borda)]"
+          className="mt-1.5 h-2 w-full overflow-hidden rounded-full bg-border"
           role="progressbar"
           aria-valuenow={contratosMigrados}
           aria-valuemin={0}

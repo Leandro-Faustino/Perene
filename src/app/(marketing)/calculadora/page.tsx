@@ -142,7 +142,7 @@ export default function PaginaDaCalculadora() {
                     rotulo="Ticket médio (R$)"
                     descricao="Valor mensal de cada contrato"
                   >
-                    <div className="flex items-center rounded-md border bg-[var(--pl-superficie)] px-3 focus-within:ring-2 focus-within:ring-[var(--pl-cobalto)] focus-within:ring-offset-1">
+                    <div className="flex items-center rounded-md border bg-superficie px-3 focus-within:ring-2 focus-within:ring-cobalto focus-within:ring-offset-1">
                       <span className="pr-1 text-[13px] text-texto-medio">R$</span>
                       <input
                         type="number"
@@ -182,7 +182,7 @@ export default function PaginaDaCalculadora() {
                         : "Valor fixo por boleto emitido ou transação processada"
                     }
                   >
-                    <div className="flex items-center rounded-md border bg-[var(--pl-superficie)] px-3 focus-within:ring-2 focus-within:ring-[var(--pl-cobalto)] focus-within:ring-offset-1">
+                    <div className="flex items-center rounded-md border bg-superficie px-3 focus-within:ring-2 focus-within:ring-cobalto focus-within:ring-offset-1">
                       <input
                         type="number"
                         min="0"
@@ -201,7 +201,7 @@ export default function PaginaDaCalculadora() {
                     rotulo="Tarifa do Pix Automático (R$/transação)"
                     descricao="O seu gateway pode cobrar diferente — ajuste aqui"
                   >
-                    <div className="flex items-center rounded-md border bg-[var(--pl-superficie)] px-3 focus-within:ring-2 focus-within:ring-[var(--pl-cobalto)] focus-within:ring-offset-1">
+                    <div className="flex items-center rounded-md border bg-superficie px-3 focus-within:ring-2 focus-within:ring-cobalto focus-within:ring-offset-1">
                       <span className="pr-1 text-[13px] text-texto-medio">R$</span>
                       <input
                         type="number"
@@ -223,7 +223,7 @@ export default function PaginaDaCalculadora() {
               {temResultado ? (
                 <>
                   {/* Número principal */}
-                  <div className="rounded-lg border bg-background p-6 shadow-[var(--pl-sombra)]">
+                  <div className="rounded-lg border bg-background p-6 shadow-sm">
                     <p className="text-[12px] font-medium uppercase tracking-[0.02em] text-texto-medio">
                       Economia com 100% migrado
                     </p>
@@ -289,7 +289,7 @@ export default function PaginaDaCalculadora() {
                   </div>
 
                   {/* CTA */}
-                  <div className="rounded-lg border bg-[var(--pl-superficie)] p-5">
+                  <div className="rounded-lg border bg-superficie p-5">
                     <p className="text-[13px] font-medium text-foreground">
                       Quer ver a conta com a sua base real?
                     </p>
@@ -352,4 +352,4 @@ function Campo({
 }
 
 const estiloInput =
-  "w-full rounded-md border bg-[var(--pl-superficie)] px-3 py-2 text-[14px] text-foreground outline-none focus:ring-2 focus:ring-[var(--pl-cobalto)] focus:ring-offset-1";
+  "w-full rounded-md border bg-superficie px-3 py-2 text-[14px] text-foreground outline-none focus:ring-2 focus:ring-cobalto focus:ring-offset-1";

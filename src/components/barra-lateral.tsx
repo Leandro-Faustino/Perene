@@ -54,7 +54,7 @@ export function BarraLateral() {
   return (
     <nav
       aria-label="Navegação principal"
-      className="flex w-60 shrink-0 flex-col border-r bg-[var(--pl-sidebar)]"
+      className="flex w-60 shrink-0 flex-col border-r bg-sidebar"
     >
       <div className="flex h-14 items-center px-5">
         <Link href="/dashboard" aria-label="Pulse — ir para o diagnóstico">
@@ -82,7 +82,7 @@ export function BarraLateral() {
                       className={cn(
                         "flex items-center gap-2.5 rounded-md px-2 py-2 text-[14px] transition-colors",
                         ativo
-                          ? "bg-background font-medium text-foreground shadow-[var(--pl-sombra)]"
+                          ? "bg-background font-medium text-foreground shadow-sm"
                           : "text-texto hover:bg-background/60",
                       )}
                     >

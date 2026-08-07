@@ -35,7 +35,7 @@ export function EstadoVazio({
         {[16, 16, 16, 11.2, 16, 16, 16, 11.2].map((altura, i) => (
           <span
             key={i}
-            className="w-[3px] rounded-full bg-[var(--pl-borda)]"
+            className="w-[3px] rounded-full bg-border"
             style={{ height: altura }}
           />
         ))}

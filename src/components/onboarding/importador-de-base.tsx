@@ -78,7 +78,7 @@ export function ImportadorDeBase() {
             type="file"
             accept=".csv,text/csv"
             required
-            className="mt-1.5 w-full rounded-md border bg-background px-3 py-2.5 text-[14px] text-texto file:mr-3 file:rounded file:border-0 file:bg-[var(--pl-superficie)] file:px-3 file:py-1.5 file:text-[13px] file:text-foreground"
+            className="mt-1.5 w-full rounded-md border bg-background px-3 py-2.5 text-[14px] text-texto file:mr-3 file:rounded file:border-0 file:bg-superficie file:px-3 file:py-1.5 file:text-[13px] file:text-foreground"
           />
           <p className="mt-1.5 text-[13px] text-texto-medio">
             Exporte do seu sistema como está. Reconhecemos as colunas pelos
@@ -88,7 +88,7 @@ export function ImportadorDeBase() {
         </div>
 
         {analise && !analise.ok && (
-          <p role="alert" className="rounded-md bg-[var(--pl-risco-bg)] px-3 py-2.5 text-[14px] text-[var(--pl-risco-texto)]">
+          <p role="alert" className="rounded-md bg-risco-bg px-3 py-2.5 text-[14px] text-risco-texto">
             {analise.mensagem}
           </p>
         )}
@@ -138,7 +138,7 @@ export function ImportadorDeBase() {
                   {grupo.linhas.map((linha) => (
                     <label
                       key={linha.linha}
-                      className="flex cursor-pointer items-center gap-3 rounded-md px-2 py-2 text-[14px] hover:bg-[var(--pl-superficie)]"
+                      className="flex cursor-pointer items-center gap-3 rounded-md px-2 py-2 text-[14px] hover:bg-superficie"
                     >
                       <input
                         type="radio"
@@ -147,7 +147,7 @@ export function ImportadorDeBase() {
                         onChange={() =>
                           setEscolhas((e) => ({ ...e, [grupo.chave]: linha.linha }))
                         }
-                        className="accent-[var(--pl-cobalto)]"
+                        className="accent-cobalto"
                       />
                       <span className="font-medium text-foreground">{linha.nome}</span>
                       <span className="pl-numero text-texto">
@@ -159,7 +159,7 @@ export function ImportadorDeBase() {
                       </span>
                     </label>
                   ))}
-                  <label className="flex cursor-pointer items-center gap-3 rounded-md px-2 py-2 text-[14px] text-texto-medio hover:bg-[var(--pl-superficie)]">
+                  <label className="flex cursor-pointer items-center gap-3 rounded-md px-2 py-2 text-[14px] text-texto-medio hover:bg-superficie">
                     <input
                       type="radio"
                       name={`dup-${grupo.chave}`}
@@ -171,7 +171,7 @@ export function ImportadorDeBase() {
                           return resto;
                         })
                       }
-                      className="accent-[var(--pl-cobalto)]"
+                      className="accent-cobalto"
                     />
                     Deixar de fora por enquanto
                   </label>
@@ -204,7 +204,7 @@ export function ImportadorDeBase() {
       )}
 
       {erro && (
-        <p role="alert" className="rounded-md bg-[var(--pl-risco-bg)] px-3 py-2.5 text-[14px] text-[var(--pl-risco-texto)]">
+        <p role="alert" className="rounded-md bg-risco-bg px-3 py-2.5 text-[14px] text-risco-texto">
           {erro}
         </p>
       )}
