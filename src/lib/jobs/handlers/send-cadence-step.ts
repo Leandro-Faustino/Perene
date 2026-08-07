@@ -1,11 +1,7 @@
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import { criarProvedorDeMensagem } from "@/lib/messaging/zapi";
-import { templateDoPasso, TEMPLATES, montarMensagem } from "@/lib/messaging/templates";
-import {
-  buscarTemplateCustom,
-  aplicarVariaveis,
-  primeiroNome,
-} from "@/lib/messaging/custom-templates";
+import { templateDoPasso, montarMensagem } from "@/lib/messaging/templates";
+import { resolverCorpoDoTemplate, primeiroNome } from "@/lib/messaging/custom-templates";
 import { formatarReais } from "@/lib/utils";
 import { deveContinuar, dentroDoHorarioCivil } from "@/lib/domain/cadence";
 
@@ -33,7 +29,7 @@ export async function enviarPassoDaRegua(
       `id, org_id, token, status, expires_at,
        mandates ( status ),
        contracts ( amount_cents, payers ( name, phone_e164 ) ),
-       organizations ( name, payer_label )`,
+       organizations ( name, payer_label, nicho )`,
     )
     .eq("id", payload.invitationId)
     .maybeSingle();
@@ -74,6 +70,7 @@ export async function enviarPassoDaRegua(
   const organizacao = convite.organizations as unknown as {
     name: string;
     payer_label: string;
+    nicho: string | null;
   };
 
   if (!contrato?.payers?.phone_e164) {
@@ -88,21 +85,33 @@ export async function enviarPassoDaRegua(
   const link = `${base}/autorizar/${convite.token}`;
   const chave = templateDoPasso(payload.passo);
 
-  const customBody = await buscarTemplateCustom(convite.org_id, chave, "whatsapp");
-  const corpo = customBody
-    ? aplicarVariaveis(customBody, {
-        pagador: primeiroNome(contrato.payers.name),
-        organizacao: organizacao.name,
-        valor: formatarReais(contrato.amount_cents),
-        link,
-      })
-    : montarMensagem(payload.passo, {
-        pagador: contrato.payers.name,
-        organizacao: organizacao.name,
-        valorCentavos: contrato.amount_cents,
-        link,
-        rotuloDoPagador: organizacao.payer_label,
-      }).corpo;
+  // Resolução da mensagem: custom > nicho > genérico.
+  const dadosDeNicho = {
+    pagador: contrato.payers.name,
+    organizacao: organizacao.name,
+    valorCentavos: contrato.amount_cents,
+    link,
+  };
+  const resolvido = await resolverCorpoDoTemplate({
+    orgId: convite.org_id,
+    nicho: organizacao.nicho,
+    chave,
+    dadosDeNicho,
+    variaveisCustom: {
+      pagador: primeiroNome(contrato.payers.name),
+      organizacao: organizacao.name,
+      valor: formatarReais(contrato.amount_cents),
+      link,
+    },
+  });
+
+  const corpo = resolvido ?? montarMensagem(payload.passo, {
+    pagador: contrato.payers.name,
+    organizacao: organizacao.name,
+    valorCentavos: contrato.amount_cents,
+    link,
+    rotuloDoPagador: organizacao.payer_label,
+  }).corpo;
 
   // Grava a mensagem ANTES de enviar. Se o envio explodir no meio, existe
   // registro do que foi tentado — sem isso, a linha do tempo do contrato mente.

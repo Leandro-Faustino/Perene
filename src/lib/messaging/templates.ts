@@ -55,7 +55,7 @@ export const TEMPLATES: Record<
     categoriaMeta: "utility",
     montar: (d) =>
       `Oi, ${PRIMEIRO_NOME(d.pagador)}! Aqui é da ${d.organizacao}.\n\n` +
-      `Estamos mudando a forma de cobrar a mensalidade de ${formatarReais(d.valorCentavos)} para Pix Automático — ` +
+      `Estamos mudando a forma de cobrar de ${formatarReais(d.valorCentavos)} para Pix Automático — ` +
       `você autoriza uma vez e não precisa lembrar de pagar nos próximos meses.\n\n` +
       `Leva menos de um minuto: ${d.link}\n\n` +
       `Qualquer dúvida, é só responder aqui.`,
@@ -66,10 +66,10 @@ export const TEMPLATES: Record<
     categoriaMeta: "utility",
     montar: (d) =>
       `Oi, ${PRIMEIRO_NOME(d.pagador)}! Passando para lembrar da autorização do Pix Automático da ${d.organizacao}.\n\n` +
-      `É rápido e depois a mensalidade entra sozinha: ${d.link}`,
+      `É rápido e depois o pagamento entra sozinho: ${d.link}`,
   },
 
-  // D+5 — responde à dúvida que não foi feita. A objeção real do pagador é
+  // D+5 — responde à dúvida que não foi feita. A objeção real do ${d.rotuloDoPagador} é
   // "o que eu estou autorizando?".
   convite_d5: {
     categoriaMeta: "utility",
@@ -77,7 +77,7 @@ export const TEMPLATES: Record<
       `Oi, ${PRIMEIRO_NOME(d.pagador)}. Sobre o Pix Automático da ${d.organizacao}:\n\n` +
       `Você autoriza pelo app do seu banco, com um valor máximo definido — nada acima disso é cobrado sem você autorizar de novo. ` +
       `E dá para cancelar quando quiser, pelo próprio banco.\n\n` +
-      `${d.link}`,
+      `Valor: ${formatarReais(d.valorCentavos)} · ${d.link}`,
   },
 
   // D+10 — o último. Diz que é o último, sem ameaça, e deixa a porta aberta.
@@ -88,7 +88,7 @@ export const TEMPLATES: Record<
       `Oi, ${PRIMEIRO_NOME(d.pagador)}! Este é o último lembrete sobre o Pix Automático da ${d.organizacao} — ` +
       `não vamos insistir mais.\n\n` +
       `Se quiser autorizar: ${d.link}\n\n` +
-      `Se preferir continuar como está, tudo bem: nada muda para você.`,
+      `Se preferir continuar como está, tudo bem: nada muda para você, ${d.rotuloDoPagador}.`,
   },
 };
 

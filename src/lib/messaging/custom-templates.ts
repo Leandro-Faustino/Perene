@@ -1,5 +1,12 @@
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import type { CanalDeMensagem } from "./types";
+import {
+  montarMensagemDeNicho,
+  type ChaveDeTemplateDeNicho,
+  type DadosDoNicho,
+  type DadosDoAvisoPreNicho,
+  type DadosDoPixAvulsoNicho,
+} from "./nichos";
 
 import "server-only";
 
@@ -72,4 +79,37 @@ export async function buscarTemplateCustom(
     .maybeSingle();
 
   return data?.body ?? null;
+}
+
+/**
+ * Resolve o corpo final da mensagem seguindo a hierarquia de prioridade:
+ *   1. Template customizado pela org no banco  (message_templates)
+ *   2. Pack do nicho  (nichos.ts — texto por segmento)
+ *   3. Fallback: retorna null → caller usa template genérico de templates.ts
+ *
+ * Centraliza aqui para que send-cadence-step, send-message e qualquer handler
+ * futuro não precisem replicar a lógica de resolução.
+ */
+export async function resolverCorpoDoTemplate(opts: {
+  orgId: string;
+  nicho: string | null;
+  chave: ChaveDeTemplateDeNicho;
+  canal?: CanalDeMensagem;
+  dadosDeNicho: DadosDoNicho | DadosDoAvisoPreNicho | DadosDoPixAvulsoNicho;
+  variaveisCustom: VariaveisDoTemplate;
+}): Promise<string | null> {
+  const { orgId, nicho, chave, canal = "whatsapp", dadosDeNicho, variaveisCustom } = opts;
+
+  // 1. Custom da org
+  const custom = await buscarTemplateCustom(orgId, chave, canal);
+  if (custom) return aplicarVariaveis(custom, variaveisCustom);
+
+  // 2. Nicho
+  if (nicho) {
+    const texto = montarMensagemDeNicho(nicho, chave, dadosDeNicho);
+    if (texto) return texto;
+  }
+
+  // 3. Caller usa template genérico
+  return null;
 }

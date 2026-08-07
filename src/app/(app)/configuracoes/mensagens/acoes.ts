@@ -91,6 +91,42 @@ export async function salvarTemplate(
   return { ok: true, mensagem: "Template salvo." };
 }
 
+const NICHOS_VALIDOS = ["academia", "clinica", "condominio", "escola", "clube", "outro"] as const;
+
+const EntradaNicho = z.object({
+  nicho: z.enum([...NICHOS_VALIDOS, ""] as [string, ...string[]]).optional(),
+});
+
+/**
+ * Salva (ou limpa) o nicho da organização.
+ * Nicho vazio = sem nicho → templates genéricos.
+ */
+export async function salvarNicho(
+  _anterior: ResultadoDeSalvamento | null,
+  formulario: FormData,
+): Promise<ResultadoDeSalvamento> {
+  await exigirOrgAtual();
+  const supa = supabaseServidor();
+
+  const analise = EntradaNicho.safeParse({ nicho: formulario.get("nicho") });
+  if (!analise.success) {
+    return { ok: false, mensagem: "Segmento inválido." };
+  }
+
+  const nicho = analise.data.nicho || null;
+
+  const { error } = await supa
+    .from("organizations")
+    .update({ nicho });
+
+  if (error) {
+    return { ok: false, mensagem: `Erro ao salvar: ${error.message}` };
+  }
+
+  revalidatePath("/configuracoes/mensagens");
+  return { ok: true, mensagem: nicho ? "Segmento salvo." : "Segmento removido." };
+}
+
 const EntradaNotificacao = z.object({
   notification_phone: z
     .string()

@@ -3,7 +3,16 @@
 import { useActionState } from "react";
 
 import { Botao } from "@/components/ui/botao";
-import { salvarTemplate, salvarNotificacao, type ResultadoDeSalvamento } from "./acoes";
+import { salvarTemplate, salvarNotificacao, salvarNicho, type ResultadoDeSalvamento } from "./acoes";
+
+const OPCOES_NICHO = [
+  { valor: "academia",   rotulo: "Academia / Studio",          exemplo: "mensalidade, aluno" },
+  { valor: "clinica",    rotulo: "Clínica / Consultório",      exemplo: "plano, paciente" },
+  { valor: "condominio", rotulo: "Condomínio / Administradora", exemplo: "taxa condominial, morador" },
+  { valor: "escola",     rotulo: "Escola / Curso",             exemplo: "mensalidade escolar, aluno" },
+  { valor: "clube",      rotulo: "Clube / Associação",         exemplo: "mensalidade, associado" },
+  { valor: "outro",      rotulo: "Outro",                      exemplo: "serviço, cliente" },
+] as const;
 
 interface Props {
   chave: string;
@@ -99,6 +108,91 @@ export function EditorDeTemplate({
           </pre>
         </details>
       )}
+    </div>
+  );
+}
+
+export function SeletorDeNicho({ nichoAtual }: { nichoAtual: string | null }) {
+  const [estado, acao, pendente] = useActionState<
+    ResultadoDeSalvamento | null,
+    FormData
+  >(salvarNicho, null);
+
+  return (
+    <div className="rounded-lg border bg-background p-5">
+      <p className="text-[14px] font-medium text-foreground">Segmento de mercado</p>
+      <p className="mt-0.5 text-[13px] text-texto-medio">
+        Define o vocabulário padrão das mensagens —{" "}
+        <span className="font-medium text-foreground">aluno</span>,{" "}
+        <span className="font-medium text-foreground">paciente</span>,{" "}
+        <span className="font-medium text-foreground">morador</span> — e adapta o tom de
+        cada mensagem ao contexto do seu negócio. Você pode sobrescrever qualquer texto
+        individualmente abaixo.
+      </p>
+
+      <form action={acao} className="mt-4 space-y-3">
+        <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+          {OPCOES_NICHO.map((op) => {
+            const selecionado = nichoAtual === op.valor;
+            return (
+              <label
+                key={op.valor}
+                className={[
+                  "flex cursor-pointer flex-col gap-0.5 rounded-lg border px-4 py-3 transition-colors",
+                  selecionado
+                    ? "border-cobalto bg-cobalto-bg"
+                    : "border-borda bg-superficie hover:border-borda-media",
+                ].join(" ")}
+              >
+                <input
+                  type="radio"
+                  name="nicho"
+                  value={op.valor}
+                  defaultChecked={selecionado}
+                  className="sr-only"
+                />
+                <span className="text-[13px] font-medium text-foreground">{op.rotulo}</span>
+                <span className="text-[11px] text-texto-medio">{op.exemplo}</span>
+              </label>
+            );
+          })}
+
+          {/* Opção "sem nicho" */}
+          <label
+            className={[
+              "flex cursor-pointer flex-col gap-0.5 rounded-lg border px-4 py-3 transition-colors",
+              !nichoAtual
+                ? "border-cobalto bg-cobalto-bg"
+                : "border-borda bg-superficie hover:border-borda-media",
+            ].join(" ")}
+          >
+            <input
+              type="radio"
+              name="nicho"
+              value=""
+              defaultChecked={!nichoAtual}
+              className="sr-only"
+            />
+            <span className="text-[13px] font-medium text-foreground">Genérico</span>
+            <span className="text-[11px] text-texto-medio">sem nicho selecionado</span>
+          </label>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <Botao type="submit" tamanho="pequeno" disabled={pendente}>
+            {pendente ? "Salvando…" : "Salvar segmento"}
+          </Botao>
+          {estado && (
+            <span
+              className={
+                estado.ok ? "text-[12px] text-ativo-texto" : "text-[12px] text-risco-texto"
+              }
+            >
+              {estado.mensagem}
+            </span>
+          )}
+        </div>
+      </form>
     </div>
   );
 }

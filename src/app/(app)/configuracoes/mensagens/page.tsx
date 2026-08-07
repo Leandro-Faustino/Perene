@@ -4,7 +4,7 @@ import {
   montarAvisoPre,
   montarPixAvulso,
 } from "@/lib/messaging/templates";
-import { EditorDeTemplate, FormularioDeNotificacao } from "./editor-de-template";
+import { EditorDeTemplate, FormularioDeNotificacao, SeletorDeNicho } from "./editor-de-template";
 
 export const metadata = { title: "Configurações — Mensagens" };
 
@@ -108,7 +108,7 @@ export default async function PaginaDeMensagens() {
       .from("message_templates")
       .select("key, body")
       .eq("channel", "whatsapp"),
-    supa.from("organizations").select("notification_phone").maybeSingle(),
+    supa.from("organizations").select("notification_phone, nicho").maybeSingle(),
   ]);
 
   const customPorChave: Record<string, string> = {};
@@ -127,6 +127,14 @@ export default async function PaginaDeMensagens() {
           Deixe em branco para usar o texto padrão da Pulse.
         </p>
       </div>
+
+      {/* Seletor de nicho */}
+      <section>
+        <h2 className="mb-3 text-[12px] font-medium uppercase tracking-[0.02em] text-texto-medio">
+          Segmento de mercado
+        </h2>
+        <SeletorDeNicho nichoAtual={org?.nicho ?? null} />
+      </section>
 
       {/* Templates da régua e operacionais */}
       <section className="space-y-4">
